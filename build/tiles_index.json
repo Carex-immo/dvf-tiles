@@ -1,0 +1,177 @@
+{
+  "metadata": {
+    "timestamp": "2026-06-11T22:12:19.037Z",
+    "pmtilesPath": "build/dvf.pmtiles",
+    "pmtilesSize": 913581156,
+    "tileCount": 30,
+    "layers": {
+      "mutations": 4,
+      "communes": 26,
+      "departements": 0
+    },
+    "elapsedMs": 1
+  },
+  "index": {
+    "mutations": {
+      "3": {
+        "4": {
+          "7": {
+            "present": true
+          }
+        }
+      },
+      "11": {
+        "748": {
+          "321": {
+            "present": true
+          }
+        }
+      },
+      "13": {
+        "1033": {
+          "7046": {
+            "present": true
+          }
+        }
+      },
+      "15": {
+        "23517": {
+          "32767": {
+            "present": true
+          }
+        }
+      }
+    },
+    "communes": {
+      "6": {
+        "41": {
+          "11": {
+            "present": true
+          }
+        },
+        "49": {
+          "33": {
+            "present": true
+          }
+        },
+        "51": {
+          "20": {
+            "present": true
+          },
+          "23": {
+            "present": true
+          }
+        },
+        "56": {
+          "19": {
+            "present": true
+          }
+        },
+        "60": {
+          "38": {
+            "present": true
+          }
+        },
+        "62": {
+          "59": {
+            "present": true
+          }
+        },
+        "63": {
+          "42": {
+            "present": true
+          }
+        }
+      },
+      "7": {
+        "19": {
+          "38": {
+            "present": true
+          }
+        },
+        "24": {
+          "31": {
+            "present": true
+          }
+        },
+        "36": {
+          "35": {
+            "present": true
+          }
+        },
+        "37": {
+          "44": {
+            "present": true
+          }
+        },
+        "38": {
+          "22": {
+            "present": true
+          }
+        },
+        "39": {
+          "33": {
+            "present": true
+          }
+        },
+        "43": {
+          "50": {
+            "present": true
+          }
+        },
+        "47": {
+          "32": {
+            "present": true
+          }
+        },
+        "55": {
+          "19": {
+            "present": true
+          }
+        },
+        "56": {
+          "42": {
+            "present": true
+          },
+          "59": {
+            "present": true
+          },
+          "62": {
+            "present": true
+          }
+        },
+        "58": {
+          "43": {
+            "present": true
+          }
+        },
+        "60": {
+          "25": {
+            "present": true
+          }
+        },
+        "63": {
+          "17": {
+            "present": true
+          },
+          "20": {
+            "present": true
+          }
+        }
+      },
+      "8": {
+        "101": {
+          "92": {
+            "present": true
+          }
+        },
+        "126": {
+          "255": {
+            "present": true
+          }
+        }
+      }
+    },
+    "departements": {}
+  }
+}
