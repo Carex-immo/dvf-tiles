@@ -3,13 +3,16 @@
 // Validates layer/zoom, returns 204 if invalid, proxies Storage otherwise
 
 import { serve } from "https://deno.land/std@0.208.0/http/server.ts";
-import { zxyToTileId } from "./pmtiles-parser.ts";
+import {
+  zxyToTileId,
+  parsePMTilesDirectory,
+  parsePMTilesHeader,
+  decompressGzip,
+} from "./pmtiles-parser.ts";
 
 const SUPABASE_URL = "https://bqwbazolhtwizafxqzlr.supabase.co";
 const BUCKET = "tiles";
 const PMTILES_FILE = "dvf.pmtiles";
-const ANON_KEY =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJxd2Jhem9saHR3aXphZnhxemxyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzk4OTU2MzAsImV4cCI6MjA5NTQ3MTYzMH0.EC8z7YAPF-UNZ_KjXN1eIOmRQi31kLRua2qu5X2eKeM";
 
 // Valid layers and zoom ranges
 const LAYER_RANGES: Record<string, [number, number]> = {
@@ -18,15 +21,17 @@ const LAYER_RANGES: Record<string, [number, number]> = {
   departements: [4, 6],
 };
 
-// In-memory caches for tile index and PMTiles header
-let tileIndexCache: Record<string, Record<number, Record<number, Record<number, number>>>> | null = null;
+// In-memory caches for tile index, PMTiles header, and tile directory
+// deno-lint-ignore no-explicit-any
+let tileIndexCache: any = null;
 let pmtilesHeaderCache: Uint8Array | null = null;
+let tileDirectoryCache: Map<bigint, { offset: number; length: number }> | null = null;
 
 /**
  * Load and cache the tile index from index.json
- * Returns structure: { layer: { z: { x: { y: offset } } } }
+ * Returns structure: { layer: { z: { x: { y: { present: boolean } } } } }
  */
-async function loadTileIndex(): Promise<Record<string, Record<number, Record<number, Record<number, number>>>>> {
+async function loadTileIndex() {
   // Return cached index if available
   if (tileIndexCache !== null) {
     return tileIndexCache;
@@ -81,32 +86,125 @@ async function getPMTilesHeader(): Promise<Uint8Array> {
 }
 
 /**
- * Check if a tile exists in the tile index
- * Returns true if the tile is present in the index
+ * Load and cache the PMTiles directory (root directory entries)
+ * Uses HTTP Range request to fetch only the directory section
  */
-async function tileExists(
+async function loadTileDirectory(): Promise<Map<bigint, { offset: number; length: number }>> {
+  // Return cached directory if available
+  if (tileDirectoryCache !== null) {
+    return tileDirectoryCache;
+  }
+
+  try {
+    // Get header to find directory location
+    const header = parsePMTilesHeader(await getPMTilesHeader());
+
+    // Fetch root directory using Range request
+    const pmtilesUrl = `${SUPABASE_URL}/storage/v1/object/public/${BUCKET}/${PMTILES_FILE}`;
+    const dirStart = header.rootDirOffset;
+    const dirEnd = header.rootDirOffset + header.rootDirLength - 1;
+
+    const response = await fetch(pmtilesUrl, {
+      headers: {
+        Range: `bytes=${dirStart}-${dirEnd}`,
+      },
+    });
+
+    if (!response.ok) {
+      throw new Error(`Failed to fetch PMTiles directory: ${response.status}`);
+    }
+
+    const buffer = await response.arrayBuffer();
+    const dirBytes = new Uint8Array(buffer);
+
+    // Check if directory is gzip-compressed
+    if (dirBytes[0] === 0x1f && dirBytes[1] === 0x8b) {
+      // Directory is gzip-compressed, decompress it
+      const decompressed = await decompressGzip(dirBytes);
+      tileDirectoryCache = parsePMTilesDirectory(decompressed);
+    } else {
+      // Directory is not compressed
+      tileDirectoryCache = parsePMTilesDirectory(dirBytes);
+    }
+
+    return tileDirectoryCache;
+  } catch (error) {
+    console.error("Error loading PMTiles directory:", error);
+    throw error;
+  }
+}
+
+/**
+ * Fetch actual tile data from PMTiles archive via byte-range requests
+ * Returns Uint8Array if tile exists, null if not found or error
+ */
+async function fetchTile(
   layer: string,
   z: number,
   x: number,
   y: number
-): Promise<boolean> {
+): Promise<Uint8Array | null> {
   try {
+    // 1. Check if tile exists in index
     const index = await loadTileIndex();
 
-    // Navigate through nested structure: index[layer][z][x][y]
     if (
-      !index[layer] ||
-      !index[layer][z] ||
-      !index[layer][z][x] ||
-      typeof index[layer][z][x][y] !== "number"
+      !index.index ||
+      !index.index[layer] ||
+      !index.index[layer][z] ||
+      !index.index[layer][z][x] ||
+      !index.index[layer][z][x][y]
     ) {
-      return false;
+      return null;
     }
 
-    return true;
+    // 2. Convert z/x/y to tile ID using Hilbert curve
+    const tileId = zxyToTileId(z, x, y);
+
+    // 3. Load directory and find tile offset/length
+    const directory = await loadTileDirectory();
+    const tileEntry = directory.get(tileId);
+
+    if (!tileEntry) {
+      console.warn(`Tile ${layer}/${z}/${x}/${y} (id=${tileId}) not found in directory`);
+      return null;
+    }
+
+    // 4. Fetch tile bytes using Range request
+    const pmtilesUrl = `${SUPABASE_URL}/storage/v1/object/public/${BUCKET}/${PMTILES_FILE}`;
+    const tileStart = tileEntry.offset;
+    const tileEnd = tileEntry.offset + tileEntry.length - 1;
+
+    const response = await fetch(pmtilesUrl, {
+      headers: {
+        Range: `bytes=${tileStart}-${tileEnd}`,
+      },
+    });
+
+    if (!response.ok) {
+      console.error(`Failed to fetch tile data: ${response.status}`);
+      return null;
+    }
+
+    const buffer = await response.arrayBuffer();
+    const tileBytes = new Uint8Array(buffer);
+
+    // 5. Decompress if gzip (check magic bytes)
+    if (tileBytes.length >= 2 && tileBytes[0] === 0x1f && tileBytes[1] === 0x8b) {
+      try {
+        const decompressed = await decompressGzip(tileBytes);
+        return decompressed;
+      } catch (error) {
+        console.error(`Failed to decompress tile ${layer}/${z}/${x}/${y}:`, error);
+        // Return raw bytes if decompression fails
+        return tileBytes;
+      }
+    }
+
+    return tileBytes;
   } catch (error) {
-    console.error(`Error checking tile existence for ${layer}/${z}/${x}/${y}:`, error);
-    return false;
+    console.error(`Error fetching tile ${layer}/${z}/${x}/${y}:`, error);
+    return null;
   }
 }
 
@@ -185,12 +283,12 @@ serve(async (req: Request) => {
     });
   }
 
-  // Check if tile exists in the index
+  // Fetch and extract tile data
   try {
-    const exists = await tileExists(layer, z, x, y);
+    const tileData = await fetchTile(layer, z, x, y);
 
-    if (!exists) {
-      // Tile does not exist in index
+    if (!tileData) {
+      // Tile does not exist or could not be retrieved
       return new Response(null, {
         status: 204,
         headers: {
@@ -200,15 +298,17 @@ serve(async (req: Request) => {
       });
     }
 
-    // Tile exists - full byte-range extraction will be implemented in Task 4
-    // For now, return 204 to indicate tile exists but full implementation pending
-    return new Response(null, {
-      status: 204,
+    // Tile found and extracted - return as MVT (gzip encoded)
+    // Convert Uint8Array to a format that Response accepts
+    const responseBody = tileData.length > 0 ? tileData : new Uint8Array(0);
+    // deno-lint-ignore no-explicit-any
+    return new Response(responseBody as any, {
+      status: 200,
       headers: {
+        "Content-Type": "application/octet-stream",
+        "Content-Encoding": "gzip",
         "Cache-Control": "public, immutable, max-age=31536000",
         "Access-Control-Allow-Origin": "*",
-        "X-Tile": `${layer}/${z}/${x}/${y}`,
-        "X-Debug": "Tile found in index; byte-range extraction in Task 4",
       },
     });
   } catch (error) {

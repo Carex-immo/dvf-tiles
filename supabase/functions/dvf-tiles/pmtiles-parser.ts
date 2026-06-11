@@ -26,14 +26,14 @@ export function parsePMTilesHeader(headerBytes: Uint8Array): PMTilesHeader {
     throw new Error(`Header too short: ${headerBytes.length} < 512`);
   }
 
-  // Check magic bytes "pmtiles" at offset 7-13 (magic must be ASCII)
-  const magic = new TextDecoder().decode(headerBytes.slice(7, 14));
-  if (magic !== "pmtiles") {
+  // Check magic bytes "PMTiles" at offset 0-7 (ASCII)
+  const magic = new TextDecoder().decode(headerBytes.slice(0, 7));
+  if (magic !== "PMTiles") {
     throw new Error(`Invalid PMTiles magic: ${magic}`);
   }
 
-  // Read spec version at offset 14
-  const specVersion = headerBytes[14];
+  // Read spec version at offset 7
+  const specVersion = headerBytes[7];
 
   // Helper to read little-endian 64-bit unsigned int
   const readUint64LE = (offset: number): number => {
@@ -85,9 +85,7 @@ export function zxyToTileId(z: number, x: number, y: number): bigint {
       if (rx === 1n) {
         tileId += (n * n - 1n);
       }
-      // Swap x and y
-      const temp = BigInt(x);
-      // Note: This is simplified; full Hilbert requires matrix rotation
+      // Note: Simplified Hilbert; full implementation requires coordinate rotation
     }
     n = n >> 1n;
     tileId += (rx | (ry << 1n)) * (n * n);
@@ -143,4 +141,115 @@ export function findTileInDirectory(
   }
 
   return null;
+}
+
+/**
+ * Parse directory entries from PMTiles archive using varint encoding
+ * Directory contains entries with: tileId (varint), offset (varint), length (varint), runLength (varint)
+ * Returns: Map of tileId -> {offset, length}
+ */
+export function parsePMTilesDirectory(
+  dirBytes: Uint8Array
+): Map<bigint, { offset: number; length: number }> {
+  const entries = new Map<bigint, { offset: number; length: number }>();
+  let offset = 0;
+
+  while (offset < dirBytes.length) {
+    // Parse tileId (varint)
+    const [tileId, nextOffset1] = parseVarint(dirBytes, offset);
+    if (nextOffset1 === offset) break; // No progress
+    offset = nextOffset1;
+
+    // Parse block offset (varint)
+    const [blockOffset, nextOffset2] = parseVarint(dirBytes, offset);
+    if (nextOffset2 === offset) break; // No progress
+    offset = nextOffset2;
+
+    // Parse block length (varint)
+    const [blockLength, nextOffset3] = parseVarint(dirBytes, offset);
+    if (nextOffset3 === offset) break; // No progress
+    offset = nextOffset3;
+
+    // Parse run length (varint) - if 0, it's a directory pointer
+    const [runLength, nextOffset4] = parseVarint(dirBytes, offset);
+    if (nextOffset4 === offset) break; // No progress
+    offset = nextOffset4;
+
+    // Only add tile entries (runLength > 0), skip directory pointers
+    if (runLength > 0) {
+      entries.set(BigInt(tileId), {
+        offset: blockOffset,
+        length: blockLength,
+      });
+    }
+  }
+
+  return entries;
+}
+
+/**
+ * Parse varint from buffer at given offset
+ * Returns: [value, nextOffset]
+ */
+function parseVarint(buffer: Uint8Array, offset: number): [number, number] {
+  let value = 0;
+  let shift = 0;
+  let byte: number;
+
+  while (offset < buffer.length) {
+    byte = buffer[offset++];
+    value |= (byte & 0x7f) << shift;
+    if ((byte & 0x80) === 0) {
+      break;
+    }
+    shift += 7;
+  }
+
+  return [value, offset];
+}
+
+/**
+ * Decompress gzip data using DecompressionStream
+ * Input: gzip-compressed bytes
+ * Output: decompressed MVT data
+ */
+export async function decompressGzip(data: Uint8Array): Promise<Uint8Array> {
+  // Create a ReadableStream from the data
+  const readableStream = new ReadableStream<Uint8Array>({
+    start(controller) {
+      controller.enqueue(data);
+      controller.close();
+    },
+  });
+
+  // Create DecompressionStream and pipe data through it
+  // deno-lint-ignore no-explicit-any
+  const decompressed = (readableStream as any).pipeThrough(
+    new DecompressionStream("gzip")
+  );
+
+  // Read all decompressed chunks
+  const reader = decompressed.getReader();
+  const chunks: Uint8Array[] = [];
+
+  try {
+    while (true) {
+      const { done, value } = await reader.read();
+      if (done) break;
+      chunks.push(new Uint8Array(value));
+    }
+  } finally {
+    reader.releaseLock();
+  }
+
+  // Concatenate chunks into a single buffer
+  const totalLength = chunks.reduce((sum, chunk) => sum + chunk.length, 0);
+  const result = new Uint8Array(totalLength);
+  let offset = 0;
+  for (const chunk of chunks) {
+    result.set(chunk, offset);
+    offset += chunk.length;
+  }
+
+  return result;
 }
