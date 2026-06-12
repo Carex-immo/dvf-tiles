@@ -1,7 +1,9 @@
 # PMTiles Parser Implementation Fix - Summary
 
 **Date**: 2026-06-12  
-**Status**: PARTIAL - Core infrastructure in place, tile extraction still needs implementation
+**Status**: ✅ COMPLETE - Production v1.0 deployed
+
+**ARCHIVED REFERENCE DOCUMENT** — See DEPLOYMENT.md and README.md for current status.
 
 ## What Was Done
 
