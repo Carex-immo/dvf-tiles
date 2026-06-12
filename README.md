@@ -119,6 +119,8 @@ La cible de la spec reste R2/S3 + Worker PMTiles ; un déploiement Supabase **pr
 
 **Client iOS** : cf. `client/DvfTileClient.swift` — zoom de données = min(zoom carte, 14), agrégats sous z11, points z11–12 = échantillon d'affichage, **stats exactes (comptes, médianes) à z≥13 uniquement** (tuiles exhaustives), plafond 16 tuiles/viewport, décodage hors main thread, tap → API `dvf_get_mutation`.
 
+Le décodeur MVT est livré : package SwiftPM zéro dépendance `client/DvfTileKit/` (`MVTDecoder.decodeMutations` / `decodeAggregates`), vérifié par parité avec `client/simulate_ios.py` sur des tuiles réelles du build France (`cd client/DvfTileKit && swift test` ; fixtures régénérables par `python3 client/DvfTileKit/generate_fixtures.py build/dvf.pmtiles`).
+
 ## Notes du POC
 
 - Les arrondissements municipaux de Lyon ont dû être ajoutés explicitement aux contours (`communes_arr69.geojson`) : DVF référence `6938x`, pas `69123`.

@@ -38,10 +38,11 @@ python3 pipeline/prepare.py --raw data/raw --geo data/geo --out build # consolid
 python3 pipeline/qa_checks.py build                                   # bloquant : structure, comptages, exhaustivité z13, adr
 ```
 
-Validation (pas de linter ; les seuls tests automatisés sont ceux de `pipeline/parity/`) :
+Validation (pas de linter ; tests automatisés : `pipeline/parity/` + le package Swift `client/DvfTileKit`) :
 
 ```bash
 python3 client/simulate_ios.py build/dvf.pmtiles   # simule le chemin iOS : bbox → tuiles → MVT → filtres → stats
+cd client/DvfTileKit && swift test                 # décodeur MVT Swift : unitaires + parité goldens
 python3 demo/serve.py                              # → http://localhost:8080/demo/index.html (carte MapLibre)
 ```
 

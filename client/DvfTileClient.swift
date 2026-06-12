@@ -1,6 +1,6 @@
 // CAREX - Client de tuiles DVF pour iOS (MapKit natif) - squelette de reference
-// Le decodage MVT s'appuie sur SwiftProtobuf + le schema vector_tile.proto
-// (https://github.com/mapbox/vector-tile-spec) ou un binding existant.
+// Le decodage MVT est fourni par le package DvfTileKit (client/DvfTileKit/,
+// zero dependance : ProtobufReader + MVTTile + MVTDecoder) - `swift test` pour la parite.
 
 import Foundation
 import MapKit
