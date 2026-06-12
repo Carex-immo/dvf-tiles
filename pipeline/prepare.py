@@ -2,15 +2,19 @@
 """
 CAREX - Service de tuiles DVF - Etape de preparation.
 
-Lit les CSV geo-dvf (full ou departements), agrege en 1 point par mutation,
-calcule les agregats communes/departements (annee x type), exporte :
-  - build/mutations.geojsonl
-  - build/communes.geojson
+Consolide les CSV geo-dvf via le pont de parite carex.immo (pipeline/parity/,
+regles verrouillees par les goldens Swift) : 1 feature par mutation ancree par
+les coordonnees de la parcelle de sa 1re ligne (jamais de repli ; sans ancre
+-> rejetee + comptee). DuckDB ne porte plus de regle metier : il sert a l'aval
+(remap COG, agregats annee x type, exports). Sorties :
+  - build/mutations_consolidees.jsonl  (intermediaire, 1 ligne par mutation)
+  - build/mutations.geojsonl           (points ; terrain nu exclu de la couche)
+  - build/communes.geojson             (agregats + centroides cx/cy)
   - build/departements.geojson
 
 Usage: python3 prepare.py --raw data/raw --geo data/geo --out build
-Echelle France entiere : ~20 M lignes, prevoir ~8 Go de RAM ou utiliser
---memory-limit (DuckDB bascule alors sur disque via --tmp).
+Echelle France entiere : ~20 M lignes ; la consolidation Python traite les
+fichiers un par un (~3-5 Go de pic par full.csv.gz), prevoir ~8 Go de RAM.
 """
 import argparse
 import glob
@@ -20,17 +24,20 @@ import sys
 
 import duckdb
 
-# Encodages compacts (cf. spec §5)
-NATURE_SQL = """
-CASE nature_mutation
-  WHEN 'Vente' THEN 1
-  WHEN 'Vente en l''état futur d''achèvement' THEN 2
-  WHEN 'Adjudication' THEN 3
-  WHEN 'Echange' THEN 4
-  WHEN 'Expropriation' THEN 5
-  WHEN 'Vente terrain à bâtir' THEN 6
-  ELSE 0 END
-"""
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "parity"))
+from extended import consolidate_file_extended  # regles : parity/consolidate.py (verbatim)
+
+# Couche mutations (spec 2026-06-12) : proprietes exportees, dans cet ordre.
+# adr/cp sont ensuite exclus de la passe tippecanoe z4-12 (build_tiles.sh -x).
+TILE_PROPS = ["id", "date", "nat", "type", "vf", "sb", "st", "np", "nl",
+              "com", "adr", "cp"]
+
+# Paris/Lyon/Marseille : DVF code les mutations au niveau ARRONDISSEMENT
+# (751xx/6938x/132xx). Le polygone de la commune parente, present dans les
+# contours, ne doit ni recuperer leurs mutations via reassign_scissions
+# (il n'a jamais de stats propres), ni apparaitre dans la couche communes
+# (il masquerait les arrondissements avec un n_tot=0).
+PLM_PARENTS = {"75056", "69123", "13055"}
 
 
 def _point_in_ring(x, y, ring):
@@ -51,6 +58,35 @@ def point_in_geom(x, y, geom):
         if _point_in_ring(x, y, poly[0]) and not any(_point_in_ring(x, y, h) for h in poly[1:]):
             return True
     return False
+
+
+def _ring_area_centroid(ring):
+    """Aire signee (shoelace) et centroide de surface d'un anneau ferme."""
+    a = cx = cy = 0.0
+    for i in range(len(ring) - 1):
+        x0, y0 = ring[i][0], ring[i][1]
+        x1, y1 = ring[i + 1][0], ring[i + 1][1]
+        cross = x0 * y1 - x1 * y0
+        a += cross
+        cx += (x0 + x1) * cross
+        cy += (y0 + y1) * cross
+    if abs(a) < 1e-14:
+        xs = [p[0] for p in ring]
+        ys = [p[1] for p in ring]
+        return 0.0, sum(xs) / len(xs), sum(ys) / len(ys)
+    return a / 2, cx / (3 * a), cy / (3 * a)
+
+
+def feature_centroid(geom):
+    """Centroide du plus grand anneau exterieur du (Multi)Polygon — point
+    representatif pour les cercles proportionnels MapKit (cx/cy du contrat)."""
+    polys = geom["coordinates"] if geom["type"] == "MultiPolygon" else [geom["coordinates"]]
+    best = None
+    for poly in polys:
+        area, cx, cy = _ring_area_centroid(poly[0])
+        if best is None or abs(area) > best[0]:
+            best = (abs(area), cx, cy)
+    return (round(best[1], 5), round(best[2], 5)) if best else None
 
 
 def load_cog_mouvements(geo_dir):
@@ -82,6 +118,22 @@ def load_cog_mouvements(geo_dir):
     return mapping
 
 
+def load_scissions(geo_dir):
+    """Table INSEE v_mvt_commune : retablissements de communes (MOD 21,
+    COM -> COM). Retourne enfant retabli -> ensemble des communes parentes."""
+    path = os.path.join(geo_dir, "cog_mouvements.csv")
+    scissions = {}
+    if not os.path.exists(path):
+        return scissions
+    import csv
+    with open(path, encoding="utf-8") as f:
+        for row in csv.DictReader(f):
+            if (row["MOD"] == "21" and row["TYPECOM_AV"] == "COM"
+                    and row["TYPECOM_AP"] == "COM" and row["COM_AV"] != row["COM_AP"]):
+                scissions.setdefault(row["COM_AP"], set()).add(row["COM_AV"])
+    return scissions
+
+
 def remap_cog(con, geo_dir, qa):
     """geo-dvf conserve le COG d'origine de chaque millesime : les codes des
     communes fusionnees depuis (ex: Pierrefitte-sur-Seine 93059 -> Saint-Denis
@@ -100,21 +152,26 @@ def remap_cog(con, geo_dir, qa):
     if not geo_codes:
         return
     missing = [r[0] for r in con.execute(
-        "SELECT DISTINCT com FROM mutations").fetchall() if r[0] not in geo_codes]
+        "SELECT DISTINCT com FROM mutations WHERE com IS NOT NULL").fetchall()
+        if r[0] not in geo_codes]
     if not missing:
         qa["cog_remappage"] = {}
         return
     depts = {r[0]: r[1] for r in con.execute(f"""
         SELECT com, any_value(dep) FROM mutations
         WHERE com IN ({','.join(['?']*len(missing))}) GROUP BY 1""", missing).fetchall()}
-    # geometries des departements concernes uniquement
+    # geometries des departements concernes uniquement (motifs exacts : le
+    # joker communes_*71.geojson matcherait communes_971.geojson) ; les
+    # parents PLM sont exclus des candidats au vote, comme partout ailleurs
     feats_by_dept = {}
     for dep in set(depts.values()):
         feats = []
-        for path in sorted(glob.glob(os.path.join(geo_dir, f"communes_*{dep}.geojson"))):
-            for ft in json.load(open(path)).get("features", []):
-                if ft["properties"].get("code"):
-                    feats.append((ft["properties"]["code"], ft["geometry"]))
+        for pat in (f"communes_{dep}.geojson", f"communes_arr{dep}.geojson"):
+            for path in sorted(glob.glob(os.path.join(geo_dir, pat))):
+                for ft in json.load(open(path)).get("features", []):
+                    c = ft["properties"].get("code")
+                    if c and c not in PLM_PARENTS:
+                        feats.append((c, ft["geometry"]))
         feats_by_dept[dep] = feats
     insee = load_cog_mouvements(geo_dir)
     mapping, mapping_insee, orphelins = {}, {}, []
@@ -151,15 +208,25 @@ def reassign_scissions(con, geo_dir, qa):
     Chalinargues 15035, retablie au 01/01/2025 depuis Neussargues-en-Pinatelle
     15141). geo-dvf code leurs mutations sous la commune parente : le polygone
     actuel n'a aucune stat. On lui reaffecte les mutations geolocalisees dont
-    le point tombe dans son polygone."""
+    le point tombe dans son polygone. Deux gardes indispensables : seules les
+    communes retablies par scission (MOD 21 de la table INSEE) sont candidates,
+    et seules les mutations encore codees sous leur commune parente sont
+    capturees — sans elles, toute commune sans vente aspirerait les points
+    frontaliers (bruit de geocodage, contours simplifies)."""
+    scissions = load_scissions(geo_dir)
+    if not scissions:
+        qa["scissions_reaffectees"] = {}
+        return
     have_stats = {r[0] for r in con.execute(
         "SELECT DISTINCT com FROM mutations").fetchall()}
     reaff = {}
     for path in sorted(glob.glob(os.path.join(geo_dir, "communes_*.geojson"))):
         for ft in json.load(open(path)).get("features", []):
             code = ft["properties"].get("code")
-            if not code or code in have_stats:
+            if (not code or code not in scissions or code in have_stats
+                    or code in PLM_PARENTS):
                 continue
+            parents = sorted(scissions[code])
             geom = ft["geometry"]
             xs, ys = [], []
 
@@ -173,8 +240,9 @@ def reassign_scissions(con, geo_dir, qa):
             walk(geom["coordinates"])
             rows = con.execute(
                 "SELECT rowid, lon, lat FROM mutations "
-                "WHERE lon BETWEEN ? AND ? AND lat BETWEEN ? AND ?",
-                [min(xs), max(xs), min(ys), max(ys)]).fetchall()
+                f"WHERE com IN ({','.join(['?'] * len(parents))}) "
+                "AND lon BETWEEN ? AND ? AND lat BETWEEN ? AND ?",
+                parents + [min(xs), max(xs), min(ys), max(ys)]).fetchall()
             ids = [str(r[0]) for r in rows if point_in_geom(r[1], r[2], geom)]
             if ids:
                 con.execute(f"UPDATE mutations SET com = ? "
@@ -186,19 +254,55 @@ def reassign_scissions(con, geo_dir, qa):
               f"par localisation (ex: {dict(list(reaff.items())[:3])})")
 
 
-# nature_culture dominante -> code compact
-def ncult_sql(col: str) -> str:
-    return f"""
-CASE
-  WHEN {col} IS NULL THEN 0
-  WHEN {col} = 'S'  THEN 1
-  WHEN {col} = 'T'  THEN 2
-  WHEN {col} LIKE 'P%' THEN 3
-  WHEN {col} = 'VI' THEN 4
-  WHEN {col} LIKE 'B%' THEN 5
-  WHEN {col} = 'J'  THEN 6
-  ELSE 7 END
-"""
+def consolidate_sources(files, out_path, qa):
+    """Consolidation parite, fichier par fichier (RAM liberee entre deux) ;
+    ecrit l'intermediaire jsonl plat et remplit les compteurs QA."""
+    totals = {"rows_read": 0, "malformed_lines": 0, "skipped_rows": 0,
+              "rejected_mutations": 0, "embedded_no_coord_rows": 0}
+    kept = terrain_nu = 0
+    contig = []
+    with open(out_path, "w") as f:
+        for path in files:
+            res = consolidate_file_extended(path)
+            for k in totals:
+                totals[k] += getattr(res.stats, k)
+            if res.stats.contiguity_violated:
+                contig.append(os.path.basename(path))
+            for m in res.mutations:
+                kept += 1
+                if m["type"] is None:
+                    terrain_nu += 1
+                rec = {
+                    "id": m["id"],
+                    "date": int(m["date"].replace("-", "")),
+                    "nat": m["nature"],
+                    "type": m["type"],
+                    "vf": m["prix"],
+                    "sb": m["surfBati"],
+                    "st": m["surfTerrain"],
+                    "np": m["pieces"],
+                    "nl": len(m["biens"]),
+                    "com": m["com"], "dep": m["dep"],
+                    "adr": m["adr"], "cp": m["cp"],
+                    "lon": m["lon"], "lat": m["lat"],
+                }
+                f.write(json.dumps(rec, separators=(",", ":"), ensure_ascii=False) + "\n")
+            print(f"  {os.path.basename(path)} : {len(res.mutations)} mutations, "
+                  f"{res.stats.rejected_mutations} rejetees sans ancre, "
+                  f"{res.stats.malformed_lines} lignes malformees")
+    qa.update({
+        "lignes_source": totals["rows_read"],
+        "lignes_malformees": totals["malformed_lines"],
+        "lignes_ignorees_champs_requis": totals["skipped_rows"],
+        "mutations_uniques": kept,
+        "mutations_rejetees_sans_ancre": totals["rejected_mutations"],
+        "mutations_terrain_nu": terrain_nu,
+        "lignes_sans_coord_embarquees": totals["embedded_no_coord_rows"],
+    })
+    if contig:
+        qa["fichiers_contiguite_violee"] = contig
+    print(f"mutations consolidees : {kept} (rejets sans ancre : "
+          f"{totals['rejected_mutations']} ; terrain nu, hors couche points : {terrain_nu})")
 
 
 def main() -> int:
@@ -211,14 +315,14 @@ def main() -> int:
     ap.add_argument("--memory-limit", default=None,
                     help="ex: 6GB - limite memoire DuckDB (deborde sur disque)")
     ap.add_argument("--tmp", default=None, help="repertoire temporaire DuckDB")
-    ap.add_argument("--no-stats", action="store_true",
-                    help="sauter le calcul du taux de geolocalisation (1 scan en moins)")
     ap.add_argument("--layers-only", action="store_true",
                     help="ne pas relire les CSV : reconstruire uniquement communes/departements "
-                         "depuis build/mutations.geojsonl existant")
+                         "depuis build/mutations.geojsonl (population points : terrains nus "
+                         "et rejets exclus, agregats legerement sous-evalues)")
     args = ap.parse_args()
     os.makedirs(args.out, exist_ok=True)
     out_pts = os.path.join(args.out, "mutations.geojsonl")
+    consolidated = os.path.join(args.out, "mutations_consolidees.jsonl")
 
     files = []
     if not args.layers_only:
@@ -232,6 +336,7 @@ def main() -> int:
         print(f"--layers-only : {out_pts} introuvable", file=sys.stderr)
         return 1
 
+    qa = {}
     con = duckdb.connect()
     con.execute("SET preserve_insertion_order=false")
     if args.memory_limit:
@@ -239,163 +344,127 @@ def main() -> int:
     if args.tmp:
         con.execute(f"SET temp_directory='{args.tmp}'")
 
-    read_csv = f"""read_csv({files!r}, header=true, all_varchar=false,
-        delim=',', quote='"', escape='"',
-        types={{'code_commune':'VARCHAR','code_departement':'VARCHAR',
-                'code_postal':'VARCHAR','code_type_local':'VARCHAR',
-                'code_nature_culture':'VARCHAR','id_mutation':'VARCHAR',
-                'numero_disposition':'VARCHAR','adresse_numero':'VARCHAR',
-                'lot1_numero':'VARCHAR','lot2_numero':'VARCHAR','lot3_numero':'VARCHAR',
-                'lot4_numero':'VARCHAR','lot5_numero':'VARCHAR'}})"""
-
-    # ---- Mode reconstruction : agregats depuis le geojsonl existant ------
-    qa = {}
     if args.layers_only:
+        # Reconstruction des agregats depuis les points exportes. dep est
+        # derive de com (97x -> 3 caracteres, sinon 2 — couvre 2A/2B), comme
+        # dans le chemin complet (dep y est realigne sur com apres remap).
+        # Les compteurs du build complet sont conserves dans prepare_stats.
         print(f"--layers-only : lecture de {out_pts}")
+        prev_stats = os.path.join(args.out, "prepare_stats.json")
+        if os.path.exists(prev_stats):
+            qa = json.load(open(prev_stats))
+        # columns explicite : vf/adr/cp sont omis des features qui ne les
+        # portent pas — l'inference sur echantillon leverait un Binder Error
+        # si la cle manquait des premieres lignes (cles hors schema ignorees).
         con.execute(f"""
         CREATE TABLE mutations AS
-        SELECT properties.annee AS annee, properties.type AS type,
-               properties.pm2  AS pm2,  properties.vf   AS vf,
-               properties.dep  AS dep,  properties.com  AS com,
+        SELECT properties.id   AS id,  properties.date AS date,
+               properties.nat  AS nat, properties.type AS type,
+               properties.vf   AS vf,  properties.sb   AS sb,
+               properties.com  AS com,
+               CASE WHEN properties.com LIKE '97%' THEN substr(properties.com, 1, 3)
+                    ELSE substr(properties.com, 1, 2) END AS dep,
                geometry.coordinates[1] AS lon, geometry.coordinates[2] AS lat
-        FROM read_json('{out_pts}', format='newline_delimited', sample_size=100000)
+        FROM read_json('{out_pts}', format='newline_delimited',
+          columns={{'geometry': 'STRUCT(type VARCHAR, coordinates DOUBLE[])',
+                    'properties': 'STRUCT(id VARCHAR, date INTEGER, nat INTEGER,
+                                          type INTEGER, vf BIGINT, sb INTEGER,
+                                          com VARCHAR)'}})
         """)
-
-    # ---- Controle qualite source (taux de geolocalisation) ---------------
-    if not args.layers_only and not args.no_stats:
-        tot, geo, vf_ok = con.execute(f"""
-          SELECT count(*),
-                 count(*) FILTER (WHERE longitude IS NOT NULL AND latitude IS NOT NULL),
-                 count(*) FILTER (WHERE valeur_fonciere IS NOT NULL AND valeur_fonciere > 0)
-          FROM {read_csv}""").fetchone()
-        qa = {"lignes_source": tot, "lignes_geolocalisees": geo,
-              "taux_geoloc_pct": round(100 * geo / tot, 2),
-              "lignes_vf_valide": vf_ok}
-        print(f"lignes source : {tot} | geolocalisees : {geo} ({qa['taux_geoloc_pct']} %)")
-
-    if not args.layers_only:
-        # NB : pas de filtre geoloc ici — les mutations sans coordonnees (souvent
-        # des communes fusionnees re-immatriculees au cadastre) comptent dans les
-        # agregats communes/departements ; seuls les POINTS exigent des coordonnees.
+    else:
+        # ---- Consolidation (pont de parite, regles goldens) ---------------
+        consolidate_sources(files, consolidated, qa)
         con.execute(f"""
-        CREATE VIEW base AS
-        SELECT * FROM {read_csv}
-        WHERE valeur_fonciere IS NOT NULL AND valeur_fonciere > 0
+        CREATE TABLE mutations AS
+        SELECT * FROM read_json('{consolidated}', format='newline_delimited',
+          columns={{'id':'VARCHAR','date':'INTEGER','nat':'INTEGER','type':'INTEGER',
+                    'vf':'BIGINT','sb':'INTEGER','st':'INTEGER','np':'INTEGER',
+                    'nl':'INTEGER','com':'VARCHAR','dep':'VARCHAR','adr':'VARCHAR',
+                    'cp':'VARCHAR','lon':'DOUBLE','lat':'DOUBLE'}})
         """)
-
-        # ---- 1 point par mutation ---------------------------------------
-        con.execute(f"""
-    CREATE TABLE mutations AS
-    WITH locaux AS (  -- locaux distincts (les lignes se repetent par disposition/parcelle)
-      SELECT DISTINCT id_mutation, id_parcelle, numero_disposition,
-             code_type_local, surface_reelle_bati, nombre_pieces_principales
-      FROM base WHERE code_type_local IS NOT NULL
-    ),
-    agg_loc AS (
-      SELECT id_mutation,
-             SUM(COALESCE(surface_reelle_bati,0))::INT  AS sb,
-             MAX(COALESCE(nombre_pieces_principales,0))::INT AS np,
-             COUNT(*)::INT                              AS nl,
-             arg_max(code_type_local, COALESCE(surface_reelle_bati,0)) AS ct
-      FROM locaux GROUP BY 1
-    ),
-    parcelles AS (
-      SELECT id_mutation, id_parcelle,
-             MAX(COALESCE(surface_terrain,0)) AS st_p,
-             arg_max(code_nature_culture, COALESCE(surface_terrain,0)) AS c
-      FROM base GROUP BY 1, 2
-    ),
-    agg_par AS (
-      SELECT id_mutation, SUM(st_p)::INT AS st,
-             arg_max(c, st_p) AS c
-      FROM parcelles GROUP BY 1
-    ),
-    head AS (
-      SELECT id_mutation,
-             any_value(date_mutation)    AS dm,
-             any_value(nature_mutation)  AS nature_mutation,
-             MAX(valeur_fonciere)        AS vf,
-             any_value(code_commune)     AS com,
-             any_value(code_departement) AS dep,
-             any_value(longitude)        AS lon,
-             any_value(latitude)         AS lat
-      FROM base GROUP BY 1
-    )
-    SELECT h.id_mutation                              AS id,
-           CAST(strftime(h.dm, '%Y%m%d') AS INT)      AS date,
-           CAST(strftime(h.dm, '%Y') AS INT)          AS annee,
-           {NATURE_SQL.replace('nature_mutation','h.nature_mutation')} AS nat,
-           COALESCE(TRY_CAST(l.ct AS INT), 0)         AS type,
-           CAST(round(h.vf) AS BIGINT)                AS vf,
-           COALESCE(l.sb, 0)                          AS sb,
-           COALESCE(p.st, 0)                          AS st,
-           CASE WHEN COALESCE(l.sb,0) > 0
-                THEN CAST(round(h.vf / l.sb) AS INT) END AS pm2,
-           COALESCE(l.np, 0)                          AS np,
-           COALESCE(l.nl, 0)                          AS nl,
-           {ncult_sql('p.c')}  AS nc,
-           h.dep                                      AS dep,
-           h.com                                      AS com,
-           h.lon, h.lat
-    FROM head h
-    LEFT JOIN agg_loc l USING (id_mutation)
-    LEFT JOIN agg_par p USING (id_mutation)
-    """)
-
-    n, n_geo = con.execute(
-        "SELECT count(*), count(*) FILTER (WHERE lon IS NOT NULL) FROM mutations").fetchone()
-    qa["mutations_uniques"] = n
-    qa["mutations_geolocalisees"] = n_geo
-    qa["par_annee"] = dict(con.execute(
-        "SELECT annee, count(*) FROM mutations GROUP BY 1 ORDER BY 1").fetchall())
-    print(f"mutations uniques : {n} (dont geolocalisees : {n_geo} -> couche points ; "
-          f"toutes comptent dans les agregats)")
+        n, nd = con.execute("SELECT count(*), count(DISTINCT id) FROM mutations").fetchone()
+        if n != nd:
+            print(f"ERREUR : {n - nd} id_mutation en double entre fichiers source "
+                  f"(motifs --pattern qui se recouvrent ?)", file=sys.stderr)
+            return 1
+        qa["par_annee"] = dict(con.execute(
+            "SELECT date // 10000, count(*) FROM mutations GROUP BY 1 ORDER BY 1").fetchall())
 
     # ---- Remappage COG (codes retires -> commune actuelle) ---------------
     remap_cog(con, args.geo, qa)
     # ---- Scissions (communes retablies sans stats -> par localisation) ---
     reassign_scissions(con, args.geo, qa)
 
-    # Export GeoJSONL
+    # com fait foi apres remap/scissions : dep est realigne (un remap INSEE
+    # peut traverser un departement) — meme derivation qu'en --layers-only.
+    con.execute("""
+    UPDATE mutations SET dep = CASE WHEN com LIKE '97%' THEN substr(com, 1, 3)
+                                    ELSE substr(com, 1, 2) END
+    WHERE com IS NOT NULL""")
+
+    # Contrat spec §3 : com jamais omis (DvfTileClient.swift le decode
+    # non-optionnel) — echec dur plutot qu'un trou silencieux dans les tuiles.
+    sans_com = con.execute(
+        "SELECT count(*) FROM mutations WHERE com IS NULL").fetchone()[0]
+    if sans_com:
+        print(f"ERREUR : {sans_com} mutations sans code commune (com NULL) — "
+              f"contrat 'com jamais omis' viole (spec §3)", file=sys.stderr)
+        return 1
+
+    # Export GeoJSONL — couche points : terrain nu exclu (contrat), props
+    # nulles omises (MVT sans sentinelle), coordonnees deja arrondies round5.
     if not args.layers_only:
-        cols = ["id", "date", "annee", "nat", "type", "vf", "sb", "st",
-                "pm2", "np", "nl", "nc", "dep", "com"]
         with open(out_pts, "w") as f:
-            cur = con.execute(f"SELECT {', '.join(cols)}, lon, lat FROM mutations "
-                              "WHERE lon IS NOT NULL AND lat IS NOT NULL")
+            cur = con.execute(f"SELECT {', '.join(TILE_PROPS)}, lon, lat FROM mutations "
+                              "WHERE type IS NOT NULL")
             while True:
                 rows = cur.fetchmany(50000)
                 if not rows:
                     break
                 for r in rows:
-                    props = {k: v for k, v in zip(cols, r[:-2]) if v is not None}
+                    props = {k: v for k, v in zip(TILE_PROPS, r[:-2]) if v is not None}
                     f.write(json.dumps({
                         "type": "Feature",
-                        "geometry": {"type": "Point", "coordinates": [round(r[-2], 6), round(r[-1], 6)]},
+                        "geometry": {"type": "Point", "coordinates": [r[-2], r[-1]]},
                         "properties": props,
                     }, separators=(",", ":"), ensure_ascii=False) + "\n")
         print("->", out_pts, f"{os.path.getsize(out_pts)/1e6:.1f} Mo")
 
-    # ---- Agregats annee x type ------------------------------------------
+    # ---- Agregats annee x type --------------------------------------------
+    # annee et pm2 sont des derives (la couche points ne les porte plus) :
+    # annee = date // 10000 ; pm2 = vf/sb si les deux > 0 (regle de l'app).
+    con.execute("""
+    CREATE VIEW stats_src AS
+    SELECT *, date // 10000 AS annee,
+           CASE WHEN vf > 0 AND sb > 0 THEN vf * 1.0 / sb END AS pm2
+    FROM mutations
+    """)
+
     def agg_stats(key: str):
-        """Stats par entite (commune ou departement): retour dict code -> props."""
+        """Stats par entite (commune ou departement): retour dict code -> props.
+        n_tot/vf_med couvrent toutes les mutations consolidees (terrain nu
+        inclus) ; les seaux n_/p_ par type ne portent que les types 1-5."""
         rows = con.execute(f"""
           SELECT {key} AS k, annee, type,
                  count(*)::INT AS n, CAST(median(pm2) AS INT) AS p
-          FROM mutations GROUP BY 1, 2, 3
+          FROM stats_src WHERE type IS NOT NULL GROUP BY 1, 2, 3
         """).fetchall()
         tot = con.execute(f"""
           SELECT {key} AS k, count(*)::INT,
                  CAST(median(pm2) AS INT), CAST(median(vf) AS BIGINT)
-          FROM mutations GROUP BY 1
+          FROM stats_src GROUP BY 1
         """).fetchall()
         props: dict[str, dict] = {}
         for k, annee, typ, n_, p_ in rows:
+            if k is None:
+                continue
             d = props.setdefault(k, {})
             d[f"n_{annee}_t{typ}"] = n_
             if p_ is not None:
                 d[f"p_{annee}_t{typ}"] = p_
         for k, n_tot, pm2_med, vf_med in tot:
+            if k is None:
+                continue
             d = props.setdefault(k, {})
             d["n_tot"] = n_tot
             if pm2_med is not None:
@@ -408,21 +477,25 @@ def main() -> int:
     dep_stats = agg_stats("dep")
 
     # ---- Jointure aux geometries ----------------------------------------
-    def build_layer(pattern: str, code_key, out_name: str, stats: dict):
+    def build_layer(pattern: str, code_key, out_name: str, stats: dict,
+                    exclude=frozenset()):
         feats, seen = [], set()
         for path in sorted(glob.glob(os.path.join(args.geo, pattern))):
             data = json.load(open(path))
             items = data["features"] if data.get("type") == "FeatureCollection" else [data]
             for ft in items:
                 code = code_key(ft)
-                if code in seen:
-                    continue  # doublon entre fichiers de contours
+                if code in seen or code in exclude:
+                    continue  # doublon entre fichiers de contours, ou parent PLM
                 # les entites sans mutation sont rendues avec n_tot=0
                 # (une commune sans vente n'est pas un trou sur la carte)
                 st = stats.get(code) or {"n_tot": 0}
                 seen.add(code)
+                centroid = feature_centroid(ft["geometry"])
                 ft["properties"] = {"code": code,
                                     "nom": ft.get("properties", {}).get("nom", ""),
+                                    **({"cx": centroid[0], "cy": centroid[1]}
+                                       if centroid else {}),
                                     **st}
                 feats.append(ft)
         out = os.path.join(args.out, out_name)
@@ -433,7 +506,7 @@ def main() -> int:
 
     seen_com = build_layer("communes_*.geojson",
                            lambda ft: ft["properties"].get("code"),
-                           "communes.geojson", com_stats)
+                           "communes.geojson", com_stats, exclude=PLM_PARENTS)
     seen_dep = build_layer("dept_*.geojson",
                            lambda ft: ft["properties"].get("code"),
                            "departements.geojson", dep_stats)
