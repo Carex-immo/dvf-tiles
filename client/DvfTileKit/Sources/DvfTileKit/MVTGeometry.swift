@@ -41,7 +41,7 @@ enum MVTGeometry {
             i += 1
             switch cmd {
             case Self.moveTo, Self.lineTo:
-                guard i + 2 * count <= geometry.count else { throw MVTDecoderError.malformedGeometry }
+                guard count >= 1, i + 2 * count <= geometry.count else { throw MVTDecoderError.malformedGeometry }
                 if cmd == Self.moveTo { current = [] }
                 for _ in 0..<count {
                     cx &+= ProtobufReader.zigzagDecode(geometry[i])

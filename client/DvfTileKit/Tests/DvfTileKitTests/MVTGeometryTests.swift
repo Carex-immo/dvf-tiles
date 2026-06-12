@@ -42,5 +42,17 @@ import Testing
         #expect(MVTGeometry.signedArea(rings[0]) > 0)   // extérieur
         #expect(MVTGeometry.signedArea(rings[1]) > 0)   // extérieur (2e polygone)
         #expect(MVTGeometry.signedArea(rings[2]) < 0)   // trou
+        // le curseur est cumulatif sur tous les anneaux — invariant subtil
+        #expect(rings[1] == [TilePoint(x: 11, y: 11), TilePoint(x: 20, y: 11),
+                             TilePoint(x: 20, y: 20), TilePoint(x: 11, y: 20)])
+        #expect(rings[2] == [TilePoint(x: 13, y: 13), TilePoint(x: 13, y: 17),
+                             TilePoint(x: 17, y: 17), TilePoint(x: 17, y: 13)])
+    }
+
+    @Test func commandeCountZero() {
+        // count = 0 interdit par la spec §4.3.2 : (0 << 3) | 1 = 1
+        #expect(throws: MVTDecoderError.malformedGeometry) {
+            _ = try MVTGeometry.decodeRings([1])
+        }
     }
 }
