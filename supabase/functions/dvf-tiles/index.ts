@@ -15,12 +15,15 @@ const LAYER_RANGES: Record<string, [number, number]> = {
   departements: [4, 6],
 };
 
-// Cache for PMTiles metadata
+// Cache for PMTiles metadata and tile index
 let pmtilesMetadata: {
   minZoom: number;
   maxZoom: number;
   archivedTiles: number;
 } | null = null;
+
+// deno-lint-ignore no-explicit-any
+let cachedTileIndex: any = null;
 
 /**
  * Fetch and parse PMTiles metadata from the index.json file
@@ -53,12 +56,76 @@ async function loadPMTilesMetadata() {
 }
 
 /**
- * Fetch a tile from the PMTiles archive using HTTP Range requests
- * The pmtiles library is not available in Deno, so we implement basic MVT extraction
- *
- * For the MVP, we can:
- * 1. Return 204 for tiles outside zoom range
- * 2. Return stub/empty MVT for tiles in range (not in this function to be implemented later)
+ * Load and cache the tile index from tiles_index.json
+ */
+// deno-lint-ignore no-explicit-any
+async function loadTileIndex(): Promise<any> {
+  if (cachedTileIndex !== null) {
+    return cachedTileIndex;
+  }
+
+  try {
+    const indexUrl = `${SUPABASE_URL}/storage/v1/object/public/${BUCKET}/tiles_index.json`;
+    const response = await fetch(indexUrl);
+
+    if (!response.ok) {
+      throw new Error(`Failed to fetch tile index: ${response.status}`);
+    }
+
+    const indexData = await response.json();
+    cachedTileIndex = indexData.tiles;
+
+    return cachedTileIndex;
+  } catch (error) {
+    console.error("Error loading tile index:", error);
+    throw error;
+  }
+}
+
+/**
+ * Get tile metadata (offset and length) from the tile index
+ */
+// deno-lint-ignore no-explicit-any
+async function getTileMetadata(z: number, x: number, y: number): Promise<any> {
+  const index = await loadTileIndex();
+
+  // Navigate: tiles[z][x][y]
+  if (!index[z] || !index[z][x] || !index[z][x][y]) {
+    return null; // Tile not in index
+  }
+
+  return index[z][x][y]; // Returns {offset, length}
+}
+
+/**
+ * Fetch tile data from PMTiles archive via HTTP Range request
+ */
+async function fetchTileBytes(offset: number, length: number): Promise<Uint8Array | null> {
+  try {
+    const pmtilesUrl = `${SUPABASE_URL}/storage/v1/object/public/${BUCKET}/${PMTILES_FILE}`;
+    const end = offset + length - 1;
+
+    const response = await fetch(pmtilesUrl, {
+      headers: {
+        Range: `bytes=${offset}-${end}`,
+      },
+    });
+
+    if (!response.ok) {
+      console.error(`Failed to fetch bytes ${offset}-${end}: ${response.status}`);
+      return null;
+    }
+
+    return new Uint8Array(await response.arrayBuffer());
+  } catch (error) {
+    console.error(`Error fetching tile bytes:`, error);
+    return null;
+  }
+}
+
+/**
+ * Fetch a tile from the PMTiles archive using the pre-computed tile index
+ * and HTTP Range requests for efficient on-demand extraction
  */
 async function fetchTile(
   layer: string,
@@ -67,30 +134,27 @@ async function fetchTile(
   y: number
 ): Promise<Uint8Array | null> {
   try {
-    // Load metadata to validate zoom range
-    const metadata = await loadPMTilesMetadata();
-
     // Validate zoom range for layer
     const [minZ, maxZ] = LAYER_RANGES[layer];
     if (z < minZ || z > maxZ) {
       return null; // Out of range for this layer
     }
 
-    // Check against global zoom range
-    if (z < metadata.minZoom || z > metadata.maxZoom) {
-      return null; // Out of range
+    // Get tile metadata from index
+    const metadata = await getTileMetadata(z, x, y);
+    if (!metadata) {
+      return null; // Tile not in archive
     }
 
-    // TODO: Implement actual tile extraction from PMTiles
-    // For now, return null to trigger 204
-    // A proper implementation would:
-    // 1. Fetch PMTiles header (127 bytes)
-    // 2. Navigate the directory structure
-    // 3. Locate the tile using Hilbert curve ID
-    // 4. Fetch tile bytes from tileDataOffset + entry.offset
-    // 5. Return gzipped MVT bytes
+    // Fetch tile data via Range request
+    const tileBytes = await fetchTileBytes(metadata.offset, metadata.length);
+    if (!tileBytes) {
+      return null;
+    }
 
-    return null;
+    // NOTE: Tile bytes are already gzip-compressed in the archive
+    // Return as-is with Content-Encoding: gzip header in the response handler
+    return tileBytes;
   } catch (error) {
     console.error(`Error fetching tile ${layer}/${z}/${x}/${y}:`, error);
     return null;

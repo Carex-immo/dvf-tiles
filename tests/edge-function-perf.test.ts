@@ -83,47 +83,90 @@ async function runBenchmarks() {
     passTwo: [],
   };
 
+  let correctnessFailures: string[] = [];
+
   console.log("=== Correctness Tests ===\n");
 
-  // Test 1: Valid tile request (mutations z14)
+  // Test 1: Valid tile returns 200 + gzip data
   console.log("Test 1: Valid tile request (mutations/14/8000/5900.mvt)");
   const test1Result = await measureTile("/mutations/14/8000/5900.mvt", 1);
   console.log(
     `  Status: ${test1Result.status}, Latency: ${test1Result.latency}ms, Size: ${test1Result.size} bytes`
   );
 
-  // Correctness check: 200 responses must return gzip data
   if (test1Result.status === 200) {
     const response = await fetch(`${EDGE_FUNCTION_URL}/mutations/14/8000/5900.mvt`);
     const buffer = await response.arrayBuffer();
     const data = new Uint8Array(buffer);
     const isGzip = isValidGzip(data);
-    console.log(`  Gzip check: ${isGzip ? "✓" : "✗"} (magic bytes: ${data[0]?.toString(16) || "none"} ${data[1]?.toString(16) || "none"})\n`);
-    if (!isGzip) console.log("  ⚠️  WARNING: Response claims gzip but magic bytes are wrong\n");
+    console.log(`  Gzip check: ${isGzip ? "✓" : "✗"} (magic bytes: ${data[0]?.toString(16) || "none"} ${data[1]?.toString(16) || "none"})`);
+    if (!isGzip) {
+      correctnessFailures.push("Test 1: Valid tile should have gzip magic bytes (1f 8b)");
+    }
   } else {
-    console.log(`  (Status ${test1Result.status}, skipping gzip check)\n`);
+    correctnessFailures.push(`Test 1: Valid tile should return 200, got ${test1Result.status}`);
   }
+  console.log();
 
   results.push(test1Result);
 
-  // Test 2: Out of zoom range (communes z3 should be 204)
-  console.log("Test 2: Out of zoom range (communes/3/0/0.mvt)");
-  const test2Result = await measureTile("/communes/3/0/0.mvt", 1);
-  console.log(`  Status: ${test2Result.status}, Latency: ${test2Result.latency}ms\n`);
+  // Test 2: Out of zoom range (mutations z15 should be 204)
+  console.log("Test 2: Out of zoom range (mutations/15/16000/11800.mvt)");
+  const test2Result = await measureTile("/mutations/15/16000/11800.mvt", 1);
+  console.log(`  Status: ${test2Result.status}, Latency: ${test2Result.latency}ms`);
+  if (test2Result.status !== 204) {
+    correctnessFailures.push(`Test 2: Out-of-zoom should return 204, got ${test2Result.status}`);
+  } else {
+    console.log("  ✓ Correct (204 No Content)");
+  }
+  console.log();
   results.push(test2Result);
 
-  // Test 3: Invalid layer (should be 404)
-  console.log("Test 3: Invalid layer (/invalid/10/512/256.mvt)");
+  // Test 3: Invalid layer returns 404
+  console.log("Test 3: Invalid layer (invalid/10/512/256.mvt)");
   const test3Result = await measureTile("/invalid/10/512/256.mvt", 1);
-  console.log(`  Status: ${test3Result.status}, Latency: ${test3Result.latency}ms\n`);
+  console.log(`  Status: ${test3Result.status}, Latency: ${test3Result.latency}ms`);
+  if (test3Result.status !== 404) {
+    correctnessFailures.push(`Test 3: Invalid layer should return 404, got ${test3Result.status}`);
+  } else {
+    console.log("  ✓ Correct (404 Not Found)");
+  }
+  console.log();
   results.push(test3Result);
 
-  // Test 4: Departments tile
-  console.log("Test 4: Departments tile (departements/5/16/10.mvt)");
+  // Test 4: Bad coordinates return 400
+  console.log("Test 4: Bad coordinates (mutations/abc/def/ghi.mvt)");
+  try {
+    const response = await fetch(`${EDGE_FUNCTION_URL}/mutations/abc/def/ghi.mvt`);
+    console.log(`  Status: ${response.status}, Latency: n/a`);
+    if (response.status !== 400) {
+      correctnessFailures.push(`Test 4: Bad coordinates should return 400, got ${response.status}`);
+    } else {
+      console.log("  ✓ Correct (400 Bad Request)");
+    }
+  } catch (e) {
+    correctnessFailures.push(`Test 4: Bad coordinates request failed: ${e}`);
+  }
+  console.log();
+
+  // Test 5: Departments tile (valid)
+  console.log("Test 5: Departments tile (departements/5/16/10.mvt)");
   const test4Result = await measureTile("/departements/5/16/10.mvt", 1);
   console.log(
-    `  Status: ${test4Result.status}, Latency: ${test4Result.latency}ms, Size: ${test4Result.size} bytes\n`
+    `  Status: ${test4Result.status}, Latency: ${test4Result.latency}ms, Size: ${test4Result.size} bytes`
   );
+  if (test4Result.status === 200) {
+    const response = await fetch(`${EDGE_FUNCTION_URL}/departements/5/16/10.mvt`);
+    const buffer = await response.arrayBuffer();
+    const data = new Uint8Array(buffer);
+    const isGzip = isValidGzip(data);
+    if (!isGzip) {
+      correctnessFailures.push("Test 5: Departments tile should have gzip magic bytes (1f 8b)");
+    } else {
+      console.log("  ✓ Gzip format verified");
+    }
+  }
+  console.log();
   results.push(test4Result);
 
   // Test 5: Batch requests (16 tiles in 4x4 grid)
@@ -191,6 +234,18 @@ async function runBenchmarks() {
   const avgLatency = allLatencies.reduce((a, b) => a + b, 0) / allLatencies.length;
   const maxLatency = Math.max(...allLatencies);
   const minLatency = Math.min(...allLatencies);
+
+  // Print correctness summary
+  console.log("✅ Correctness Summary:\n");
+  if (correctnessFailures.length === 0) {
+    console.log("  All correctness tests PASSED ✓\n");
+  } else {
+    console.log(`  ❌ ${correctnessFailures.length} test(s) FAILED:\n`);
+    correctnessFailures.forEach(failure => {
+      console.log(`    - ${failure}`);
+    });
+    console.log();
+  }
 
   // Print summary
   console.log("📊 Summary Statistics:\n");
