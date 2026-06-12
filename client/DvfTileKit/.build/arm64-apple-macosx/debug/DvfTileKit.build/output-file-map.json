@@ -1,0 +1,12 @@
+{
+  "": {
+    "swift-dependencies": "/Users/laurentcuenet/GitHub/dvf-tiles/client/DvfTileKit/.build/arm64-apple-macosx/debug/DvfTileKit.build/primary.swiftdeps"
+  },
+  "/Users/laurentcuenet/GitHub/dvf-tiles/client/DvfTileKit/Sources/DvfTileKit/TileCoord.swift": {
+    "dependencies": "/Users/laurentcuenet/GitHub/dvf-tiles/client/DvfTileKit/.build/arm64-apple-macosx/debug/DvfTileKit.build/TileCoord.d",
+    "object": "/Users/laurentcuenet/GitHub/dvf-tiles/client/DvfTileKit/.build/arm64-apple-macosx/debug/DvfTileKit.build/TileCoord.swift.o",
+    "swiftmodule": "/Users/laurentcuenet/GitHub/dvf-tiles/client/DvfTileKit/.build/arm64-apple-macosx/debug/DvfTileKit.build/TileCoord~partial.swiftmodule",
+    "swift-dependencies": "/Users/laurentcuenet/GitHub/dvf-tiles/client/DvfTileKit/.build/arm64-apple-macosx/debug/DvfTileKit.build/TileCoord.swiftdeps",
+    "diagnostics": "/Users/laurentcuenet/GitHub/dvf-tiles/client/DvfTileKit/.build/arm64-apple-macosx/debug/DvfTileKit.build/TileCoord.dia"
+  }
+}

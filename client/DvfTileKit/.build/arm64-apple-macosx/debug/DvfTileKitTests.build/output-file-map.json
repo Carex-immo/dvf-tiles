@@ -1,0 +1,19 @@
+{
+  "": {
+    "swift-dependencies": "/Users/laurentcuenet/GitHub/dvf-tiles/client/DvfTileKit/.build/arm64-apple-macosx/debug/DvfTileKitTests.build/primary.swiftdeps"
+  },
+  "/Users/laurentcuenet/GitHub/dvf-tiles/client/DvfTileKit/Tests/DvfTileKitTests/TileCoordTests.swift": {
+    "dependencies": "/Users/laurentcuenet/GitHub/dvf-tiles/client/DvfTileKit/.build/arm64-apple-macosx/debug/DvfTileKitTests.build/TileCoordTests.d",
+    "object": "/Users/laurentcuenet/GitHub/dvf-tiles/client/DvfTileKit/.build/arm64-apple-macosx/debug/DvfTileKitTests.build/TileCoordTests.swift.o",
+    "swiftmodule": "/Users/laurentcuenet/GitHub/dvf-tiles/client/DvfTileKit/.build/arm64-apple-macosx/debug/DvfTileKitTests.build/TileCoordTests~partial.swiftmodule",
+    "swift-dependencies": "/Users/laurentcuenet/GitHub/dvf-tiles/client/DvfTileKit/.build/arm64-apple-macosx/debug/DvfTileKitTests.build/TileCoordTests.swiftdeps",
+    "diagnostics": "/Users/laurentcuenet/GitHub/dvf-tiles/client/DvfTileKit/.build/arm64-apple-macosx/debug/DvfTileKitTests.build/TileCoordTests.dia"
+  },
+  "/Users/laurentcuenet/GitHub/dvf-tiles/client/DvfTileKit/.build/arm64-apple-macosx/debug/DvfTileKitTests.build/DerivedSources/resource_bundle_accessor.swift": {
+    "dependencies": "/Users/laurentcuenet/GitHub/dvf-tiles/client/DvfTileKit/.build/arm64-apple-macosx/debug/DvfTileKitTests.build/resource_bundle_accessor.d",
+    "object": "/Users/laurentcuenet/GitHub/dvf-tiles/client/DvfTileKit/.build/arm64-apple-macosx/debug/DvfTileKitTests.build/resource_bundle_accessor.swift.o",
+    "swiftmodule": "/Users/laurentcuenet/GitHub/dvf-tiles/client/DvfTileKit/.build/arm64-apple-macosx/debug/DvfTileKitTests.build/resource_bundle_accessor~partial.swiftmodule",
+    "swift-dependencies": "/Users/laurentcuenet/GitHub/dvf-tiles/client/DvfTileKit/.build/arm64-apple-macosx/debug/DvfTileKitTests.build/resource_bundle_accessor.swiftdeps",
+    "diagnostics": "/Users/laurentcuenet/GitHub/dvf-tiles/client/DvfTileKit/.build/arm64-apple-macosx/debug/DvfTileKitTests.build/resource_bundle_accessor.dia"
+  }
+}
