@@ -30,8 +30,13 @@ else
   # Step 3: Fallback to curl with REST API
   echo "   CLI failed, attempting REST API upload..."
 
-  # Get auth token from environment or use ANON_KEY
-  AUTH_TOKEN="${SUPABASE_AUTH_TOKEN:-eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJxd2Jhem9saHR3aXphZnhxemxyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzk4OTU2MzAsImV4cCI6MjA5NTQ3MTYzMH0.EC8z7YAPF-UNZ_KjXN1eIOmRQi31kLRua2qu5X2eKeM}"
+  # Get auth token from environment (required for upload)
+  if [ -z "${SUPABASE_TOKEN:-}" ]; then
+    echo "❌ Error: SUPABASE_TOKEN environment variable not set"
+    echo "   Please set SUPABASE_TOKEN to your Supabase JWT before running this script"
+    exit 1
+  fi
+  AUTH_TOKEN="$SUPABASE_TOKEN"
 
   BASE_URL="https://$PROJECT_REF.supabase.co/storage/v1"
 

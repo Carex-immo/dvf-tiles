@@ -62,9 +62,17 @@ async function measureTile(
   }
 }
 
+/**
+ * Check if bytes are valid gzip
+ */
+function isValidGzip(data: Uint8Array): boolean {
+  if (data.length < 2) return false;
+  return data[0] === 0x1f && data[1] === 0x8b;
+}
+
 // Test suite
 async function runBenchmarks() {
-  console.log("\n🚀 PMTiles Edge Function Performance Benchmarks\n");
+  console.log("\n🚀 PMTiles Edge Function Correctness & Performance Tests\n");
   console.log(`Target: ${EDGE_FUNCTION_URL}\n`);
 
   const results: TestResult[] = [];
@@ -75,12 +83,27 @@ async function runBenchmarks() {
     passTwo: [],
   };
 
+  console.log("=== Correctness Tests ===\n");
+
   // Test 1: Valid tile request (mutations z14)
   console.log("Test 1: Valid tile request (mutations/14/8000/5900.mvt)");
   const test1Result = await measureTile("/mutations/14/8000/5900.mvt", 1);
   console.log(
-    `  Status: ${test1Result.status}, Latency: ${test1Result.latency}ms, Size: ${test1Result.size} bytes\n`
+    `  Status: ${test1Result.status}, Latency: ${test1Result.latency}ms, Size: ${test1Result.size} bytes`
   );
+
+  // Correctness check: 200 responses must return gzip data
+  if (test1Result.status === 200) {
+    const response = await fetch(`${EDGE_FUNCTION_URL}/mutations/14/8000/5900.mvt`);
+    const buffer = await response.arrayBuffer();
+    const data = new Uint8Array(buffer);
+    const isGzip = isValidGzip(data);
+    console.log(`  Gzip check: ${isGzip ? "✓" : "✗"} (magic bytes: ${data[0]?.toString(16) || "none"} ${data[1]?.toString(16) || "none"})\n`);
+    if (!isGzip) console.log("  ⚠️  WARNING: Response claims gzip but magic bytes are wrong\n");
+  } else {
+    console.log(`  (Status ${test1Result.status}, skipping gzip check)\n`);
+  }
+
   results.push(test1Result);
 
   // Test 2: Out of zoom range (communes z3 should be 204)
