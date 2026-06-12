@@ -1,0 +1,8 @@
+node_modules/
+build/
+data/
+.venv/
+supabase/.temp/
+.DS_Store
+__pycache__/
+*.pyc

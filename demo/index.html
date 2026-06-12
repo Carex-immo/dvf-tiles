@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>CAREX. — POC tuiles DVF</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
+<link href="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css" rel="stylesheet">
+<script src="https://unpkg.com/pmtiles@3.2.0/dist/pmtiles.js"></script>
+<style>
+  :root { --carex:#10b981; --bronze:#b08d57; --ink:#0a0a0a; }
+  html,body { margin:0; height:100%; font-family:'Plus Jakarta Sans',system-ui,sans-serif; }
+  #map { position:absolute; inset:0; }
+  #panel { position:absolute; top:12px; left:12px; z-index:2; background:rgba(10,10,10,.92);
+           color:#fff; padding:14px 16px; border-radius:12px; width:250px; font-size:13px; }
+  #panel h1 { font-size:15px; margin:0 0 10px; letter-spacing:.02em; }
+  #panel h1 span { color:var(--carex); }
+  label { display:block; margin:8px 0 2px; color:#bbb; }
+  select, input[type=range] { width:100%; }
+  #stats { margin-top:10px; padding-top:8px; border-top:1px solid #333; color:var(--bronze); }
+  .hint { color:#777; font-size:11px; margin-top:6px; }
+</style>
+</head>
+<body>
+<div id="panel">
+  <h1>CAREX<span>.</span> POC tuiles DVF — 69 / 01</h1>
+  <label>Type de bien</label>
+  <select id="type">
+    <option value="-1">Tous</option><option value="1">Maison</option>
+    <option value="2">Appartement</option><option value="3">Dépendance</option>
+    <option value="4">Local com./ind.</option><option value="0">Terrain / sans local</option>
+  </select>
+  <label>Année min : <b id="yv">2021</b></label>
+  <input id="annee" type="range" min="2021" max="2025" value="2021">
+  <label>Prix max : <b id="pv">2 M€</b></label>
+  <input id="prix" type="range" min="50000" max="2000000" step="50000" value="2000000">
+  <div id="stats">—</div>
+  <div class="hint">z&lt;7 départements · z7–10 communes · z≥11 mutations (échantillon) ·
+  z≥13 exhaustives. Filtres appliqués côté client, sans réseau.</div>
+</div>
+<div id="map"></div>
+<script>
+const protocol = new pmtiles.Protocol();
+maplibregl.addProtocol("pmtiles", protocol.tile);
+
+const map = new maplibregl.Map({
+  container: "map",
+  center: [4.84, 45.76], zoom: 12,
+  style: {
+    version: 8,
+    sources: {
+      osm: { type:"raster", tiles:["https://tile.openstreetmap.org/{z}/{x}/{y}.png"],
+             tileSize:256, attribution:"© OpenStreetMap · DVF/DGFiP" },
+      dvf: { type:"vector", url:"pmtiles://" + location.origin + "/build/dvf.pmtiles" }
+    },
+    layers: [
+      { id:"osm", type:"raster", source:"osm", paint:{ "raster-saturation":-0.8, "raster-opacity":0.75 } },
+      { id:"dep-fill", type:"fill", source:"dvf", "source-layer":"departements", maxzoom:7,
+        paint:{ "fill-color":["interpolate",["linear"],["coalesce",["get","pm2_med"],0],
+                 1000,"#1a3a2f", 2500,"#10b981", 4500,"#b08d57"], "fill-opacity":0.55 } },
+      { id:"com-fill", type:"fill", source:"dvf", "source-layer":"communes", minzoom:7, maxzoom:11,
+        paint:{ "fill-color":["interpolate",["linear"],["coalesce",["get","pm2_med"],0],
+                 800,"#13343b", 2000,"#0f766e", 3500,"#10b981", 5500,"#b08d57"], "fill-opacity":0.55 } },
+      { id:"com-line", type:"line", source:"dvf", "source-layer":"communes", minzoom:7, maxzoom:11,
+        paint:{ "line-color":"#0a0a0a", "line-width":0.5 } },
+      { id:"mut", type:"circle", source:"dvf", "source-layer":"mutations", minzoom:11,
+        paint:{
+          "circle-radius":["interpolate",["linear"],["zoom"], 11,1.6, 14,4.5],
+          "circle-color":["match",["get","type"], 1,"#10b981", 2,"#3b82f6", 4,"#b08d57", 3,"#9ca3af", "#6b7280"],
+          "circle-opacity":0.8, "circle-stroke-width":0.4, "circle-stroke-color":"#0a0a0a" } }
+    ]
+  }
+});
+
+function applyFilters() {
+  const t = +document.getElementById("type").value;
+  const y = +document.getElementById("annee").value;
+  const p = +document.getElementById("prix").value;
+  document.getElementById("yv").textContent = y;
+  document.getElementById("pv").textContent = (p/1e6).toFixed(p<1e6?2:1).replace(".",",") + " M€";
+  const f = ["all", [">=",["get","annee"],y], ["<=",["get","vf"],p]];
+  if (t >= 0) f.push(["==",["get","type"],t]);
+  map.setFilter("mut", f);
+  setTimeout(updateStats, 250);
+}
+function updateStats() {
+  const z = map.getZoom();
+  if (z < 11) { document.getElementById("stats").textContent = "Vue agrégée (€/m² médian)"; return; }
+  const feats = map.queryRenderedFeatures({ layers:["mut"] });
+  const seen = new Set(); const pm2 = [];
+  feats.forEach(f => { if (!seen.has(f.properties.id)) { seen.add(f.properties.id);
+    if (f.properties.pm2) pm2.push(f.properties.pm2); } });
+  pm2.sort((a,b)=>a-b);
+  // sous z13 les tuiles sont échantillonnées : comptes et médianes approximatifs
+  document.getElementById("stats").textContent =
+    (z < 13 ? "≈ " : "") + seen.size + " mutations visibles" +
+    (pm2.length ? " · " + pm2[pm2.length>>1] + " €/m² médian" : "") +
+    (z < 13 ? " (échantillon)" : "");
+}
+["type","annee","prix"].forEach(id => document.getElementById(id).addEventListener("input", applyFilters));
+map.on("moveend", updateStats); map.on("load", applyFilters);
+
+map.on("click", "mut", e => {
+  const p = e.features[0].properties;
+  const types = {0:"Terrain",1:"Maison",2:"Appartement",3:"Dépendance",4:"Local com./ind."};
+  new maplibregl.Popup().setLngLat(e.lngLat).setHTML(
+    `<b>${types[p.type]||"?"}</b> — ${(+p.vf).toLocaleString("fr-FR")} €<br>` +
+    `${String(p.date).replace(/(\d{4})(\d{2})(\d{2})/,"$3/$2/$1")} · ` +
+    (p.sb ? `${p.sb} m² bâti · ` : "") + (p.pm2 ? `${p.pm2} €/m² · ` : "") +
+    (p.st ? `${p.st} m² terrain · ` : "") +
+    `<i>${p.id}</i> <small>(→ API dvf_get_mutation pour le détail)</small>`).addTo(map);
+});
+</script>
+</body>
+</html>
