@@ -4,6 +4,7 @@
 <meta charset="utf-8">
 <title>CAREX. — POC tuiles DVF</title>
 <meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="icon" href="data:,">
 <script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
 <link href="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css" rel="stylesheet">
 <script src="https://unpkg.com/pmtiles@3.2.0/dist/pmtiles.js"></script>
@@ -25,10 +26,11 @@
 <div id="panel">
   <h1>CAREX<span>.</span> POC tuiles DVF — 69 / 01</h1>
   <label>Type de bien</label>
+  <!-- codes type contractuels (PropertyType app) : terrain nu exclu de la couche -->
   <select id="type">
     <option value="-1">Tous</option><option value="1">Maison</option>
-    <option value="2">Appartement</option><option value="3">Dépendance</option>
-    <option value="4">Local com./ind.</option><option value="0">Terrain / sans local</option>
+    <option value="2">Appartement</option><option value="3">Immeuble</option>
+    <option value="4">Local com./ind.</option><option value="5">Dépendance</option>
   </select>
   <label>Année min : <b id="yv">2021</b></label>
   <input id="annee" type="range" min="2021" max="2025" value="2021">
@@ -36,7 +38,7 @@
   <input id="prix" type="range" min="50000" max="2000000" step="50000" value="2000000">
   <div id="stats">—</div>
   <div class="hint">z&lt;7 départements · z7–10 communes · z≥11 mutations (échantillon) ·
-  z≥13 exhaustives. Filtres appliqués côté client, sans réseau.</div>
+  z≥13 exhaustives + adresse. Filtres appliqués côté client, sans réseau.</div>
 </div>
 <div id="map"></div>
 <script>
@@ -66,7 +68,7 @@ const map = new maplibregl.Map({
       { id:"mut", type:"circle", source:"dvf", "source-layer":"mutations", minzoom:11,
         paint:{
           "circle-radius":["interpolate",["linear"],["zoom"], 11,1.6, 14,4.5],
-          "circle-color":["match",["get","type"], 1,"#10b981", 2,"#3b82f6", 4,"#b08d57", 3,"#9ca3af", "#6b7280"],
+          "circle-color":["match",["get","type"], 1,"#10b981", 2,"#3b82f6", 3,"#8b5cf6", 4,"#b08d57", 5,"#9ca3af", "#6b7280"],
           "circle-opacity":0.8, "circle-stroke-width":0.4, "circle-stroke-color":"#0a0a0a" } }
     ]
   }
@@ -78,7 +80,11 @@ function applyFilters() {
   const p = +document.getElementById("prix").value;
   document.getElementById("yv").textContent = y;
   document.getElementById("pv").textContent = (p/1e6).toFixed(p<1e6?2:1).replace(".",",") + " M€";
-  const f = ["all", [">=",["get","annee"],y], ["<=",["get","vf"],p]];
+  // annee et pm2 ne sont plus dans les tuiles : derives de date et vf/sb.
+  // Semantique du contrat (passesFilters) : vf omis echoue un filtre prix
+  // ACTIF ; au max du curseur le filtre est inactif (tout passe).
+  const f = ["all", [">=",["floor",["/",["get","date"],10000]],y]];
+  if (p < 2000000) f.push(["case",["has","vf"],["<=",["get","vf"],p],false]);
   if (t >= 0) f.push(["==",["get","type"],t]);
   map.setFilter("mut", f);
   setTimeout(updateStats, 250);
@@ -88,8 +94,8 @@ function updateStats() {
   if (z < 11) { document.getElementById("stats").textContent = "Vue agrégée (€/m² médian)"; return; }
   const feats = map.queryRenderedFeatures({ layers:["mut"] });
   const seen = new Set(); const pm2 = [];
-  feats.forEach(f => { if (!seen.has(f.properties.id)) { seen.add(f.properties.id);
-    if (f.properties.pm2) pm2.push(f.properties.pm2); } });
+  feats.forEach(f => { const p = f.properties; if (!seen.has(p.id)) { seen.add(p.id);
+    if (p.vf > 0 && p.sb > 0) pm2.push(Math.round(p.vf / p.sb)); } });
   pm2.sort((a,b)=>a-b);
   // sous z13 les tuiles sont échantillonnées : comptes et médianes approximatifs
   document.getElementById("stats").textContent =
@@ -102,12 +108,15 @@ map.on("moveend", updateStats); map.on("load", applyFilters);
 
 map.on("click", "mut", e => {
   const p = e.features[0].properties;
-  const types = {0:"Terrain",1:"Maison",2:"Appartement",3:"Dépendance",4:"Local com./ind."};
+  const types = {1:"Maison",2:"Appartement",3:"Immeuble",4:"Local com./ind.",5:"Dépendance"};
+  const pm2 = (p.vf > 0 && p.sb > 0) ? Math.round(p.vf / p.sb) : null;
   new maplibregl.Popup().setLngLat(e.lngLat).setHTML(
-    `<b>${types[p.type]||"?"}</b> — ${(+p.vf).toLocaleString("fr-FR")} €<br>` +
+    `<b>${types[p.type]||"?"}</b> — ${p.vf ? (+p.vf).toLocaleString("fr-FR") + " €" : "valeur n.c."}<br>` +
+    // adr/cp : presents a z>=13 seulement (exclus de la passe z4-12)
+    (p.adr ? `${p.adr}${p.cp ? " · " + p.cp : ""}<br>` : "") +
     `${String(p.date).replace(/(\d{4})(\d{2})(\d{2})/,"$3/$2/$1")} · ` +
-    (p.sb ? `${p.sb} m² bâti · ` : "") + (p.pm2 ? `${p.pm2} €/m² · ` : "") +
-    (p.st ? `${p.st} m² terrain · ` : "") +
+    (p.sb ? `${p.sb} m² bâti · ` : "") + (pm2 ? `${pm2} €/m² · ` : "") +
+    (p.st ? `${p.st} m² terrain · ` : "") + (p.nl > 1 ? `${p.nl} biens · ` : "") +
     `<i>${p.id}</i> <small>(→ API dvf_get_mutation pour le détail)</small>`).addTo(map);
 });
 </script>
