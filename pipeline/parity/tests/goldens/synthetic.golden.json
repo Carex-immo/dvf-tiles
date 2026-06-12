@@ -1,0 +1,231 @@
+[
+  {
+    "biens" : [
+      {
+        "pieces" : 4,
+        "surfBati" : 100,
+        "surfTerrain" : 500,
+        "type" : "Maison"
+      },
+      {
+        "type" : "Dépendance"
+      }
+    ],
+    "date" : "2024-03-15",
+    "id" : "S-01",
+    "lat" : 45.50002,
+    "lon" : 5.90001,
+    "nature" : 1,
+    "pieces" : 4,
+    "prix" : 250000,
+    "surfBati" : 100,
+    "surfTerrain" : 850,
+    "type" : 1
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 3,
+        "surfBati" : 60,
+        "type" : "Maison"
+      },
+      {
+        "type" : "Dépendance"
+      }
+    ],
+    "date" : "2024-03-15",
+    "id" : "S-02",
+    "nature" : 1,
+    "pieces" : 3,
+    "prix" : 90000,
+    "surfBati" : 60,
+    "surfTerrain" : 0,
+    "type" : 1
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 2,
+        "surfBati" : 50,
+        "type" : "Appartement"
+      }
+    ],
+    "date" : "2024-03-15",
+    "id" : "S-03",
+    "lat" : 45.52,
+    "lon" : 5.92,
+    "nature" : 1,
+    "pieces" : 2,
+    "prix" : 150000,
+    "surfBati" : 50,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 3,
+        "surfBati" : 80,
+        "type" : "Maison"
+      }
+    ],
+    "date" : "2024-03-15",
+    "id" : "S-04",
+    "lat" : 45.52,
+    "lon" : 5.92,
+    "nature" : 1,
+    "pieces" : 3,
+    "prix" : 200000,
+    "surfBati" : 80,
+    "surfTerrain" : 0,
+    "type" : 1
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 1,
+        "surfBati" : 37,
+        "surfCarrez" : 31.57,
+        "surfTerrain" : 370,
+        "type" : "Appartement"
+      }
+    ],
+    "date" : "2024-03-15",
+    "id" : "S-05",
+    "lat" : 45.53,
+    "lon" : 5.93,
+    "nature" : 1,
+    "pieces" : 1,
+    "prix" : 300000,
+    "surfBati" : 37,
+    "surfTerrain" : 250,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 2,
+        "surfBati" : 42,
+        "type" : "Appartement"
+      },
+      {
+        "pieces" : 2,
+        "surfBati" : 42,
+        "type" : "Appartement"
+      }
+    ],
+    "date" : "2024-03-15",
+    "id" : "S-06",
+    "lat" : 45.54,
+    "lon" : 5.94,
+    "nature" : 1,
+    "pieces" : 4,
+    "prix" : 180000,
+    "surfBati" : 84,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 4,
+        "surfBati" : 100,
+        "type" : "Maison"
+      },
+      {
+        "surfBati" : 100,
+        "type" : "Local industriel. commercial ou assimilé"
+      }
+    ],
+    "date" : "2024-03-15",
+    "id" : "S-07",
+    "lat" : 45.55,
+    "lon" : 5.95,
+    "nature" : 1,
+    "pieces" : 4,
+    "prix" : 400000,
+    "surfBati" : 200,
+    "surfTerrain" : 0,
+    "type" : 1
+  },
+  {
+    "biens" : [
+      {
+        "surfBati" : 20,
+        "type" : "Dépendance"
+      }
+    ],
+    "date" : "2024-03-15",
+    "id" : "S-08",
+    "lat" : 45.56,
+    "lon" : 5.96,
+    "nature" : 1,
+    "pieces" : 0,
+    "prix" : 15000,
+    "surfBati" : 0,
+    "surfTerrain" : 0,
+    "type" : 5
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 1,
+        "surfBati" : 30,
+        "type" : "Appartement"
+      },
+      {
+        "pieces" : 2,
+        "surfBati" : 35,
+        "type" : "Appartement"
+      },
+      {
+        "pieces" : 2,
+        "surfBati" : 40,
+        "type" : "Appartement"
+      }
+    ],
+    "date" : "2024-03-15",
+    "id" : "S-09",
+    "lat" : 45.57,
+    "lon" : 5.97,
+    "nature" : 1,
+    "pieces" : 5,
+    "prix" : 500000,
+    "surfBati" : 105,
+    "surfTerrain" : 0,
+    "type" : 3
+  },
+  {
+    "biens" : [
+
+    ],
+    "date" : "2024-03-15",
+    "id" : "S-10",
+    "lat" : 45.58,
+    "lon" : 5.98,
+    "nature" : 1,
+    "pieces" : 0,
+    "prix" : 50000,
+    "surfBati" : 0,
+    "surfTerrain" : 1000
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 2,
+        "surfBati" : 55,
+        "type" : "Appartement"
+      }
+    ],
+    "date" : "2024-03-15",
+    "id" : "S-11",
+    "lat" : 45.59,
+    "lon" : 5.99,
+    "nature" : 2,
+    "pieces" : 2,
+    "prix" : 118750,
+    "surfBati" : 55,
+    "surfTerrain" : 0,
+    "type" : 2
+  }
+]
