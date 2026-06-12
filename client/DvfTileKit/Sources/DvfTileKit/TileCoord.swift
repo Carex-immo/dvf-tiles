@@ -7,6 +7,8 @@ struct TilePoint: Equatable, Sendable {
 }
 
 /// Coordonnée de tuile Web Mercator (z/x/y), identique au TileCoord du squelette DvfTileClient.
+/// Côté API publique c'est un identifiant opaque passé à `MVTDecoder` : la conversion
+/// point tuile → WGS84 reste interne (les sorties publiques sont déjà en WGS84).
 public struct TileCoord: Hashable, Sendable {
     public let z: Int
     public let x: Int
