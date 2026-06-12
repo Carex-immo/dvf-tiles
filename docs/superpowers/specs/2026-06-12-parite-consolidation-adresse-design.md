@@ -111,16 +111,20 @@ pipeline/prepare.py
 
 1. **Parité** : `pytest pipeline/parity/` (goldens officiels + chemin étendu) — nouvelle étape
    de `run_pipeline.sh`, prérequis `pytest` ajouté.
-2. `qa_checks.py` :
-   - `REQUIRED_ATTRS` = `{id, date, nat, type, sb, st, np, nl}` (sans `annee`/`pm2` retirés,
-     sans `vf` désormais omissible) ;
-   - couverture `vf` ≥ 90 % des features (warning sous le seuil) ; bornes vf inchangées mais
-     seulement sur les features qui le portent ;
-   - `adr` : à z≥13 couverture ≥ 80 % (erreur si 0, warning sous le seuil) ; à z12 **erreur si
-     présent** (l'exclusion -x a sauté) ;
+2. `qa_checks.py` (durci après revue adversariale) :
+   - `REQUIRED_ATTRS` = `{id, date, nat, type, sb, st, np, nl, com}` — vérifiés sur **toutes**
+     les features de la tuile (`com` « jamais omis » est aussi garanti par une garde dure dans
+     `prepare.py` : échec si une mutation a `com` NULL) ;
+   - écart de plage de zoom d'une couche : **erreur** (plages déterministes `-Z/-z`) ; au moins
+     un échantillon décodé exigé par palier z12/z13/z14 (sinon les contrôles de palier ne
+     prouvent rien) ;
+   - couverture `vf` : erreur si 0 feature ne le porte, warning < 90 % ; bornes sur les
+     features qui le portent ;
+   - `adr` **et `cp`** : à z≥13 couverture ≥ 80 % (erreur si 0, warning sous le seuil) ; à z12
+     **erreur si la clé est présente** (l'exclusion -x a sauté) ;
    - `ko_gz` z13/14 : warning > 800 Ko (tuiles construites sans limite) ;
-   - comptages vs `prepare_stats.json` : inchangés (population = consolidée). Premier build
-     post-migration : `--reset-baseline` (population et codes changent).
+   - baseline de comptage : un build en échec écrit `qa_report_echec.json` et ne remplace pas
+     `qa_report.json`. Premier build post-migration : `--reset-baseline`.
 
 ## 7. Amendement du contrat carex.immo (à reporter, pas d'édition croisée)
 
@@ -146,6 +150,23 @@ pipeline/prepare.py
   String?`, `com: String`, sans `annee/pm2/nc`), commentaires de contrat (z≥13, dérivations).
 - `CLAUDE.md` : section « Encodage compact partagé » réécrite, pièges ajoutés (parité
   verbatim, -x par passe, population des agrégats).
+
+## 8bis. Correctif embarqué — parents PLM vs arrondissements
+
+Découvert au premier run : `reassign_scissions` traitait le polygone parent (69123 Lyon,
+75056 Paris, 13055 Marseille — présent dans les contours sans jamais porter de stats
+propres, DVF codant par arrondissement) comme une commune rétablie par scission, et lui
+réaffectait par localisation les mutations de ses arrondissements (50 000 à Lyon,
+arrondissements à `n_tot=0`). Bug pré-existant, aggravé par ce lot (`com` part dans les
+tuiles). Correctif : constante `PLM_PARENTS` exclue de `reassign_scissions`, du vote de
+`remap_cog` et de la couche communes (les arrondissements couvrent le territoire).
+
+Confirmé en revue adversariale (même mécanique, cas général) : toute commune sans vente
+aspirait les points frontaliers (7 mutations 69/01 réaffectées vers 5 communes des
+départements 39/42/71 dont 3 sans aucun mouvement COG). Correctif : seules les communes
+**rétablies par scission (MOD 21 de la table INSEE)** sont candidates, et seules les
+mutations encore **codées sous leur commune parente** sont capturées ; `dep` est ensuite
+réaligné sur `com` (cohérence des agrégats départements et du chemin `--layers-only`).
 
 ## 9. Risques
 

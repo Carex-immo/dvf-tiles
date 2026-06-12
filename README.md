@@ -5,12 +5,14 @@ Pipeline de production de tuiles vectorielles DVF (PMTiles statiques, 3 couches,
 ## Lancer un build
 
 ```bash
-# Prérequis : tippecanoe (brew install tippecanoe) + pip install duckdb mapbox-vector-tile pmtiles
+# Prérequis : tippecanoe (brew install tippecanoe) + pip install duckdb mapbox-vector-tile pmtiles pytest
 ./pipeline/run_pipeline.sh poc      # 69 + 01 — validation, ~2 min
 ./pipeline/run_pipeline.sh france   # France entière — ~3 Go de CSV, ~8 Go RAM, 30–90 min
 ```
 
-L'orchestrateur enchaîne : CSV geo-dvf → contours → `prepare.py` (DuckDB) → `build_tiles.sh` (tippecanoe) → `qa_checks.py`. Sortie : `build/dvf.pmtiles` + `build/qa_report.json` (les comptages sont comparés au build précédent, tolérance ±20 %).
+L'orchestrateur enchaîne : CSV geo-dvf → contours → tests de parité (`pipeline/parity/`, bloquants) → `prepare.py` (consolidation parité + DuckDB aval) → `build_tiles.sh` (tippecanoe) → `qa_checks.py`. Sortie : `build/dvf.pmtiles` + `build/qa_report.json` (les comptages sont comparés au build précédent, tolérance ±20 % ; après un changement de périmètre ou de population : `--reset-baseline`).
+
+**Évolution 2026-06-12 — parité carex.immo + adresse.** La consolidation SQL est remplacée par le pont de parité de l'app iOS (`pipeline/parity/`, copie verbatim de `carex.immo/tools/dvf-tiles`, goldens Swift rejoués à chaque build) : codes `type`/`nat` de l'app (immeuble inclus, jamais 0), pièces sommées, fusion des biens, ancrage par la parcelle de la 1ʳᵉ ligne (sans ancre → rejet compté), plus de filtre `vf > 0` (attribut omis). La couche `mutations` porte désormais `adr` (adresse) et `cp` (code postal) **à z≥13 uniquement** — c'est ce qui alimente la liste de mutations de l'app au zoom rue ; `annee`/`pm2`/`nc`/`dep` sortent du schéma (dérivables côté client, cf. CLAUDE.md § Encodage). Les mesures France ci-dessous prédatent ce changement (à re-mesurer au prochain build France).
 
 Contrat d'exhaustivité : la couche `mutations` est construite en deux passes — z4–12 échantillonné (taille de tuile bornée), z13–14 **exhaustif** (`-pk -pf`, aucune limite). L'ancien contrat « exhaustif dès z11 » ne tenait pas en France entière (limite de 500 Ko/tuile de tippecanoe) ; `qa_checks.py` le vérifie désormais de façon bloquante (tuile z13 ⊇ filles z14 + comptage DuckDB de la bbox source).
 
@@ -50,6 +52,8 @@ Build France entière mesuré (millésimes 2021–2025) :
 
 Soit bien sous l'estimation de la spec (1,5–3 Go) grâce aux attributs compacts ; les tailles par tuile restent compatibles mobile (cf. `qa_report.json`, échantillons z12/z13/z14).
 
+**Tables ci-dessus = builds d'avant le lot parité+adresse** (schéma 14 attributs, population avec filtre vf>0) : à re-mesurer. Repères du build POC du 12/06/2026 (avec contours France entière joints) : 249 513 mutations consolidées, 12 attributs, `mutations_z13_14.pmtiles` 13,2 Mo, tuile Lyon z13 418 Ko gz (adresse comprise).
+
 ## Arborescence
 
 ```
@@ -59,7 +63,8 @@ dvf-tiles/
 │   ├── download.sh        # CSV geo-dvf (départements ou full France, reprise)
 │   ├── download_geo.sh    # contours communes/départements + arrondissements PLM + COG INSEE
 │   ├── static/            # contours versionnés : Saint-Barthélemy/Saint-Martin (97x)
-│   ├── prepare.py         # DuckDB : 1 point/mutation + agrégats année×type + stats
+│   ├── parity/            # pont de parité carex.immo (verbatim + extension adr/cp, NE PAS MODIFIER le verbatim)
+│   ├── prepare.py         # consolidation parité (1 point/mutation) + DuckDB : COG, agrégats, exports
 │   ├── build_tiles.sh     # tippecanoe (mutations en 2 passes) + tile-join → dvf.pmtiles
 │   └── qa_checks.py       # contrôles qualité post-build (dont exhaustivité z13) → qa_report.json
 ├── data/                  # artefacts téléchargés (ne pas éditer)
@@ -84,10 +89,10 @@ Mode France entière — gestion du COG (important) :
 
 - Les contours communaux viennent de **geo.api.gouv.fr département par département** : c'est la seule source alignée sur le COG courant. Un fichier national figé (Etalab 2024, france-geojson) crée des trous pour chaque fusion/scission postérieure à son millésime (ex : Pierrefitte-sur-Seine fusionnée dans Saint-Denis au 01/01/2025).
 - geo-dvf conserve le COG **d'origine de chaque millésime** : `prepare.py` remappe les codes commune retirés vers la commune actuelle (localisation des points dans les polygones), cf. `cog_remappage` dans `prepare_stats.json`.
-- Limite connue de la source : les mutations des communes fusionnées perdent souvent leur géolocalisation dans les rééditions geo-dvf (parcelles re-immatriculées au cadastre — ex : Pierrefitte 2021–2024, Saint-Pardoux-Corbier). Le pipeline les **intègre quand même aux agrégats** : les codes retirés sont remappés vers la commune actuelle (localisation des points, sinon table INSEE des mouvements `cog_mouvements.csv`), cf. `cog_remappage`/`cog_remappage_insee` dans `prepare_stats.json`. Elles restent absentes de la couche points (pas de coordonnées) ; un regéocodage BAN à l'adresse serait l'amélioration suivante. Conséquence assumée : `n_tot` d'une commune peut excéder le nombre de points visibles.
+- Limite connue de la source : les mutations des communes fusionnées perdent souvent leur géolocalisation dans les rééditions geo-dvf (parcelles re-immatriculées au cadastre — ex : Pierrefitte 2021–2024, Saint-Pardoux-Corbier). Depuis la parité (2026-06-12), une mutation dont la parcelle d'ancrage n'a pas de coordonnées est **rejetée partout** (règle de l'app, `mutations_rejetees_sans_ancre` dans `prepare_stats.json`) — le remappage des codes retirés (localisation des points, sinon table INSEE `cog_mouvements.csv`) ne concerne plus que les mutations ancrées. Conséquence assumée : `n_tot` d'une commune peut excéder le nombre de points visibles (terrains nus, hors couche points mais comptés).
 - Communes **rétablies par scission** (ex : Chalinargues 15035, sortie de Neussargues-en-Pinatelle au 01/01/2025) : DVF code leurs mutations sous la commune parente. Le pipeline les réaffecte par localisation des points dans le polygone rétabli (`scissions_reaffectees` dans `prepare_stats.json`).
 - Les communes **sans aucune vente** sur la période (ex : La Bâtie-des-Fonds, 26030) sont rendues avec `n_tot: 0` — une commune sans vente n'est pas un trou. Idem pour les départements sans données DVF (57/67/68, Mayotte — Livre foncier) : à hachurer côté client.
-- Les arrondissements municipaux de Paris/Lyon/Marseille sont récupérés explicitement (DVF code 751xx, 6938x, 132xx).
+- Les arrondissements municipaux de Paris/Lyon/Marseille sont récupérés explicitement (DVF code 751xx, 6938x, 132xx). Les polygones des communes parentes (75056/69123/13055) sont exclus de la couche communes et de la réaffectation par scission — sans cette garde, le parent volerait les mutations de ses arrondissements (constaté sur Lyon : 50 000 mutations).
 
 ## Service des tuiles — Supabase (PRODUCTION)
 
