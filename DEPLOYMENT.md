@@ -2,6 +2,14 @@
 
 Production du service de tuiles DVF sur Supabase Storage + Edge Functions.
 
+> **Build en production depuis le 12/06/2026** (lot parité+adresse) : `dvf.pmtiles`
+> **678,2 MB / 206 231 tuiles**, `tiles_index.json` **17,5 MB / 206 216 tuiles indexées**,
+> fonction déployée avec `--no-verify-jwt` (service public — corrige le 401 du premier
+> déploiement). Nouvel encodage : 12 attributs, `adr`/`cp` à z≥13 (cf.
+> `docs/superpowers/specs/2026-06-12-parite-consolidation-adresse-design.md`).
+> Les chiffres « 914 MB / 234 186 tuiles / 19.4 MB » plus bas datent du build v1.0
+> du 11/06 et restent comme trace de la mise en œuvre initiale.
+
 ## Architecture Finale
 
 ```

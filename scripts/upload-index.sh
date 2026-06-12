@@ -7,7 +7,8 @@ set -euo pipefail
 PROJECT_REF="${1:-bqwbazolhtwizafxqzlr}"
 INDEX_FILE="${2:-build/tiles_index.json}"
 BUCKET="tiles"
-OBJECT_NAME="index.json"
+# Doit matcher l'URL lue par supabase/functions/dvf-tiles/index.ts
+OBJECT_NAME="tiles_index.json"
 
 echo "📤 Uploading index to Supabase Storage..."
 
