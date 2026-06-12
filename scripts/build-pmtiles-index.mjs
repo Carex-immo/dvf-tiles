@@ -23,7 +23,10 @@ function readVarint(buffer, offset) {
 
   while (i < buffer.length) {
     const byte = buffer[i];
-    value |= ((byte & 0x7f) << shift);
+    // Arithmétique flottante et non bit-à-bit : les opérateurs binaires JS
+    // tronquent à 32 bits, ce qui corromprait offsets et tileIds dès que
+    // l'archive dépasse 2 Go (sûr jusqu'à 2^53).
+    value += (byte & 0x7f) * 2 ** shift;
     i++;
     if ((byte & 0x80) === 0) break;
     shift += 7;
@@ -148,16 +151,20 @@ function traverseDirectories(
 
   for (const entry of entries) {
     if (entry.runLength > 0) {
-      // Regular tile data
-      const [z, x, y] = tileIdToZxy(entry.tileId);
-      tiles.push({
-        z,
-        x,
-        y,
-        tileId: entry.tileId,
-        offset: header.tileDataOffset + entry.offset,
-        length: entry.length,
-      });
+      // Une entrée couvre runLength tileIds CONSÉCUTIFS partageant les mêmes
+      // octets (tuiles identiques dédupliquées) — ne pousser que le premier
+      // ferait répondre 204 aux suivants alors qu'ils existent dans l'archive.
+      for (let r = 0; r < entry.runLength; r++) {
+        const [z, x, y] = tileIdToZxy(entry.tileId + r);
+        tiles.push({
+          z,
+          x,
+          y,
+          tileId: entry.tileId + r,
+          offset: header.tileDataOffset + entry.offset,
+          length: entry.length,
+        });
+      }
     } else if (entry.runLength === 0) {
       // Leaf directory pointer
       const leafDirStart = header.leafDirectoryOffset + entry.offset;
