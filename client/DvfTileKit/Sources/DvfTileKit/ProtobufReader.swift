@@ -49,15 +49,19 @@ struct ProtobufReader {
 
     /// Sous-lecteur borné sur un champ length-delimited (message imbriqué).
     mutating func readMessage() throws -> ProtobufReader {
-        let len = Int(try readVarint())
-        guard len >= 0, pos + len <= end else { throw ProtobufError.truncated }
+        let raw = try readVarint()
+        guard raw <= UInt64(Int.max) else { throw ProtobufError.truncated }
+        let len = Int(raw)
+        guard pos + len <= end else { throw ProtobufError.truncated }
         defer { pos += len }
         return ProtobufReader(sharing: bytes, from: pos, to: pos + len)
     }
 
     mutating func readString() throws -> String {
-        let len = Int(try readVarint())
-        guard len >= 0, pos + len <= end else { throw ProtobufError.truncated }
+        let raw = try readVarint()
+        guard raw <= UInt64(Int.max) else { throw ProtobufError.truncated }
+        let len = Int(raw)
+        guard pos + len <= end else { throw ProtobufError.truncated }
         defer { pos += len }
         return String(decoding: bytes[pos..<(pos + len)], as: UTF8.self)
     }
@@ -93,8 +97,10 @@ struct ProtobufReader {
             guard pos + 8 <= end else { throw ProtobufError.truncated }
             pos += 8
         case 2:
-            let len = Int(try readVarint())
-            guard len >= 0, pos + len <= end else { throw ProtobufError.truncated }
+            let raw = try readVarint()
+            guard raw <= UInt64(Int.max) else { throw ProtobufError.truncated }
+            let len = Int(raw)
+            guard pos + len <= end else { throw ProtobufError.truncated }
             pos += len
         case 5:
             guard pos + 4 <= end else { throw ProtobufError.truncated }

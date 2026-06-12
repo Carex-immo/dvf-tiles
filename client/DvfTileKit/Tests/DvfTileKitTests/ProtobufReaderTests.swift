@@ -85,4 +85,15 @@ import Testing
         _ = try r.readTag()
         #expect(Float(bitPattern: try r.readFixed32()) == 2.5)
     }
+
+    @Test func wireTypeInconnu() {
+        var r = ProtobufReader(Data([0x00]))
+        #expect(throws: ProtobufError.unsupportedWireType(3)) { try r.skip(wire: 3) }
+    }
+
+    @Test func longueurDemesureeNeCrashePas() {
+        // varint UInt64.max comme longueur length-delimited → .truncated, pas de trap
+        var r = ProtobufReader(PB.data(PB.varint(UInt64.max)))
+        #expect(throws: ProtobufError.truncated) { _ = try r.readString() }
+    }
 }
