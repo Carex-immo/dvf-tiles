@@ -104,3 +104,56 @@ def test_dept_of():
     assert _dept_of("01001") == "01"
     assert _dept_of("2A004") == "2A"
     assert _dept_of("97123") == "971"
+
+
+def _ecrire_geojson(path, ntot_par_code):
+    feats = [{"type": "Feature",
+              "properties": {"code": c, "nom": c, "n_tot": n},
+              "geometry": None} for c, n in ntot_par_code.items()]
+    json.dump({"type": "FeatureCollection", "features": feats}, open(path, "w"))
+
+
+def _build_dir_coherent(tmp_path):
+    """Génère un build/ minimal cohérent : bundles + geojson aux mêmes n_tot."""
+    con = _con()
+    out = str(tmp_path)
+    build_stats_bundles(con, {"01001": "A", "01002": "B"}, {"01": "Ain"},
+                        out, version="V1", dense_threshold=4)
+    # geojson alignés sur les n_tot des bundles (01001=7, 01002=2, dépt 01=9)
+    _ecrire_geojson(os.path.join(out, "communes.geojson"),
+                    {"01001": 7, "01002": 2})
+    _ecrire_geojson(os.path.join(out, "departements.geojson"), {"01": 9})
+    return out
+
+
+def test_check_stats_bundles_ok(tmp_path):
+    from qa_checks import check_stats_bundles
+    out = _build_dir_coherent(tmp_path)
+    errors, warnings = [], []
+    report = check_stats_bundles(out, errors, warnings)
+    assert errors == []
+    assert report["version"] == "V1"
+    assert report["communes"] == 2
+
+
+def test_check_stats_bundles_detecte_divergence_ntot(tmp_path):
+    from qa_checks import check_stats_bundles
+    out = _build_dir_coherent(tmp_path)
+    # casser la parité : n_tot geojson != bundle pour 01001
+    _ecrire_geojson(os.path.join(out, "communes.geojson"),
+                    {"01001": 999, "01002": 2})
+    errors, warnings = [], []
+    check_stats_bundles(out, errors, warnings)
+    assert any("01001" in e and "n_tot" in e for e in errors)
+
+
+def test_check_stats_bundles_detecte_version_incoherente(tmp_path):
+    from qa_checks import check_stats_bundles
+    out = _build_dir_coherent(tmp_path)
+    p = os.path.join(out, "stats", "dep", "01.json")
+    b = json.load(open(p))
+    b["version"] = "AUTRE"
+    json.dump(b, open(p, "w"))
+    errors, warnings = [], []
+    check_stats_bundles(out, errors, warnings)
+    assert any("version" in e for e in errors)

@@ -75,6 +75,77 @@ def mutations_ids(reader, z, x, y, inner_only=False):
     return ids
 
 
+def _geo_ntot(path):
+    """Map {code: n_tot} d'une couche geojson (communes/départements)."""
+    if not os.path.exists(path):
+        return {}
+    data = json.load(open(path))
+    return {f["properties"]["code"]: f["properties"].get("n_tot", 0)
+            for f in data.get("features", [])}
+
+
+def check_stats_bundles(build, errors, warnings):
+    """Valide build/stats/ : structure, alignement des arrays sur years, seuil
+    de densité (quarters), parité n_tot bundle <-> geojson. Renvoie un récap."""
+    sdir = os.path.join(build, "stats")
+    man_path = os.path.join(sdir, "manifest.json")
+    if not os.path.exists(man_path):
+        errors.append("stats/manifest.json absent")
+        return {}
+    man = json.load(open(man_path))
+    version, yrs, thr = man.get("version"), man.get("years"), man.get("dense_threshold")
+    ny = len(yrs or [])
+    if not yrs:
+        warnings.append("stats/manifest.json : years absent ou vide")
+    if thr is None:
+        warnings.append("stats/manifest.json : dense_threshold absent")
+    report = {"version": version, "departements_attendus": len(man.get("departements", []))}
+
+    def check_entities(entities, geo_ntot, label):
+        for e in entities:
+            code = e.get("code", "<sans code>")
+            ov = e.get("overall", {})
+            if len(ov.get("n", [])) != ny or len(ov.get("pm2_med", [])) != ny:
+                errors.append(f"{label} {code} : overall non aligné sur years ({ny})")
+            for t, bt in e.get("byType", {}).items():
+                for mkey in ("n", "pm2_med", "vf_med", "sb_med", "st_med", "np_med"):
+                    if len(bt.get(mkey, [])) != ny:
+                        errors.append(f"{label} {code} byType[{t}].{mkey} non aligné")
+            n_tot = e.get("n_tot", 0)
+            if "quarters" in e and thr is not None and n_tot < thr:
+                errors.append(f"{label} {code} : quarters présent sous le seuil {thr}")
+            exp = geo_ntot.get(code)
+            if exp is not None and exp != n_tot:
+                errors.append(f"{label} {code} : n_tot {n_tot} != geojson {exp}")
+
+    # départements (couche légère)
+    dep_path = os.path.join(sdir, "departements.json")
+    if not os.path.exists(dep_path):
+        errors.append("stats/departements.json absent")
+    else:
+        dj = json.load(open(dep_path))
+        if dj.get("version") != version:
+            errors.append("departements.json : version != manifest")
+        check_entities(dj.get("entities", []), _geo_ntot(
+            os.path.join(build, "departements.geojson")), "dept")
+
+    # communes (un bundle par département)
+    com_geo = _geo_ntot(os.path.join(build, "communes.geojson"))
+    vus = 0
+    for dd in man.get("departements", []):
+        p = os.path.join(sdir, "dep", f"{dd}.json")
+        if not os.path.exists(p):
+            errors.append(f"bundle département manquant : dep/{dd}.json")
+            continue
+        b = json.load(open(p))
+        if b.get("version") != version:
+            errors.append(f"dep/{dd}.json : version != manifest")
+        check_entities(b.get("entities", []), com_geo, "commune")
+        vus += len(b.get("entities", []))
+    report["communes"] = vus
+    return report
+
+
 def main() -> int:
     import argparse
     ap = argparse.ArgumentParser()
@@ -240,6 +311,9 @@ def main() -> int:
                                 f"vs {src} en source (ecart de bord tolere)")
         except ImportError:
             warnings.append("duckdb absent : exhaustivite non ancree a la source")
+
+    # 5. bundles de stats par entité (panneau iOS au tap)
+    report["stats"] = check_stats_bundles(build, errors, warnings)
 
     report["erreurs"] = errors
     report["avertissements"] = warnings
