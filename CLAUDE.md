@@ -69,6 +69,11 @@ CSV geo-dvf (data/raw/)                 contours geo.api.gouv.fr (data/geo/)
               z13–14 exhaustif avec adresse), puis tile-join
                         │
               build/dvf.pmtiles  ← artefact de production
+              pipeline/stats_bundles.py (depuis stats_src, après build_layer)
+                        │
+              build/stats/{manifest.json, departements.json, dep/{DD}.json}
+              ← stats riches par entité (médianes année×type + trimestriel
+                si dense), bundles par département pour le panneau iOS au tap
 ```
 
 Le travail métier (1 mutation par `id_mutation` : fusion des biens, type dominant avec règle immeuble, sommes, ancrage par la parcelle de la 1ʳᵉ ligne) vit dans `pipeline/parity/consolidate.py`, **copie verbatim de `carex.immo/tools/dvf-tiles/`** verrouillée par les goldens Swift et rejouée à chaque build (`pytest pipeline/parity`). Toute évolution de règle part du Swift côté carex.immo puis se propage par recopie (cf. `pipeline/parity/README.md`). `pipeline/parity/extended.py` (propre à dvf-tiles) ajoute seulement la lecture des champs annexes `adr`/`cp`/`com`/`dep` et le support gzip.
@@ -84,6 +89,15 @@ Les propriétés des features utilisent des clés courtes et des codes entiers (
 - `type` (`PropertyType` app, via `compute_primary_type`) : 1 maison, 2 appartement, 3 immeuble (≥ 3 apparts ou appart+local), 4 local com./ind., 5 dépendance — le terrain nu (type nul) est **exclu de la couche points** et compté dans `prepare_stats.json`.
 - `sb` : Σ bâti des biens post-fusion hors dépendances ; `np` : somme des pièces ; `nl` : nb de biens post-fusion ; `vf` : valeur de la 1ʳᵉ ligne, arrondi half-away.
 - Agrégats communes/départements : `n_{annee}_t{type}` (compte), `p_{annee}_t{type}` (€/m² médian), plus `n_tot`, `pm2_med`, `vf_med`, et `cx`/`cy` (centroïde du plus grand anneau, pour cercles proportionnels). Population = mutations consolidées (terrain nu inclus dans `n_tot`, mutations sans ancre exclues).
+
+**Bundles de stats par entité (`build/stats/`)** — artefact DISTINCT des tuiles
+(schéma propre, cf. [docs/specs/2026-06-14-stats-bundles-contrat-aval-ios.md](docs/specs/2026-06-14-stats-bundles-contrat-aval-ios.md)) :
+médianes par année × type (`pm2_med, vf_med, sb_med, st_med, np_med`) + comptes,
+tendance annuelle (`overall`) et trimestrielle si `n_tot ≥ 200` (`quarters`).
+Produit par `pipeline/stats_bundles.py` depuis `stats_src` (mêmes données que
+les agrégats des tuiles → parité vérifiée en QA). **N'entre pas** dans le contrat
+des « 4 fichiers consommateurs » des tuiles ; lu directement par iOS au tap d'un
+département/commune.
 
 ## Pièges connus
 
