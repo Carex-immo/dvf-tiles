@@ -111,3 +111,4 @@ département/commune.
 - Lors d'une recomposition d'agrégats multi-tuiles, dédupliquer par `properties.code` (les polygones apparaissent dans plusieurs tuiles).
 - `data/` et `build/` sont des artefacts téléchargés/générés : ne pas les éditer à la main, relancer le pipeline.
 - Passage France entière : utiliser les `full.csv.gz` (cf. commentaire dans `download.sh`) et fournir des contours nationaux.
+- `build/stats/` n'est PAS régénéré en mode `--layers-only` (la table reconstruite depuis les points n'a ni `st`/`np` ni terrain nu) : des bundles d'un build complet précédent y subsistent. Relancer `qa_checks.py` après un `--layers-only` peut alors signaler un faux écart `n_tot` (bundle avec terrain nu vs geojson recalculé sans) — non significatif ; `run_pipeline.sh` n'utilise jamais `--layers-only`.

@@ -85,10 +85,11 @@ tuiles ; les arrays de `byType[t]` et de `overall` ont la longueur de `years`.
 `pipeline/stats_bundles.py`, fonction pure et testable :
 
 ```python
-def build_stats_bundles(con, names: dict[str, str], out_dir: str, version: str,
-                        dense_threshold: int = 200) -> dict:
+def build_stats_bundles(con, com_names: dict[str, str], dep_names: dict[str, str],
+                        out_dir: str, version: str, dense_threshold: int = 200) -> dict:
     """con : connexion DuckDB avec la vue stats_src déjà créée (post remap COG/scissions).
-       names : {code commune/dept -> nom}, capté pendant build_layer.
+       com_names / dep_names : {code -> nom} captés pendant build_layer (dicts séparés
+       pour ne pas mêler codes commune et département).
        version : id de build (ex. timestamp) écrit dans manifest + chaque bundle.
        Écrit out_dir/stats/{manifest.json, departements.json, dep/{DD}.json}.
        Retourne un récap (compteurs) pour prepare_stats.json / QA."""
@@ -113,7 +114,7 @@ com_names = build_layer("communes_*.geojson", …)   # renvoie {code: nom}
 dep_names = build_layer("dept_*.geojson", …)
 if not args.layers_only:
     qa["stats_bundles"] = build_stats_bundles(
-        con, {**com_names, **dep_names}, args.out, version=qa["version"])
+        con, com_names, dep_names, args.out, version=qa["version"])
 ```
 
 `years` n'est **pas** codé en dur : `build_stats_bundles` lit les millésimes distincts présents
