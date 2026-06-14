@@ -17,6 +17,7 @@ Echelle France entiere : ~20 M lignes ; la consolidation Python traite les
 fichiers un par un (~3-5 Go de pic par full.csv.gz), prevoir ~8 Go de RAM.
 """
 import argparse
+import datetime
 import glob
 import json
 import os
@@ -26,6 +27,7 @@ import duckdb
 
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "parity"))
 from extended import consolidate_file_extended  # regles : parity/consolidate.py (verbatim)
+from stats_bundles import build_stats_bundles  # extracteur stats par entite
 
 # Couche mutations (spec 2026-06-12) : proprietes exportees, dans cet ordre.
 # adr/cp sont ensuite exclus de la passe tippecanoe z4-12 (build_tiles.sh -x).
@@ -473,13 +475,16 @@ def main() -> int:
                 d["vf_med"] = vf_med
         return props
 
+    # version du build : horodatage UTC, repris par le manifest des bundles
+    # et le cache-busting iOS (memes URLs entre deux builds).
+    qa["version"] = datetime.datetime.now(datetime.timezone.utc).strftime("%Y%m%dT%H%M%SZ")
     com_stats = agg_stats("com")
     dep_stats = agg_stats("dep")
 
     # ---- Jointure aux geometries ----------------------------------------
     def build_layer(pattern: str, code_key, out_name: str, stats: dict,
                     exclude=frozenset()):
-        feats, seen = [], set()
+        feats, seen, names = [], set(), {}
         for path in sorted(glob.glob(os.path.join(args.geo, pattern))):
             data = json.load(open(path))
             items = data["features"] if data.get("type") == "FeatureCollection" else [data]
@@ -491,9 +496,10 @@ def main() -> int:
                 # (une commune sans vente n'est pas un trou sur la carte)
                 st = stats.get(code) or {"n_tot": 0}
                 seen.add(code)
+                nom = ft.get("properties", {}).get("nom", "")
+                names[code] = nom
                 centroid = feature_centroid(ft["geometry"])
-                ft["properties"] = {"code": code,
-                                    "nom": ft.get("properties", {}).get("nom", ""),
+                ft["properties"] = {"code": code, "nom": nom,
                                     **({"cx": centroid[0], "cy": centroid[1]}
                                        if centroid else {}),
                                     **st}
@@ -502,16 +508,22 @@ def main() -> int:
         json.dump({"type": "FeatureCollection", "features": feats},
                   open(out, "w"), separators=(",", ":"), ensure_ascii=False)
         print("->", out, f"{len(feats)} entites, {os.path.getsize(out)/1e6:.1f} Mo")
-        return seen
+        return seen, names
 
-    seen_com = build_layer("communes_*.geojson",
-                           lambda ft: ft["properties"].get("code"),
-                           "communes.geojson", com_stats, exclude=PLM_PARENTS)
-    seen_dep = build_layer("dept_*.geojson",
-                           lambda ft: ft["properties"].get("code"),
-                           "departements.geojson", dep_stats)
+    seen_com, com_names = build_layer("communes_*.geojson",
+                                      lambda ft: ft["properties"].get("code"),
+                                      "communes.geojson", com_stats, exclude=PLM_PARENTS)
+    seen_dep, dep_names = build_layer("dept_*.geojson",
+                                      lambda ft: ft["properties"].get("code"),
+                                      "departements.geojson", dep_stats)
     qa["communes"] = len(seen_com)
     qa["departements"] = len(seen_dep)
+    # Bundles de stats par entite (panneau iOS au tap). Hors --layers-only :
+    # la table mutations reconstruite depuis les points ne porte pas st/np.
+    if not args.layers_only:
+        qa["stats_bundles"] = build_stats_bundles(
+            con, com_names, dep_names, args.out, qa["version"])
+        print("->", os.path.join(args.out, "stats"), qa["stats_bundles"])
 
     # codes commune avec mutations mais sans geometrie
     # (controle : arrondissements PLM manquants, communes fusionnees, COG decale)
