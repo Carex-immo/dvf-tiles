@@ -35,8 +35,8 @@ bash pipeline/download.sh "$YEARS" "$SCOPE_CSV" data/raw
 echo "==== [2/6] Contours administratifs ===="
 bash pipeline/download_geo.sh "$SCOPE_GEO" data/geo
 
-echo "==== [3/6] Parite de consolidation (goldens carex.immo) ===="
-python3 -m pytest -q pipeline/parity
+echo "==== [3/6] Parite de consolidation (goldens) + extracteur de stats ===="
+python3 -m pytest -q pipeline/parity pipeline/test_stats_bundles.py
 
 echo "==== [4/6] Preparation (consolidation parite + DuckDB aval) ===="
 # shellcheck disable=SC2086

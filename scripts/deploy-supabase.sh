@@ -64,6 +64,19 @@ upload "$PMTILES_FILE" "ss:///$BUCKET/dvf.pmtiles"
 echo "📤 Upload de $INDEX_FILE..."
 upload "$INDEX_FILE" "ss:///$BUCKET/tiles_index.json"
 
+# Bundles de stats par département (panneau iOS au tap) — fichiers statiques publics
+STATS_DIR="build/stats"
+if [ -d "$STATS_DIR" ]; then
+  COUNT=$(find "$STATS_DIR" -type f -name '*.json' | wc -l | tr -d ' ')
+  echo "📤 Upload des bundles de stats ($COUNT fichiers depuis $STATS_DIR)..."
+  while IFS= read -r f; do
+    rel="${f#build/}"                       # ex: stats/manifest.json, stats/dep/69.json
+    upload "$f" "ss:///$BUCKET/$rel"
+  done < <(find "$STATS_DIR" -type f -name '*.json')
+else
+  echo "ℹ️  $STATS_DIR absent : aucun bundle de stats à uploader (relancer prepare.py)"
+fi
+
 # Étape 4 : Edge Function — tuiles open data, servies sans JWT
 echo "⚙️  Déploiement de l'Edge Function (--no-verify-jwt : service public)..."
 supabase functions deploy dvf-tiles --project-ref "$PROJECT_REF" --no-verify-jwt
@@ -74,6 +87,7 @@ echo ""
 echo "📍 URLs :"
 echo "   PMTiles : https://$PROJECT_REF.supabase.co/storage/v1/object/public/$BUCKET/dvf.pmtiles"
 echo "   Index   : https://$PROJECT_REF.supabase.co/storage/v1/object/public/$BUCKET/tiles_index.json"
+echo "   Stats   : https://$PROJECT_REF.supabase.co/storage/v1/object/public/$BUCKET/stats/manifest.json"
 echo "   API     : https://$PROJECT_REF.supabase.co/functions/v1/dvf-tiles/{couche}/{z}/{x}/{y}.mvt"
 echo ""
 echo "🧪 Test :"
