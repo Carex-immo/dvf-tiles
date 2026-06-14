@@ -1,22 +1,26 @@
 // CAREX - Client de tuiles DVF pour iOS (MapKit natif) - squelette de reference
-// Le decodage MVT s'appuie sur SwiftProtobuf + le schema vector_tile.proto
-// (https://github.com/mapbox/vector-tile-spec) ou un binding existant.
+// Le decodage MVT est fourni par le package DvfTileKit (client/DvfTileKit/,
+// zero dependance : ProtobufReader + MVTTile + MVTDecoder) - `swift test` pour la parite.
 
 import Foundation
 import MapKit
 
+// Schema contractuel (spec 2026-06-12, parite goldens carex.immo) :
+// codes de l'app, annee/pm2 derives, adresse garantie a z>=13 seulement.
 struct Mutation: Hashable {
     let id: String
-    let date: Int          // YYYYMMDD
-    let annee: Int
-    let nat: Int           // 1 Vente, 2 VEFA, 3 Adjudication, 4 Echange, 5 Expropriation, 6 Terrain a batir
-    let type: Int          // 0 terrain, 1 maison, 2 appart, 3 dependance, 4 local
-    let vf: Int            // valeur fonciere (EUR)
-    let sb: Int            // surface batie (m2)
-    let st: Int            // surface terrain (m2)
-    let pm2: Int?          // EUR/m2 bati
-    let np: Int            // pieces
-    let nc: Int            // nature culture dominante
+    let date: Int          // YYYYMMDD (annee = date / 10000)
+    let nat: Int           // 1 Vente, 2 VEFA, 3 Adjudication, 4 Echange, 5 Expropriation (jamais 0)
+    let type: Int          // 1 maison, 2 appartement, 3 immeuble, 4 local, 5 dependance
+                           // (terrain nu : exclu de la couche points)
+    let vf: Int?           // valeur fonciere (EUR) - omise si absente ; pm2 = vf/sb si les deux > 0
+    let sb: Int            // surface batie (m2, biens post-fusion hors dependances)
+    let st: Int            // surface terrain (m2, max par parcelle somme)
+    let np: Int            // pieces (somme des biens)
+    let nl: Int            // nb de biens post-fusion (detection multi-lots)
+    let com: String        // code commune INSEE (COG courant) - nom/adresseComplete via table COG
+    let adr: String?       // "numero suffixe voie", casse source - PRESENTE A z>=13 UNIQUEMENT
+    let cp: String?        // code postal - PRESENT A z>=13 UNIQUEMENT
     let coordinate: CLLocationCoordinate2D
 
     // egalite/hash par id : cle de deduplication inter-tuiles
@@ -52,6 +56,8 @@ enum TileMath {
 }
 
 final class DvfTileClient {
+    // Placeholder POC, jamais deploye — cible reelle (contrat 2026-06-11) :
+    // tuiles a plat Supabase Storage {version}/tiles/{z}/{x}/{y}.pbf
     static let baseURL = URL(string: "https://tiles.carex.immo/dvf/v1")!
     private let session: URLSession
     private var memoryCache: [TileCoord: [Mutation]] = [:]   // + cache disque conseille
@@ -94,7 +100,9 @@ final class DvfTileClient {
     }
 }
 
-// Filtrage en memoire, instantane (~10 ms pour 50k objets) :
-// let visibles = mutations.filter { $0.type == 2 && $0.annee >= 2024 && (2_000...8_000).contains($0.pm2 ?? 0) }
+// Filtrage en memoire, instantane (~10 ms pour 50k objets) ; derives :
+// annee = date / 10000 ; pm2 = (vf et sb > 0) ? vf / sb : nil
+// let visibles = mutations.filter { $0.type == 2 && $0.date / 10000 >= 2024 }
 // Affichage : MKAnnotation + clusteringIdentifier pour le clustering natif.
-// Tap -> id -> API CAREX dvf_get_mutation (adresse, lots, parcelles).
+// Liste (z>=13) : adr + cp + nom de commune via table COG (cle com).
+// Tap -> id -> API CAREX dvf_get_mutation (lots, biens, parcelles : le detail).

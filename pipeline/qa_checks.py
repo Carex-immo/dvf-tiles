@@ -7,7 +7,10 @@ Verifie l'archive dvf.pmtiles :
   2. comptages : mutations par millesime vs prepare_stats.json (et vs build
      precedent si build/qa_report.json existe, tolerance +/-20 %)
   3. decodage : echantillon de tuiles (Lyon, Bourg-en-Bresse, Paris si present),
-     attributs obligatoires, bornes vf/pm2
+     attributs obligatoires, couverture/bornes vf, adresse (adr/cp presents a
+     z>=13, absents a z12 — exclus de la passe basse par build_tiles.sh -x),
+     taille des tuiles exhaustives (construites sans limite) ; chaque palier
+     z12/z13/z14 doit avoir au moins un echantillon decode
   4. exhaustivite : a partir de z13 les tuiles mutations sont construites sans
      limite (-pk -pf, cf. build_tiles.sh) ; chaque tuile z13 d'echantillon doit
      contenir tous les ids (hors buffer) de ses 4 filles z14, et la plus dense
@@ -26,8 +29,13 @@ import mapbox_vector_tile
 from pmtiles.reader import Reader, MmapSource
 
 EXPECTED_LAYERS = {"mutations": (4, 14), "communes": (6, 10), "departements": (4, 6)}
-REQUIRED_ATTRS = {"id", "date", "annee", "nat", "type", "vf"}
-EXHAUSTIVE_ZOOM = 13  # zoom contractuel : stats exactes garanties a partir de ce zoom
+# vf est omissible (mutation sans valeur fonciere), adr/cp garantis a z>=13
+# seulement : controles dedies plus bas, pas dans les attributs requis.
+REQUIRED_ATTRS = {"id", "date", "nat", "type", "sb", "st", "np", "nl", "com"}
+EXHAUSTIVE_ZOOM = 13   # zoom contractuel : stats exactes garanties a partir de ce zoom
+VF_COVERAGE_MIN = 0.90    # part minimale de features portant vf (warning)
+ADR_COVERAGE_MIN = 0.80   # part minimale de features portant adr a z>=13 (warning)
+TILE_SIZE_WARN_KB = 800   # tuiles z13+ sans limite tippecanoe : alerte de poids
 SAMPLES = [("Lyon", 4.835, 45.76), ("Bourg-en-Bresse", 5.228, 46.205),
            ("Paris", 2.347, 48.859), ("Marseille", 5.38, 43.297)]
 
@@ -67,6 +75,77 @@ def mutations_ids(reader, z, x, y, inner_only=False):
     return ids
 
 
+def _geo_ntot(path):
+    """Map {code: n_tot} d'une couche geojson (communes/départements)."""
+    if not os.path.exists(path):
+        return {}
+    data = json.load(open(path))
+    return {f["properties"]["code"]: f["properties"].get("n_tot", 0)
+            for f in data.get("features", [])}
+
+
+def check_stats_bundles(build, errors, warnings):
+    """Valide build/stats/ : structure, alignement des arrays sur years, seuil
+    de densité (quarters), parité n_tot bundle <-> geojson. Renvoie un récap."""
+    sdir = os.path.join(build, "stats")
+    man_path = os.path.join(sdir, "manifest.json")
+    if not os.path.exists(man_path):
+        errors.append("stats/manifest.json absent")
+        return {}
+    man = json.load(open(man_path))
+    version, yrs, thr = man.get("version"), man.get("years"), man.get("dense_threshold")
+    ny = len(yrs or [])
+    if not yrs:
+        warnings.append("stats/manifest.json : years absent ou vide")
+    if thr is None:
+        warnings.append("stats/manifest.json : dense_threshold absent")
+    report = {"version": version, "departements_attendus": len(man.get("departements", []))}
+
+    def check_entities(entities, geo_ntot, label):
+        for e in entities:
+            code = e.get("code", "<sans code>")
+            ov = e.get("overall", {})
+            if len(ov.get("n", [])) != ny or len(ov.get("pm2_med", [])) != ny:
+                errors.append(f"{label} {code} : overall non aligné sur years ({ny})")
+            for t, bt in e.get("byType", {}).items():
+                for mkey in ("n", "pm2_med", "vf_med", "sb_med", "st_med", "np_med"):
+                    if len(bt.get(mkey, [])) != ny:
+                        errors.append(f"{label} {code} byType[{t}].{mkey} non aligné")
+            n_tot = e.get("n_tot", 0)
+            if "quarters" in e and thr is not None and n_tot < thr:
+                errors.append(f"{label} {code} : quarters présent sous le seuil {thr}")
+            exp = geo_ntot.get(code)
+            if exp is not None and exp != n_tot:
+                errors.append(f"{label} {code} : n_tot {n_tot} != geojson {exp}")
+
+    # départements (couche légère)
+    dep_path = os.path.join(sdir, "departements.json")
+    if not os.path.exists(dep_path):
+        errors.append("stats/departements.json absent")
+    else:
+        dj = json.load(open(dep_path))
+        if dj.get("version") != version:
+            errors.append("departements.json : version != manifest")
+        check_entities(dj.get("entities", []), _geo_ntot(
+            os.path.join(build, "departements.geojson")), "dept")
+
+    # communes (un bundle par département)
+    com_geo = _geo_ntot(os.path.join(build, "communes.geojson"))
+    vus = 0
+    for dd in man.get("departements", []):
+        p = os.path.join(sdir, "dep", f"{dd}.json")
+        if not os.path.exists(p):
+            errors.append(f"bundle département manquant : dep/{dd}.json")
+            continue
+        b = json.load(open(p))
+        if b.get("version") != version:
+            errors.append(f"dep/{dd}.json : version != manifest")
+        check_entities(b.get("entities", []), com_geo, "commune")
+        vus += len(b.get("entities", []))
+    report["communes"] = vus
+    return report
+
+
 def main() -> int:
     import argparse
     ap = argparse.ArgumentParser()
@@ -89,7 +168,9 @@ def main() -> int:
         if name not in layers:
             errors.append(f"couche absente : {name}")
         elif tuple(layers[name]) != zooms:
-            warnings.append(f"zooms {name} : {layers[name]} != attendu {zooms}")
+            # bloquant : les plages sont deterministes (-Z/-z explicites dans
+            # build_tiles.sh) — un ecart signale une passe omise du tile-join
+            errors.append(f"zooms {name} : {layers[name]} != attendu {zooms}")
 
     # 2. comptages
     stats_path = os.path.join(build, "prepare_stats.json")
@@ -97,11 +178,16 @@ def main() -> int:
         stats = json.load(open(stats_path))
         report["mutations_uniques"] = stats.get("mutations_uniques")
         report["par_annee"] = stats.get("par_annee")
-        report["taux_geoloc_pct"] = stats.get("taux_geoloc_pct")
         if stats.get("communes_sans_geometrie", 0) > 0:
             warnings.append(f"{stats['communes_sans_geometrie']} codes commune sans geometrie")
-        if stats.get("taux_geoloc_pct") and stats["taux_geoloc_pct"] < 90:
-            warnings.append(f"taux de geolocalisation bas : {stats['taux_geoloc_pct']} %")
+        # remplace l'ancien taux_geoloc_pct (la consolidation parite rejette
+        # les mutations sans ancre au lieu de les garder sans coordonnees)
+        rejets, total = stats.get("mutations_rejetees_sans_ancre"), stats.get("mutations_uniques")
+        if rejets is not None and total:
+            pct = 100 * rejets / (rejets + total)
+            report["rejets_sans_ancre_pct"] = round(pct, 2)
+            if pct > 5:
+                warnings.append(f"taux de rejets sans ancre eleve : {pct:.1f} %")
     prev_path = os.path.join(build, "qa_report.json")
     if os.path.exists(prev_path) and not args.reset_baseline:
         prev = json.load(open(prev_path))
@@ -112,6 +198,7 @@ def main() -> int:
 
     # 3. decodage d'echantillons
     decoded = 0
+    decoded_par_zoom = {12: 0, EXHAUSTIVE_ZOOM: 0, 14: 0}
     for name, lon, lat in SAMPLES:
         for z in (12, EXHAUSTIVE_ZOOM, 14):
             x, y = tile_xy(lon, lat, z)
@@ -122,23 +209,55 @@ def main() -> int:
             if not feats:
                 continue
             decoded += 1
-            props = feats[0]["properties"]
-            missing = REQUIRED_ATTRS - set(props)
+            decoded_par_zoom[z] += 1
+            # attributs requis sur TOUTES les features (l'ordre dans un MVT
+            # n'est pas contractuel, la premiere seule ne prouve rien)
+            common = set(feats[0]["properties"])
+            for f in feats[1:]:
+                common &= set(f["properties"])
+            missing = REQUIRED_ATTRS - common
             if missing:
                 errors.append(f"attributs manquants ({name} z{z}) : {missing}")
-            bad_vf = [f for f in feats if not (1 <= f["properties"].get("vf", 0) < 1e9)]
-            bad_pm2 = [f for f in feats
-                       if f["properties"].get("pm2") is not None
-                       and not (1 <= f["properties"]["pm2"] < 1e6)]
+            with_vf = [f for f in feats if "vf" in f["properties"]]
+            if not with_vf:
+                errors.append(f"vf absent de toutes les features ({name} z{z})")
+            elif len(with_vf) < VF_COVERAGE_MIN * len(feats):
+                warnings.append(f"couverture vf {len(with_vf)}/{len(feats)} ({name} z{z})")
+            bad_vf = [f for f in with_vf if not (1 <= f["properties"]["vf"] < 1e9)]
             if bad_vf:
                 warnings.append(f"{len(bad_vf)} vf hors bornes ({name} z{z})")
-            if bad_pm2:
-                warnings.append(f"{len(bad_pm2)} pm2 hors bornes ({name} z{z})")
+            # adr/cp : presents a z>=13 (contrat liste iOS), absents a z12
+            # (exclus de la passe z4-12 par build_tiles.sh -x adr -x cp) ;
+            # la fuite a z12 se detecte a la presence de la CLE (une valeur
+            # vide prouverait deja que -x a saute)
+            couverture = {}
+            for attr in ("adr", "cp"):
+                non_vide = sum(1 for f in feats if f["properties"].get(attr))
+                fuite = sum(1 for f in feats if attr in f["properties"])
+                couverture[attr] = round(non_vide / len(feats), 3)
+                if z >= EXHAUSTIVE_ZOOM:
+                    if non_vide == 0:
+                        errors.append(f"{attr} absent de toutes les features ({name} z{z})")
+                    elif non_vide < ADR_COVERAGE_MIN * len(feats):
+                        warnings.append(f"couverture {attr} {non_vide}/{len(feats)} ({name} z{z})")
+                elif fuite:
+                    errors.append(f"{attr} present a z{z} ({name}) : "
+                                  f"l'exclusion -x de la passe z4-12 a saute")
+            ko_gz = round(len(data) / 1024)
+            if z >= EXHAUSTIVE_ZOOM and ko_gz > TILE_SIZE_WARN_KB:
+                warnings.append(f"tuile {name} z{z} : {ko_gz} Ko gz (> {TILE_SIZE_WARN_KB})")
             report.setdefault("echantillons", {})[f"{name}_z{z}"] = {
                 "tuile": [z, x, y], "features": len(feats),
-                "ko_gz": round(len(data) / 1024)}
+                "adr_couverture": couverture["adr"],
+                "cp_couverture": couverture["cp"],
+                "ko_gz": ko_gz}
     if decoded == 0:
         errors.append("aucune tuile d'echantillon decodable")
+    else:
+        for z, n in decoded_par_zoom.items():
+            if n == 0:
+                errors.append(f"aucun echantillon decodable a z{z} "
+                              f"(controles z{z} non exerces)")
 
     # 4. exhaustivite au zoom contractuel
     exhaustive = {}
@@ -193,12 +312,17 @@ def main() -> int:
         except ImportError:
             warnings.append("duckdb absent : exhaustivite non ancree a la source")
 
+    # 5. bundles de stats par entité (panneau iOS au tap)
+    report["stats"] = check_stats_bundles(build, errors, warnings)
+
     report["erreurs"] = errors
     report["avertissements"] = warnings
-    json.dump(report, open(prev_path, "w"), indent=2, ensure_ascii=False)
+    # un build en echec ne doit pas devenir la baseline de comptage du suivant
+    out_path = prev_path if not errors else os.path.join(build, "qa_report_echec.json")
+    json.dump(report, open(out_path, "w"), indent=2, ensure_ascii=False)
     print(json.dumps(report, indent=2, ensure_ascii=False))
     if errors:
-        print("QA : ECHEC", file=sys.stderr)
+        print(f"QA : ECHEC (rapport : {out_path}, baseline conservee)", file=sys.stderr)
         return 1
     print(f"QA : OK ({len(warnings)} avertissement(s))")
     return 0

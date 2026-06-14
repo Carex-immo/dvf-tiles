@@ -7,7 +7,8 @@ set -euo pipefail
 PROJECT_REF="${1:-bqwbazolhtwizafxqzlr}"
 INDEX_FILE="${2:-build/tiles_index.json}"
 BUCKET="tiles"
-OBJECT_NAME="index.json"
+# Doit matcher l'URL lue par supabase/functions/dvf-tiles/index.ts
+OBJECT_NAME="tiles_index.json"
 
 echo "📤 Uploading index to Supabase Storage..."
 
@@ -23,9 +24,14 @@ FILE_SIZE_KB=$((FILE_SIZE / 1024))
 echo "   File: $INDEX_FILE ($FILE_SIZE_KB KB)"
 
 # Step 2: Try supabase CLI first
+# Le CLI ne sait pas écraser (409 Duplicate) : suppression préalable si présent.
 echo "   Attempting upload via Supabase CLI..."
+echo y | supabase storage rm "ss:///$BUCKET/$OBJECT_NAME" --experimental 2>/dev/null || true
 if supabase storage cp "$INDEX_FILE" "ss:///$BUCKET/$OBJECT_NAME" --experimental 2>/dev/null; then
   echo "✅ Index uploaded successfully via CLI"
+  # La fonction Edge cache l'index en mémoire d'instance : redéployer pour le purger.
+  echo "   ⚠️  Penser à redéployer la fonction (cache d'index en mémoire) :"
+  echo "   supabase functions deploy dvf-tiles --project-ref $PROJECT_REF --no-verify-jwt"
 else
   # Step 3: Fallback to curl with REST API
   echo "   CLI failed, attempting REST API upload..."

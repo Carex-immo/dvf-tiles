@@ -1,0 +1,9626 @@
+[
+  {
+    "biens" : [
+      {
+        "pieces" : 2,
+        "surfBati" : 33,
+        "type" : "Appartement"
+      },
+      {
+        "pieces" : 0,
+        "type" : "Dépendance"
+      }
+    ],
+    "date" : "2024-01-03",
+    "id" : "2024-1193237",
+    "lat" : 48.86631,
+    "lon" : 2.33167,
+    "nature" : 1,
+    "pieces" : 2,
+    "prix" : 447000,
+    "surfBati" : 33,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 0,
+        "surfCarrez" : 4.38,
+        "type" : "Dépendance"
+      }
+    ],
+    "date" : "2024-01-11",
+    "id" : "2024-1193270",
+    "lat" : 48.86093,
+    "lon" : 2.34457,
+    "nature" : 1,
+    "pieces" : 0,
+    "prix" : 10000,
+    "surfBati" : 0,
+    "surfTerrain" : 0,
+    "type" : 5
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 3,
+        "surfBati" : 72,
+        "type" : "Appartement"
+      }
+    ],
+    "date" : "2024-01-12",
+    "id" : "2024-1193359",
+    "lat" : 48.8648,
+    "lon" : 2.34068,
+    "nature" : 1,
+    "pieces" : 3,
+    "prix" : 1247000,
+    "surfBati" : 72,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 0,
+        "type" : "Dépendance"
+      }
+    ],
+    "date" : "2024-01-16",
+    "id" : "2024-1193384",
+    "lat" : 48.85889,
+    "lon" : 2.34443,
+    "nature" : 1,
+    "pieces" : 0,
+    "prix" : 53000,
+    "surfBati" : 0,
+    "surfTerrain" : 0,
+    "type" : 5
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 0,
+        "type" : "Dépendance"
+      }
+    ],
+    "date" : "2024-01-12",
+    "id" : "2024-1193405",
+    "lat" : 48.8655,
+    "lon" : 2.33021,
+    "nature" : 1,
+    "pieces" : 0,
+    "prix" : 67850,
+    "surfBati" : 0,
+    "surfTerrain" : 0,
+    "type" : 5
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 0,
+        "type" : "Dépendance"
+      }
+    ],
+    "date" : "2024-01-04",
+    "id" : "2024-1193408",
+    "lat" : 48.86511,
+    "lon" : 2.33712,
+    "nature" : 1,
+    "pieces" : 0,
+    "prix" : 100000,
+    "surfBati" : 0,
+    "surfTerrain" : 0,
+    "type" : 5
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 0,
+        "surfCarrez" : 4.29,
+        "type" : "Dépendance"
+      }
+    ],
+    "date" : "2024-01-11",
+    "id" : "2024-1193453",
+    "lat" : 48.86342,
+    "lon" : 2.33456,
+    "nature" : 1,
+    "pieces" : 0,
+    "prix" : 60000,
+    "surfBati" : 0,
+    "surfTerrain" : 0,
+    "type" : 5
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 1,
+        "surfBati" : 23,
+        "type" : "Appartement"
+      },
+      {
+        "pieces" : 0,
+        "type" : "Dépendance"
+      }
+    ],
+    "date" : "2024-01-12",
+    "id" : "2024-1193458",
+    "lat" : 48.8613,
+    "lon" : 2.34224,
+    "nature" : 1,
+    "pieces" : 1,
+    "prix" : 262000,
+    "surfBati" : 23,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 0,
+        "type" : "Dépendance"
+      }
+    ],
+    "date" : "2024-01-08",
+    "id" : "2024-1193461",
+    "lat" : 48.86414,
+    "lon" : 2.33316,
+    "nature" : 1,
+    "pieces" : 0,
+    "prix" : 45000,
+    "surfBati" : 0,
+    "surfTerrain" : 0,
+    "type" : 5
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 4,
+        "surfBati" : 129,
+        "type" : "Appartement"
+      },
+      {
+        "pieces" : 0,
+        "type" : "Dépendance"
+      }
+    ],
+    "date" : "2024-01-17",
+    "id" : "2024-1193563",
+    "lat" : 48.86577,
+    "lon" : 2.32912,
+    "nature" : 1,
+    "pieces" : 4,
+    "prix" : 995000,
+    "surfBati" : 129,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 2,
+        "surfBati" : 59,
+        "type" : "Appartement"
+      }
+    ],
+    "date" : "2024-01-16",
+    "id" : "2024-1193601",
+    "lat" : 48.86098,
+    "lon" : 2.34573,
+    "nature" : 1,
+    "pieces" : 2,
+    "prix" : 550000,
+    "surfBati" : 59,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 5,
+        "surfBati" : 85,
+        "type" : "Appartement"
+      }
+    ],
+    "date" : "2024-01-19",
+    "id" : "2024-1193642",
+    "lat" : 48.86694,
+    "lon" : 2.32635,
+    "nature" : 1,
+    "pieces" : 5,
+    "prix" : 1690000,
+    "surfBati" : 85,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 4,
+        "surfBati" : 120,
+        "type" : "Appartement"
+      },
+      {
+        "pieces" : 0,
+        "type" : "Dépendance"
+      },
+      {
+        "pieces" : 0,
+        "type" : "Dépendance"
+      },
+      {
+        "pieces" : 0,
+        "type" : "Dépendance"
+      },
+      {
+        "pieces" : 0,
+        "type" : "Dépendance"
+      }
+    ],
+    "date" : "2024-01-11",
+    "id" : "2024-1193652",
+    "lat" : 48.86599,
+    "lon" : 2.32917,
+    "nature" : 1,
+    "pieces" : 4,
+    "prix" : 3000000,
+    "surfBati" : 120,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 4,
+        "surfBati" : 75,
+        "type" : "Appartement"
+      },
+      {
+        "pieces" : 0,
+        "type" : "Dépendance"
+      }
+    ],
+    "date" : "2024-01-23",
+    "id" : "2024-1193696",
+    "lat" : 48.85878,
+    "lon" : 2.34504,
+    "nature" : 1,
+    "pieces" : 4,
+    "prix" : 857000,
+    "surfBati" : 75,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 2,
+        "surfBati" : 59,
+        "surfCarrez" : 58.46,
+        "type" : "Appartement"
+      }
+    ],
+    "date" : "2024-01-12",
+    "id" : "2024-1193709",
+    "lat" : 48.8614,
+    "lon" : 2.34182,
+    "nature" : 1,
+    "pieces" : 2,
+    "prix" : 800000,
+    "surfBati" : 59,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 2,
+        "surfBati" : 70,
+        "surfCarrez" : 64.05,
+        "type" : "Appartement"
+      }
+    ],
+    "date" : "2024-01-22",
+    "id" : "2024-1193754",
+    "lat" : 48.86168,
+    "lon" : 2.34872,
+    "nature" : 1,
+    "pieces" : 2,
+    "prix" : 637050,
+    "surfBati" : 70,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 1,
+        "surfBati" : 30,
+        "type" : "Appartement"
+      },
+      {
+        "pieces" : 0,
+        "surfBati" : 571,
+        "type" : "Local industriel. commercial ou assimilé"
+      }
+    ],
+    "date" : "2024-01-15",
+    "id" : "2024-1193792",
+    "lat" : 48.86106,
+    "lon" : 2.3483,
+    "nature" : 1,
+    "pieces" : 1,
+    "prix" : 6500000,
+    "surfBati" : 601,
+    "surfTerrain" : 0,
+    "type" : 3
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 0,
+        "surfBati" : 239,
+        "type" : "Local industriel. commercial ou assimilé"
+      }
+    ],
+    "date" : "2024-01-31",
+    "id" : "2024-1193844",
+    "lat" : 48.86373,
+    "lon" : 2.3332,
+    "nature" : 1,
+    "pieces" : 0,
+    "prix" : 5920000,
+    "surfBati" : 239,
+    "surfTerrain" : 0,
+    "type" : 4
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 0,
+        "type" : "Dépendance"
+      }
+    ],
+    "date" : "2024-01-31",
+    "id" : "2024-1193846",
+    "lat" : 48.86485,
+    "lon" : 2.33597,
+    "nature" : 1,
+    "pieces" : 0,
+    "prix" : 5550,
+    "surfBati" : 0,
+    "surfTerrain" : 0,
+    "type" : 5
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 0,
+        "surfBati" : 147,
+        "type" : "Local industriel. commercial ou assimilé"
+      }
+    ],
+    "date" : "2024-01-18",
+    "id" : "2024-1193856",
+    "lat" : 48.85828,
+    "lon" : 2.3466,
+    "nature" : 1,
+    "pieces" : 0,
+    "prix" : 1920000,
+    "surfBati" : 147,
+    "surfTerrain" : 0,
+    "type" : 4
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 0,
+        "type" : "Dépendance"
+      }
+    ],
+    "date" : "2024-01-16",
+    "id" : "2024-1193858",
+    "lat" : 48.85889,
+    "lon" : 2.34443,
+    "nature" : 1,
+    "pieces" : 0,
+    "prix" : 50000,
+    "surfBati" : 0,
+    "surfTerrain" : 0,
+    "type" : 5
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 0,
+        "surfBati" : 57,
+        "surfCarrez" : 55.13,
+        "type" : "Local industriel. commercial ou assimilé"
+      }
+    ],
+    "date" : "2024-01-26",
+    "id" : "2024-1193869",
+    "lat" : 48.86448,
+    "lon" : 2.34156,
+    "nature" : 1,
+    "pieces" : 0,
+    "prix" : 377358,
+    "surfBati" : 57,
+    "surfTerrain" : 0,
+    "type" : 4
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 0,
+        "type" : "Dépendance"
+      }
+    ],
+    "date" : "2024-01-15",
+    "id" : "2024-1194029",
+    "lat" : 48.86355,
+    "lon" : 2.34175,
+    "nature" : 1,
+    "pieces" : 0,
+    "prix" : 12000,
+    "surfBati" : 0,
+    "surfTerrain" : 0,
+    "type" : 5
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 0,
+        "type" : "Dépendance"
+      }
+    ],
+    "date" : "2024-01-18",
+    "id" : "2024-1194030",
+    "lat" : 48.86355,
+    "lon" : 2.34175,
+    "nature" : 1,
+    "pieces" : 0,
+    "prix" : 6700,
+    "surfBati" : 0,
+    "surfTerrain" : 0,
+    "type" : 5
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 2,
+        "surfBati" : 45,
+        "type" : "Appartement"
+      }
+    ],
+    "date" : "2024-01-19",
+    "id" : "2024-1194035",
+    "lat" : 48.8639,
+    "lon" : 2.3445,
+    "nature" : 1,
+    "pieces" : 2,
+    "prix" : 309193,
+    "surfBati" : 45,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 1,
+        "surfBati" : 31,
+        "surfCarrez" : 32.65,
+        "type" : "Appartement"
+      },
+      {
+        "pieces" : 0,
+        "surfCarrez" : 32.65,
+        "type" : "Dépendance"
+      }
+    ],
+    "date" : "2024-02-01",
+    "id" : "2024-1194053",
+    "lat" : 48.8637,
+    "lon" : 2.34616,
+    "nature" : 1,
+    "pieces" : 1,
+    "prix" : 375000,
+    "surfBati" : 31,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 3,
+        "surfBati" : 81,
+        "surfCarrez" : 83.45,
+        "type" : "Appartement"
+      }
+    ],
+    "date" : "2024-02-05",
+    "id" : "2024-1194071",
+    "lat" : 48.864,
+    "lon" : 2.34608,
+    "nature" : 1,
+    "pieces" : 3,
+    "prix" : 915950,
+    "surfBati" : 81,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 1,
+        "surfBati" : 23,
+        "type" : "Appartement"
+      }
+    ],
+    "date" : "2024-01-26",
+    "id" : "2024-1194096",
+    "lat" : 48.86393,
+    "lon" : 2.34529,
+    "nature" : 1,
+    "pieces" : 1,
+    "prix" : 245000,
+    "surfBati" : 23,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 1,
+        "surfBati" : 18,
+        "surfCarrez" : 19.55,
+        "type" : "Appartement"
+      }
+    ],
+    "date" : "2024-01-17",
+    "id" : "2024-1194110",
+    "lat" : 48.86039,
+    "lon" : 2.34739,
+    "nature" : 1,
+    "pieces" : 1,
+    "prix" : 230000,
+    "surfBati" : 18,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 2,
+        "surfBati" : 17,
+        "surfCarrez" : 19.12,
+        "type" : "Appartement"
+      },
+      {
+        "pieces" : 0,
+        "surfCarrez" : 19.12,
+        "type" : "Dépendance"
+      }
+    ],
+    "date" : "2024-01-31",
+    "id" : "2024-1194126",
+    "lat" : 48.86585,
+    "lon" : 2.33139,
+    "nature" : 1,
+    "pieces" : 2,
+    "prix" : 270000,
+    "surfBati" : 17,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 1,
+        "surfBati" : 68,
+        "surfCarrez" : 70.58,
+        "type" : "Appartement"
+      },
+      {
+        "pieces" : 0,
+        "surfCarrez" : 70.58,
+        "type" : "Dépendance"
+      }
+    ],
+    "date" : "2024-01-31",
+    "id" : "2024-1194175",
+    "lat" : 48.86108,
+    "lon" : 2.34351,
+    "nature" : 1,
+    "pieces" : 1,
+    "prix" : 720000,
+    "surfBati" : 68,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 2,
+        "surfBati" : 19,
+        "surfCarrez" : 19.77,
+        "type" : "Appartement"
+      }
+    ],
+    "date" : "2024-01-19",
+    "id" : "2024-1194190",
+    "lat" : 48.86346,
+    "lon" : 2.35005,
+    "nature" : 1,
+    "pieces" : 2,
+    "prix" : 237195,
+    "surfBati" : 19,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 0,
+        "surfBati" : 41,
+        "surfCarrez" : 53.42,
+        "type" : "Local industriel. commercial ou assimilé"
+      }
+    ],
+    "date" : "2024-01-31",
+    "id" : "2024-1194192",
+    "lat" : 48.86643,
+    "lon" : 2.33775,
+    "nature" : 1,
+    "pieces" : 0,
+    "prix" : 500000,
+    "surfBati" : 41,
+    "surfTerrain" : 0,
+    "type" : 4
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 0,
+        "surfCarrez" : 9.05,
+        "type" : "Dépendance"
+      }
+    ],
+    "date" : "2024-01-31",
+    "id" : "2024-1194293",
+    "lat" : 48.86315,
+    "lon" : 2.35002,
+    "nature" : 1,
+    "pieces" : 0,
+    "prix" : 92000,
+    "surfBati" : 0,
+    "surfTerrain" : 0,
+    "type" : 5
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 2,
+        "surfBati" : 55,
+        "surfCarrez" : 58.06,
+        "type" : "Appartement"
+      },
+      {
+        "pieces" : 0,
+        "surfCarrez" : 58.06,
+        "type" : "Dépendance"
+      }
+    ],
+    "date" : "2024-01-19",
+    "id" : "2024-1194392",
+    "lat" : 48.8603,
+    "lon" : 2.3433,
+    "nature" : 1,
+    "pieces" : 2,
+    "prix" : 883800,
+    "surfBati" : 55,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 3,
+        "surfBati" : 155,
+        "surfCarrez" : 154.12,
+        "type" : "Appartement"
+      },
+      {
+        "pieces" : 0,
+        "type" : "Dépendance"
+      },
+      {
+        "pieces" : 0,
+        "surfCarrez" : 8.76,
+        "type" : "Dépendance"
+      },
+      {
+        "pieces" : 0,
+        "surfCarrez" : 154.12,
+        "type" : "Dépendance"
+      }
+    ],
+    "date" : "2024-02-08",
+    "id" : "2024-1194404",
+    "lat" : 48.86368,
+    "lon" : 2.33374,
+    "nature" : 1,
+    "pieces" : 3,
+    "prix" : 2950000,
+    "surfBati" : 155,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 1,
+        "surfBati" : 18,
+        "surfCarrez" : 98.53,
+        "type" : "Appartement"
+      },
+      {
+        "pieces" : 4,
+        "surfBati" : 89,
+        "surfCarrez" : 197.06,
+        "type" : "Appartement"
+      },
+      {
+        "pieces" : 0,
+        "surfCarrez" : 197.06,
+        "type" : "Dépendance"
+      }
+    ],
+    "date" : "2024-02-07",
+    "id" : "2024-1194477",
+    "lat" : 48.8651,
+    "lon" : 2.34132,
+    "nature" : 1,
+    "pieces" : 5,
+    "prix" : 1690000,
+    "surfBati" : 107,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 0,
+        "type" : "Dépendance"
+      }
+    ],
+    "date" : "2024-01-17",
+    "id" : "2024-1194484",
+    "lat" : 48.86414,
+    "lon" : 2.33316,
+    "nature" : 1,
+    "pieces" : 0,
+    "prix" : 55000,
+    "surfBati" : 0,
+    "surfTerrain" : 0,
+    "type" : 5
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 0,
+        "surfBati" : 24,
+        "surfCarrez" : 26.02,
+        "type" : "Local industriel. commercial ou assimilé"
+      }
+    ],
+    "date" : "2024-02-09",
+    "id" : "2024-1194554",
+    "lat" : 48.86092,
+    "lon" : 2.34374,
+    "nature" : 1,
+    "pieces" : 0,
+    "prix" : 545000,
+    "surfBati" : 24,
+    "surfTerrain" : 0,
+    "type" : 4
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 0,
+        "type" : "Dépendance"
+      }
+    ],
+    "date" : "2024-01-30",
+    "id" : "2024-1194597",
+    "lat" : 48.86414,
+    "lon" : 2.33316,
+    "nature" : 1,
+    "pieces" : 0,
+    "prix" : 55000,
+    "surfBati" : 0,
+    "surfTerrain" : 0,
+    "type" : 5
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 2,
+        "surfBati" : 60,
+        "type" : "Appartement"
+      },
+      {
+        "pieces" : 0,
+        "type" : "Dépendance"
+      }
+    ],
+    "date" : "2024-02-08",
+    "id" : "2024-1194615",
+    "lat" : 48.86646,
+    "lon" : 2.33699,
+    "nature" : 1,
+    "pieces" : 2,
+    "prix" : 770000,
+    "surfBati" : 60,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 7,
+        "surfBati" : 163,
+        "surfCarrez" : 168.25,
+        "type" : "Appartement"
+      }
+    ],
+    "date" : "2024-02-07",
+    "id" : "2024-1194622",
+    "lat" : 48.86691,
+    "lon" : 2.3327,
+    "nature" : 1,
+    "pieces" : 7,
+    "prix" : 652137,
+    "surfBati" : 163,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 2,
+        "surfBati" : 30,
+        "surfCarrez" : 37.48,
+        "type" : "Appartement"
+      },
+      {
+        "pieces" : 0,
+        "surfCarrez" : 37.48,
+        "type" : "Dépendance"
+      }
+    ],
+    "date" : "2024-01-24",
+    "id" : "2024-1194623",
+    "lat" : 48.86617,
+    "lon" : 2.33611,
+    "nature" : 1,
+    "pieces" : 2,
+    "prix" : 405000,
+    "surfBati" : 30,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 1,
+        "surfBati" : 36,
+        "type" : "Appartement"
+      }
+    ],
+    "date" : "2024-01-30",
+    "id" : "2024-1194669",
+    "lat" : 48.86656,
+    "lon" : 2.3359,
+    "nature" : 1,
+    "pieces" : 1,
+    "prix" : 364000,
+    "surfBati" : 36,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 3,
+        "surfBati" : 80,
+        "surfCarrez" : 82.61,
+        "type" : "Appartement"
+      }
+    ],
+    "date" : "2024-02-08",
+    "id" : "2024-1194671",
+    "lat" : 48.86287,
+    "lon" : 2.34038,
+    "nature" : 1,
+    "pieces" : 3,
+    "prix" : 890000,
+    "surfBati" : 80,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 0,
+        "type" : "Dépendance"
+      }
+    ],
+    "date" : "2024-02-08",
+    "id" : "2024-1194687",
+    "lat" : 48.85889,
+    "lon" : 2.34443,
+    "nature" : 1,
+    "pieces" : 0,
+    "prix" : 35000,
+    "surfBati" : 0,
+    "surfTerrain" : 0,
+    "type" : 5
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 2,
+        "surfBati" : 36,
+        "type" : "Appartement"
+      },
+      {
+        "pieces" : 0,
+        "type" : "Dépendance"
+      }
+    ],
+    "date" : "2024-02-15",
+    "id" : "2024-1194739",
+    "lat" : 48.86362,
+    "lon" : 2.34371,
+    "nature" : 1,
+    "pieces" : 2,
+    "prix" : 514005,
+    "surfBati" : 36,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 4,
+        "surfBati" : 90,
+        "surfCarrez" : 31.09,
+        "type" : "Appartement"
+      },
+      {
+        "pieces" : 0,
+        "type" : "Dépendance"
+      }
+    ],
+    "date" : "2024-02-16",
+    "id" : "2024-1194804",
+    "lat" : 48.86287,
+    "lon" : 2.34038,
+    "nature" : 1,
+    "pieces" : 4,
+    "prix" : 560000,
+    "surfBati" : 90,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 5,
+        "surfBati" : 150,
+        "surfCarrez" : 118.9,
+        "type" : "Appartement"
+      }
+    ],
+    "date" : "2024-02-01",
+    "id" : "2024-1194811",
+    "lat" : 48.86426,
+    "lon" : 2.33554,
+    "nature" : 1,
+    "pieces" : 5,
+    "prix" : 2536204,
+    "surfBati" : 150,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 0,
+        "type" : "Dépendance"
+      },
+      {
+        "pieces" : 0,
+        "type" : "Dépendance"
+      }
+    ],
+    "date" : "2024-02-07",
+    "id" : "2024-1194837",
+    "lat" : 48.86377,
+    "lon" : 2.34771,
+    "nature" : 1,
+    "pieces" : 0,
+    "prix" : 15000,
+    "surfBati" : 0,
+    "surfTerrain" : 0,
+    "type" : 5
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 0,
+        "type" : "Dépendance"
+      }
+    ],
+    "date" : "2024-02-01",
+    "id" : "2024-1194946",
+    "lat" : 48.86722,
+    "lon" : 2.33265,
+    "nature" : 1,
+    "pieces" : 0,
+    "prix" : 140000,
+    "surfBati" : 0,
+    "surfTerrain" : 0,
+    "type" : 5
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 0,
+        "surfBati" : 62,
+        "surfCarrez" : 66.76,
+        "type" : "Local industriel. commercial ou assimilé"
+      }
+    ],
+    "date" : "2024-02-14",
+    "id" : "2024-1194993",
+    "lat" : 48.86154,
+    "lon" : 2.34942,
+    "nature" : 1,
+    "pieces" : 0,
+    "prix" : 690000,
+    "surfBati" : 62,
+    "surfTerrain" : 0,
+    "type" : 4
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 3,
+        "surfBati" : 55,
+        "type" : "Appartement"
+      },
+      {
+        "pieces" : 0,
+        "type" : "Dépendance"
+      },
+      {
+        "pieces" : 0,
+        "type" : "Dépendance"
+      }
+    ],
+    "date" : "2024-02-21",
+    "id" : "2024-1195051",
+    "lat" : 48.86575,
+    "lon" : 2.33711,
+    "nature" : 1,
+    "pieces" : 3,
+    "prix" : 829000,
+    "surfBati" : 55,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 1,
+        "surfBati" : 20,
+        "surfCarrez" : 28.52,
+        "type" : "Appartement"
+      }
+    ],
+    "date" : "2024-02-05",
+    "id" : "2024-1195078",
+    "lat" : 48.86418,
+    "lon" : 2.34522,
+    "nature" : 1,
+    "pieces" : 1,
+    "prix" : 332000,
+    "surfBati" : 20,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 1,
+        "surfBati" : 20,
+        "surfCarrez" : 39.4,
+        "type" : "Appartement"
+      },
+      {
+        "pieces" : 0,
+        "surfBati" : 25,
+        "surfCarrez" : 39.4,
+        "type" : "Local industriel. commercial ou assimilé"
+      }
+    ],
+    "date" : "2024-01-30",
+    "id" : "2024-1195098",
+    "lat" : 48.86494,
+    "lon" : 2.34133,
+    "nature" : 1,
+    "pieces" : 1,
+    "prix" : 525000,
+    "surfBati" : 45,
+    "surfTerrain" : 0,
+    "type" : 3
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 2,
+        "surfBati" : 63,
+        "type" : "Appartement"
+      }
+    ],
+    "date" : "2024-01-30",
+    "id" : "2024-1195107",
+    "lat" : 48.86444,
+    "lon" : 2.34495,
+    "nature" : 1,
+    "pieces" : 2,
+    "prix" : 685000,
+    "surfBati" : 63,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 0,
+        "type" : "Dépendance"
+      }
+    ],
+    "date" : "2024-02-02",
+    "id" : "2024-1195108",
+    "lat" : 48.86355,
+    "lon" : 2.34175,
+    "nature" : 1,
+    "pieces" : 0,
+    "prix" : 40000,
+    "surfBati" : 0,
+    "surfTerrain" : 0,
+    "type" : 5
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 0,
+        "surfBati" : 28,
+        "type" : "Local industriel. commercial ou assimilé"
+      }
+    ],
+    "date" : "2024-02-16",
+    "id" : "2024-1195164",
+    "lat" : 48.86933,
+    "lon" : 2.32688,
+    "nature" : 1,
+    "pieces" : 0,
+    "prix" : 110835,
+    "surfBati" : 28,
+    "surfTerrain" : 0,
+    "type" : 4
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 3,
+        "surfBati" : 74,
+        "surfCarrez" : 61.5,
+        "type" : "Appartement"
+      },
+      {
+        "pieces" : 0,
+        "surfCarrez" : 61.5,
+        "type" : "Dépendance"
+      }
+    ],
+    "date" : "2024-02-29",
+    "id" : "2024-1195329",
+    "lat" : 48.85834,
+    "lon" : 2.34767,
+    "nature" : 1,
+    "pieces" : 3,
+    "prix" : 750000,
+    "surfBati" : 74,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 4,
+        "surfBati" : 129,
+        "surfCarrez" : 45.34,
+        "type" : "Appartement"
+      }
+    ],
+    "date" : "2024-02-16",
+    "id" : "2024-1195384",
+    "lat" : 48.86577,
+    "lon" : 2.32912,
+    "nature" : 1,
+    "pieces" : 4,
+    "prix" : 541500,
+    "surfBati" : 129,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 2,
+        "surfBati" : 126,
+        "type" : "Appartement"
+      },
+      {
+        "pieces" : 0,
+        "type" : "Dépendance"
+      }
+    ],
+    "date" : "2024-02-12",
+    "id" : "2024-1195417",
+    "lat" : 48.86681,
+    "lon" : 2.32754,
+    "nature" : 1,
+    "pieces" : 2,
+    "prix" : 2350000,
+    "surfBati" : 126,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 2,
+        "surfBati" : 53,
+        "type" : "Appartement"
+      },
+      {
+        "pieces" : 0,
+        "type" : "Dépendance"
+      }
+    ],
+    "date" : "2024-02-19",
+    "id" : "2024-1195421",
+    "lat" : 48.8636,
+    "lon" : 2.34602,
+    "nature" : 1,
+    "pieces" : 2,
+    "prix" : 580000,
+    "surfBati" : 53,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 3,
+        "surfBati" : 91,
+        "surfCarrez" : 90.02,
+        "type" : "Appartement"
+      },
+      {
+        "pieces" : 0,
+        "type" : "Dépendance"
+      },
+      {
+        "pieces" : 0,
+        "surfCarrez" : 90.02,
+        "type" : "Dépendance"
+      }
+    ],
+    "date" : "2024-02-16",
+    "id" : "2024-1195422",
+    "lat" : 48.85889,
+    "lon" : 2.34443,
+    "nature" : 1,
+    "pieces" : 3,
+    "prix" : 1405000,
+    "surfBati" : 91,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 2,
+        "surfBati" : 30,
+        "surfTerrain" : 61,
+        "type" : "Appartement"
+      },
+      {
+        "pieces" : 1,
+        "surfBati" : 34,
+        "surfTerrain" : 61,
+        "type" : "Appartement"
+      },
+      {
+        "pieces" : 1,
+        "surfBati" : 34,
+        "surfTerrain" : 61,
+        "type" : "Appartement"
+      },
+      {
+        "pieces" : 1,
+        "surfBati" : 34,
+        "surfTerrain" : 61,
+        "type" : "Appartement"
+      },
+      {
+        "pieces" : 1,
+        "surfBati" : 43,
+        "surfTerrain" : 61,
+        "type" : "Appartement"
+      },
+      {
+        "pieces" : 0,
+        "surfTerrain" : 61,
+        "type" : "Dépendance"
+      },
+      {
+        "pieces" : 0,
+        "surfTerrain" : 61,
+        "type" : "Dépendance"
+      },
+      {
+        "pieces" : 0,
+        "surfTerrain" : 61,
+        "type" : "Dépendance"
+      },
+      {
+        "pieces" : 0,
+        "surfTerrain" : 61,
+        "type" : "Dépendance"
+      }
+    ],
+    "date" : "2024-03-04",
+    "id" : "2024-1195423",
+    "lat" : 48.85671,
+    "lon" : 2.34164,
+    "nature" : 1,
+    "pieces" : 6,
+    "prix" : 6514600,
+    "surfBati" : 175,
+    "surfTerrain" : 61,
+    "type" : 3
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 6,
+        "surfBati" : 170,
+        "surfCarrez" : 166.22,
+        "type" : "Appartement"
+      },
+      {
+        "pieces" : 0,
+        "surfCarrez" : 166.22,
+        "type" : "Dépendance"
+      },
+      {
+        "pieces" : 0,
+        "surfCarrez" : 166.22,
+        "type" : "Dépendance"
+      }
+    ],
+    "date" : "2024-03-04",
+    "id" : "2024-1195437",
+    "lat" : 48.86442,
+    "lon" : 2.34603,
+    "nature" : 1,
+    "pieces" : 6,
+    "prix" : 2369250,
+    "surfBati" : 170,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 1,
+        "surfBati" : 45,
+        "type" : "Appartement"
+      },
+      {
+        "pieces" : 0,
+        "type" : "Dépendance"
+      },
+      {
+        "pieces" : 0,
+        "type" : "Dépendance"
+      }
+    ],
+    "date" : "2024-02-22",
+    "id" : "2024-1195475",
+    "lat" : 48.86381,
+    "lon" : 2.34675,
+    "nature" : 1,
+    "pieces" : 1,
+    "prix" : 275000,
+    "surfBati" : 45,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 2,
+        "surfBati" : 22,
+        "type" : "Appartement"
+      }
+    ],
+    "date" : "2024-02-09",
+    "id" : "2024-1195495",
+    "lat" : 48.86614,
+    "lon" : 2.33015,
+    "nature" : 1,
+    "pieces" : 2,
+    "prix" : 345000,
+    "surfBati" : 22,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 1,
+        "surfBati" : 17,
+        "type" : "Appartement"
+      }
+    ],
+    "date" : "2024-02-29",
+    "id" : "2024-1195503",
+    "lat" : 48.86458,
+    "lon" : 2.33339,
+    "nature" : 1,
+    "pieces" : 1,
+    "prix" : 10000,
+    "surfBati" : 17,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 2,
+        "surfBati" : 80,
+        "surfCarrez" : 67.6,
+        "type" : "Appartement"
+      }
+    ],
+    "date" : "2024-02-21",
+    "id" : "2024-1195539",
+    "lat" : 48.86362,
+    "lon" : 2.34371,
+    "nature" : 1,
+    "pieces" : 2,
+    "prix" : 1404100,
+    "surfBati" : 80,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 3,
+        "surfBati" : 70,
+        "surfCarrez" : 74.52,
+        "type" : "Appartement"
+      },
+      {
+        "pieces" : 0,
+        "surfCarrez" : 74.52,
+        "type" : "Dépendance"
+      }
+    ],
+    "date" : "2024-02-26",
+    "id" : "2024-1195567",
+    "lat" : 48.86287,
+    "lon" : 2.34038,
+    "nature" : 1,
+    "pieces" : 3,
+    "prix" : 945000,
+    "surfBati" : 70,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 1,
+        "surfBati" : 28,
+        "type" : "Appartement"
+      }
+    ],
+    "date" : "2024-03-11",
+    "id" : "2024-1195661",
+    "lat" : 48.86468,
+    "lon" : 2.34128,
+    "nature" : 1,
+    "pieces" : 1,
+    "prix" : 279440,
+    "surfBati" : 28,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 0,
+        "surfCarrez" : 9.12,
+        "type" : "Dépendance"
+      }
+    ],
+    "date" : "2024-03-08",
+    "id" : "2024-1195681",
+    "lat" : 48.86431,
+    "lon" : 2.3321,
+    "nature" : 1,
+    "pieces" : 0,
+    "prix" : 113000,
+    "surfBati" : 0,
+    "surfTerrain" : 0,
+    "type" : 5
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 5,
+        "surfBati" : 120,
+        "surfCarrez" : 152.3,
+        "type" : "Appartement"
+      },
+      {
+        "pieces" : 0,
+        "surfCarrez" : 152.3,
+        "type" : "Dépendance"
+      }
+    ],
+    "date" : "2024-03-06",
+    "id" : "2024-1195682",
+    "lat" : 48.86503,
+    "lon" : 2.3302,
+    "nature" : 1,
+    "pieces" : 5,
+    "prix" : 2150000,
+    "surfBati" : 120,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 2,
+        "surfBati" : 41,
+        "type" : "Appartement"
+      }
+    ],
+    "date" : "2024-03-08",
+    "id" : "2024-1195765",
+    "lat" : 48.86307,
+    "lon" : 2.34024,
+    "nature" : 1,
+    "pieces" : 2,
+    "prix" : 480000,
+    "surfBati" : 41,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 0,
+        "type" : "Dépendance"
+      }
+    ],
+    "date" : "2024-02-26",
+    "id" : "2024-1195791",
+    "lat" : 48.86619,
+    "lon" : 2.33041,
+    "nature" : 1,
+    "pieces" : 0,
+    "prix" : 63637,
+    "surfBati" : 0,
+    "surfTerrain" : 0,
+    "type" : 5
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 2,
+        "surfBati" : 40,
+        "surfCarrez" : 34.05,
+        "type" : "Appartement"
+      }
+    ],
+    "date" : "2024-02-21",
+    "id" : "2024-1195840",
+    "lat" : 48.86374,
+    "lon" : 2.34665,
+    "nature" : 1,
+    "pieces" : 2,
+    "prix" : 400000,
+    "surfBati" : 40,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 0,
+        "type" : "Dépendance"
+      }
+    ],
+    "date" : "2024-02-28",
+    "id" : "2024-1195878",
+    "lat" : 48.86414,
+    "lon" : 2.33316,
+    "nature" : 1,
+    "pieces" : 0,
+    "prix" : 45000,
+    "surfBati" : 0,
+    "surfTerrain" : 0,
+    "type" : 5
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 0,
+        "surfBati" : 154,
+        "surfCarrez" : 152.7,
+        "type" : "Local industriel. commercial ou assimilé"
+      }
+    ],
+    "date" : "2024-03-12",
+    "id" : "2024-1195886",
+    "lat" : 48.86532,
+    "lon" : 2.33034,
+    "nature" : 1,
+    "pieces" : 0,
+    "prix" : 2600000,
+    "surfBati" : 154,
+    "surfTerrain" : 0,
+    "type" : 4
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 0,
+        "surfBati" : 66,
+        "surfCarrez" : 94.35,
+        "type" : "Local industriel. commercial ou assimilé"
+      }
+    ],
+    "date" : "2024-02-29",
+    "id" : "2024-1195887",
+    "lat" : 48.8631,
+    "lon" : 2.34839,
+    "nature" : 1,
+    "pieces" : 0,
+    "prix" : 1250000,
+    "surfBati" : 66,
+    "surfTerrain" : 0,
+    "type" : 4
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 1,
+        "surfBati" : 47,
+        "surfCarrez" : 41.6,
+        "type" : "Appartement"
+      }
+    ],
+    "date" : "2024-03-08",
+    "id" : "2024-1195947",
+    "lat" : 48.86523,
+    "lon" : 2.34152,
+    "nature" : 1,
+    "pieces" : 1,
+    "prix" : 675000,
+    "surfBati" : 47,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 0,
+        "surfBati" : 48,
+        "surfCarrez" : 142.69,
+        "type" : "Local industriel. commercial ou assimilé"
+      },
+      {
+        "pieces" : 0,
+        "surfBati" : 94,
+        "surfCarrez" : 142.69,
+        "type" : "Local industriel. commercial ou assimilé"
+      }
+    ],
+    "date" : "2024-03-08",
+    "id" : "2024-1195955",
+    "lat" : 48.8652,
+    "lon" : 2.33676,
+    "nature" : 1,
+    "pieces" : 0,
+    "prix" : 2190000,
+    "surfBati" : 142,
+    "surfTerrain" : 0,
+    "type" : 4
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 3,
+        "surfBati" : 81,
+        "type" : "Appartement"
+      },
+      {
+        "pieces" : 0,
+        "type" : "Dépendance"
+      }
+    ],
+    "date" : "2024-02-21",
+    "id" : "2024-1196026",
+    "lat" : 48.86177,
+    "lon" : 2.34304,
+    "nature" : 1,
+    "pieces" : 3,
+    "prix" : 1220000,
+    "surfBati" : 81,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 0,
+        "surfBati" : 110,
+        "type" : "Local industriel. commercial ou assimilé"
+      }
+    ],
+    "date" : "2024-03-07",
+    "id" : "2024-1196047",
+    "lat" : 48.86566,
+    "lon" : 2.33128,
+    "nature" : 1,
+    "pieces" : 0,
+    "prix" : 2400000,
+    "surfBati" : 110,
+    "surfTerrain" : 0,
+    "type" : 4
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 1,
+        "surfBati" : 15,
+        "surfCarrez" : 19.08,
+        "type" : "Appartement"
+      }
+    ],
+    "date" : "2024-03-06",
+    "id" : "2024-1196097",
+    "lat" : 48.8666,
+    "lon" : 2.3352,
+    "nature" : 1,
+    "pieces" : 1,
+    "prix" : 322300,
+    "surfBati" : 15,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 0,
+        "type" : "Dépendance"
+      }
+    ],
+    "date" : "2024-03-08",
+    "id" : "2024-1196191",
+    "lat" : 48.86182,
+    "lon" : 2.342,
+    "nature" : 1,
+    "pieces" : 0,
+    "prix" : 15000,
+    "surfBati" : 0,
+    "surfTerrain" : 0,
+    "type" : 5
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 0,
+        "type" : "Dépendance"
+      }
+    ],
+    "date" : "2024-03-18",
+    "id" : "2024-1196254",
+    "lat" : 48.86458,
+    "lon" : 2.33685,
+    "nature" : 1,
+    "pieces" : 0,
+    "prix" : 165000,
+    "surfBati" : 0,
+    "surfTerrain" : 0,
+    "type" : 5
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 1,
+        "surfBati" : 9,
+        "type" : "Appartement"
+      }
+    ],
+    "date" : "2024-03-11",
+    "id" : "2024-1196269",
+    "lat" : 48.86237,
+    "lon" : 2.33987,
+    "nature" : 1,
+    "pieces" : 1,
+    "prix" : 100000,
+    "surfBati" : 9,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 1,
+        "surfBati" : 20,
+        "surfCarrez" : 18.72,
+        "type" : "Appartement"
+      },
+      {
+        "pieces" : 0,
+        "surfCarrez" : 18.72,
+        "type" : "Dépendance"
+      },
+      {
+        "pieces" : 0,
+        "surfCarrez" : 18.72,
+        "type" : "Dépendance"
+      }
+    ],
+    "date" : "2024-03-21",
+    "id" : "2024-1196273",
+    "lat" : 48.86508,
+    "lon" : 2.34155,
+    "nature" : 1,
+    "pieces" : 1,
+    "prix" : 243740,
+    "surfBati" : 20,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 3,
+        "surfBati" : 50,
+        "surfCarrez" : 100.8,
+        "type" : "Appartement"
+      }
+    ],
+    "date" : "2024-03-08",
+    "id" : "2024-1196274",
+    "lat" : 48.86342,
+    "lon" : 2.34617,
+    "nature" : 1,
+    "pieces" : 3,
+    "prix" : 1600374,
+    "surfBati" : 50,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 1,
+        "surfBati" : 12,
+        "surfTerrain" : 688,
+        "type" : "Appartement"
+      },
+      {
+        "pieces" : 2,
+        "surfBati" : 20,
+        "surfTerrain" : 688,
+        "type" : "Appartement"
+      },
+      {
+        "pieces" : 1,
+        "surfBati" : 25,
+        "surfTerrain" : 688,
+        "type" : "Appartement"
+      },
+      {
+        "pieces" : 2,
+        "surfBati" : 30,
+        "surfTerrain" : 688,
+        "type" : "Appartement"
+      },
+      {
+        "pieces" : 0,
+        "surfBati" : 15,
+        "surfTerrain" : 688,
+        "type" : "Local industriel. commercial ou assimilé"
+      },
+      {
+        "pieces" : 0,
+        "surfBati" : 15,
+        "surfTerrain" : 688,
+        "type" : "Local industriel. commercial ou assimilé"
+      },
+      {
+        "pieces" : 0,
+        "surfBati" : 15,
+        "surfTerrain" : 688,
+        "type" : "Local industriel. commercial ou assimilé"
+      },
+      {
+        "pieces" : 0,
+        "surfBati" : 15,
+        "surfTerrain" : 688,
+        "type" : "Local industriel. commercial ou assimilé"
+      },
+      {
+        "pieces" : 0,
+        "surfBati" : 15,
+        "surfTerrain" : 688,
+        "type" : "Local industriel. commercial ou assimilé"
+      },
+      {
+        "pieces" : 0,
+        "surfBati" : 25,
+        "surfTerrain" : 688,
+        "type" : "Local industriel. commercial ou assimilé"
+      },
+      {
+        "pieces" : 0,
+        "surfBati" : 25,
+        "surfTerrain" : 688,
+        "type" : "Local industriel. commercial ou assimilé"
+      },
+      {
+        "pieces" : 0,
+        "surfBati" : 30,
+        "surfTerrain" : 688,
+        "type" : "Local industriel. commercial ou assimilé"
+      },
+      {
+        "pieces" : 0,
+        "surfBati" : 30,
+        "surfTerrain" : 688,
+        "type" : "Local industriel. commercial ou assimilé"
+      },
+      {
+        "pieces" : 0,
+        "surfBati" : 30,
+        "surfTerrain" : 688,
+        "type" : "Local industriel. commercial ou assimilé"
+      },
+      {
+        "pieces" : 0,
+        "surfBati" : 42,
+        "surfTerrain" : 688,
+        "type" : "Local industriel. commercial ou assimilé"
+      },
+      {
+        "pieces" : 0,
+        "surfBati" : 45,
+        "surfTerrain" : 688,
+        "type" : "Local industriel. commercial ou assimilé"
+      },
+      {
+        "pieces" : 0,
+        "surfBati" : 177,
+        "surfTerrain" : 688,
+        "type" : "Local industriel. commercial ou assimilé"
+      },
+      {
+        "pieces" : 0,
+        "surfBati" : 195,
+        "surfTerrain" : 688,
+        "type" : "Local industriel. commercial ou assimilé"
+      },
+      {
+        "pieces" : 0,
+        "surfBati" : 200,
+        "surfTerrain" : 688,
+        "type" : "Local industriel. commercial ou assimilé"
+      },
+      {
+        "pieces" : 0,
+        "surfBati" : 355,
+        "surfTerrain" : 688,
+        "type" : "Local industriel. commercial ou assimilé"
+      },
+      {
+        "pieces" : 0,
+        "surfBati" : 410,
+        "surfTerrain" : 688,
+        "type" : "Local industriel. commercial ou assimilé"
+      },
+      {
+        "pieces" : 0,
+        "surfBati" : 520,
+        "surfTerrain" : 688,
+        "type" : "Local industriel. commercial ou assimilé"
+      },
+      {
+        "pieces" : 0,
+        "surfTerrain" : 688,
+        "type" : "Dépendance"
+      },
+      {
+        "pieces" : 0,
+        "surfTerrain" : 688,
+        "type" : "Dépendance"
+      },
+      {
+        "pieces" : 0,
+        "surfTerrain" : 688,
+        "type" : "Dépendance"
+      },
+      {
+        "pieces" : 0,
+        "surfTerrain" : 688,
+        "type" : "Dépendance"
+      }
+    ],
+    "date" : "2024-02-07",
+    "id" : "2024-1196314",
+    "lat" : 48.86641,
+    "lon" : 2.32574,
+    "nature" : 1,
+    "pieces" : 6,
+    "prix" : 266500,
+    "surfBati" : 2246,
+    "surfTerrain" : 688,
+    "type" : 3
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 1,
+        "surfBati" : 36,
+        "surfCarrez" : 37.01,
+        "type" : "Appartement"
+      }
+    ],
+    "date" : "2024-03-18",
+    "id" : "2024-1196425",
+    "lat" : 48.86376,
+    "lon" : 2.34428,
+    "nature" : 1,
+    "pieces" : 1,
+    "prix" : 380000,
+    "surfBati" : 36,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 0,
+        "type" : "Dépendance"
+      }
+    ],
+    "date" : "2024-03-14",
+    "id" : "2024-1196482",
+    "lat" : 48.8637,
+    "lon" : 2.34033,
+    "nature" : 1,
+    "pieces" : 0,
+    "prix" : 45000,
+    "surfBati" : 0,
+    "surfTerrain" : 0,
+    "type" : 5
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 2,
+        "surfBati" : 40,
+        "type" : "Appartement"
+      },
+      {
+        "pieces" : 0,
+        "type" : "Dépendance"
+      }
+    ],
+    "date" : "2024-03-15",
+    "id" : "2024-1196513",
+    "lat" : 48.86512,
+    "lon" : 2.33566,
+    "nature" : 1,
+    "pieces" : 2,
+    "prix" : 554500,
+    "surfBati" : 40,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 0,
+        "surfBati" : 18,
+        "type" : "Local industriel. commercial ou assimilé"
+      }
+    ],
+    "date" : "2024-03-08",
+    "id" : "2024-1196587",
+    "lat" : 48.86404,
+    "lon" : 2.34403,
+    "nature" : 1,
+    "pieces" : 0,
+    "prix" : 43000,
+    "surfBati" : 18,
+    "surfTerrain" : 0,
+    "type" : 4
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 1,
+        "surfBati" : 19,
+        "surfTerrain" : 112,
+        "type" : "Appartement"
+      },
+      {
+        "pieces" : 1,
+        "surfBati" : 20,
+        "surfTerrain" : 112,
+        "type" : "Appartement"
+      },
+      {
+        "pieces" : 1,
+        "surfBati" : 21,
+        "surfTerrain" : 112,
+        "type" : "Appartement"
+      },
+      {
+        "pieces" : 1,
+        "surfBati" : 21,
+        "surfTerrain" : 112,
+        "type" : "Appartement"
+      },
+      {
+        "pieces" : 2,
+        "surfBati" : 40,
+        "surfTerrain" : 112,
+        "type" : "Appartement"
+      },
+      {
+        "pieces" : 3,
+        "surfBati" : 45,
+        "surfTerrain" : 112,
+        "type" : "Appartement"
+      },
+      {
+        "pieces" : 2,
+        "surfBati" : 50,
+        "surfTerrain" : 112,
+        "type" : "Appartement"
+      },
+      {
+        "pieces" : 4,
+        "surfBati" : 90,
+        "surfTerrain" : 112,
+        "type" : "Appartement"
+      },
+      {
+        "pieces" : 0,
+        "surfBati" : 97,
+        "surfTerrain" : 112,
+        "type" : "Local industriel. commercial ou assimilé"
+      },
+      {
+        "pieces" : 0,
+        "surfTerrain" : 112,
+        "type" : "Dépendance"
+      },
+      {
+        "pieces" : 0,
+        "surfTerrain" : 112,
+        "type" : "Dépendance"
+      },
+      {
+        "pieces" : 0,
+        "surfTerrain" : 112,
+        "type" : "Dépendance"
+      }
+    ],
+    "date" : "2024-03-26",
+    "id" : "2024-1196601",
+    "lat" : 48.86308,
+    "lon" : 2.34843,
+    "nature" : 1,
+    "pieces" : 15,
+    "prix" : 4605000,
+    "surfBati" : 403,
+    "surfTerrain" : 112,
+    "type" : 3
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 2,
+        "surfBati" : 46,
+        "type" : "Appartement"
+      }
+    ],
+    "date" : "2024-03-29",
+    "id" : "2024-1196636",
+    "lat" : 48.86556,
+    "lon" : 2.33555,
+    "nature" : 1,
+    "pieces" : 2,
+    "prix" : 494235,
+    "surfBati" : 46,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 2,
+        "surfBati" : 65,
+        "type" : "Appartement"
+      },
+      {
+        "pieces" : 0,
+        "type" : "Dépendance"
+      }
+    ],
+    "date" : "2024-03-21",
+    "id" : "2024-1196641",
+    "lat" : 48.85993,
+    "lon" : 2.34867,
+    "nature" : 1,
+    "pieces" : 2,
+    "prix" : 648000,
+    "surfBati" : 65,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 1,
+        "surfBati" : 10,
+        "surfCarrez" : 11.12,
+        "type" : "Appartement"
+      }
+    ],
+    "date" : "2024-03-20",
+    "id" : "2024-1196644",
+    "lat" : 48.85996,
+    "lon" : 2.34778,
+    "nature" : 1,
+    "pieces" : 1,
+    "prix" : 135000,
+    "surfBati" : 10,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 2,
+        "surfBati" : 27,
+        "type" : "Appartement"
+      },
+      {
+        "pieces" : 0,
+        "type" : "Dépendance"
+      }
+    ],
+    "date" : "2024-03-28",
+    "id" : "2024-1196730",
+    "lat" : 48.85811,
+    "lon" : 2.34504,
+    "nature" : 1,
+    "pieces" : 2,
+    "prix" : 2500,
+    "surfBati" : 27,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 1,
+        "surfBati" : 21,
+        "surfCarrez" : 17.18,
+        "type" : "Appartement"
+      }
+    ],
+    "date" : "2024-03-19",
+    "id" : "2024-1196841",
+    "lat" : 48.86498,
+    "lon" : 2.33616,
+    "nature" : 1,
+    "pieces" : 1,
+    "prix" : 245000,
+    "surfBati" : 21,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 1,
+        "surfBati" : 14,
+        "surfCarrez" : 39.7,
+        "type" : "Appartement"
+      },
+      {
+        "pieces" : 1,
+        "surfBati" : 30,
+        "type" : "Appartement"
+      },
+      {
+        "pieces" : 0,
+        "type" : "Dépendance"
+      }
+    ],
+    "date" : "2024-03-15",
+    "id" : "2024-1196965",
+    "lat" : 48.86763,
+    "lon" : 2.33248,
+    "nature" : 1,
+    "pieces" : 2,
+    "prix" : 228000,
+    "surfBati" : 44,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 6,
+        "surfBati" : 114,
+        "type" : "Appartement"
+      },
+      {
+        "pieces" : 0,
+        "type" : "Dépendance"
+      }
+    ],
+    "date" : "2024-03-29",
+    "id" : "2024-1197081",
+    "lat" : 48.85842,
+    "lon" : 2.34612,
+    "nature" : 1,
+    "pieces" : 6,
+    "prix" : 1120000,
+    "surfBati" : 114,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 3,
+        "surfBati" : 50,
+        "surfCarrez" : 65.37,
+        "type" : "Appartement"
+      },
+      {
+        "pieces" : 0,
+        "surfCarrez" : 65.37,
+        "type" : "Dépendance"
+      }
+    ],
+    "date" : "2024-03-28",
+    "id" : "2024-1197145",
+    "lat" : 48.86513,
+    "lon" : 2.33633,
+    "nature" : 1,
+    "pieces" : 3,
+    "prix" : 895470,
+    "surfBati" : 50,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 0,
+        "type" : "Dépendance"
+      }
+    ],
+    "date" : "2024-03-28",
+    "id" : "2024-1197208",
+    "lat" : 48.86821,
+    "lon" : 2.32598,
+    "nature" : 1,
+    "pieces" : 0,
+    "prix" : 1,
+    "surfBati" : 0,
+    "surfTerrain" : 0,
+    "type" : 5
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 5,
+        "surfBati" : 107,
+        "type" : "Appartement"
+      }
+    ],
+    "date" : "2024-03-28",
+    "id" : "2024-1197231",
+    "lat" : 48.86167,
+    "lon" : 2.34248,
+    "nature" : 1,
+    "pieces" : 5,
+    "prix" : 13700,
+    "surfBati" : 107,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 0,
+        "surfBati" : 160,
+        "type" : "Local industriel. commercial ou assimilé"
+      }
+    ],
+    "date" : "2024-03-29",
+    "id" : "2024-1197256",
+    "lat" : 48.86626,
+    "lon" : 2.33852,
+    "nature" : 1,
+    "pieces" : 0,
+    "prix" : 2760000,
+    "surfBati" : 160,
+    "surfTerrain" : 0,
+    "type" : 4
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 1,
+        "surfBati" : 30,
+        "type" : "Appartement"
+      }
+    ],
+    "date" : "2024-03-15",
+    "id" : "2024-1197297",
+    "lat" : 48.86485,
+    "lon" : 2.33597,
+    "nature" : 1,
+    "pieces" : 1,
+    "prix" : 400000,
+    "surfBati" : 30,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 0,
+        "surfBati" : 50,
+        "surfCarrez" : 50.09,
+        "type" : "Local industriel. commercial ou assimilé"
+      }
+    ],
+    "date" : "2024-03-28",
+    "id" : "2024-1197322",
+    "lat" : 48.86289,
+    "lon" : 2.34089,
+    "nature" : 1,
+    "pieces" : 0,
+    "prix" : 660000,
+    "surfBati" : 50,
+    "surfTerrain" : 0,
+    "type" : 4
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 1,
+        "surfBati" : 26,
+        "type" : "Appartement"
+      }
+    ],
+    "date" : "2024-03-26",
+    "id" : "2024-1197329",
+    "lat" : 48.86454,
+    "lon" : 2.33059,
+    "nature" : 1,
+    "pieces" : 1,
+    "prix" : 372000,
+    "surfBati" : 26,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 2,
+        "surfBati" : 70,
+        "surfCarrez" : 62.52,
+        "type" : "Appartement"
+      }
+    ],
+    "date" : "2024-04-11",
+    "id" : "2024-1197350",
+    "lat" : 48.86237,
+    "lon" : 2.33987,
+    "nature" : 1,
+    "pieces" : 2,
+    "prix" : 867000,
+    "surfBati" : 70,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+
+    ],
+    "date" : "2024-04-05",
+    "id" : "2024-1197385",
+    "lat" : 48.86671,
+    "lon" : 2.32704,
+    "nature" : 1,
+    "pieces" : 0,
+    "prix" : 130000000,
+    "surfBati" : 0,
+    "surfTerrain" : 0
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 3,
+        "surfBati" : 90,
+        "surfCarrez" : 84.05,
+        "type" : "Appartement"
+      },
+      {
+        "pieces" : 0,
+        "surfCarrez" : 84.05,
+        "type" : "Dépendance"
+      }
+    ],
+    "date" : "2024-03-29",
+    "id" : "2024-1197388",
+    "lat" : 48.86399,
+    "lon" : 2.34368,
+    "nature" : 1,
+    "pieces" : 3,
+    "prix" : 1117500,
+    "surfBati" : 90,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 2,
+        "surfBati" : 44,
+        "surfCarrez" : 36.66,
+        "type" : "Appartement"
+      },
+      {
+        "pieces" : 0,
+        "surfBati" : 18,
+        "surfCarrez" : 49.71,
+        "type" : "Local industriel. commercial ou assimilé"
+      }
+    ],
+    "date" : "2024-04-04",
+    "id" : "2024-1197402",
+    "lat" : 48.85686,
+    "lon" : 2.34245,
+    "nature" : 1,
+    "pieces" : 2,
+    "prix" : 1700000,
+    "surfBati" : 62,
+    "surfTerrain" : 0,
+    "type" : 3
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 1,
+        "surfBati" : 9,
+        "surfCarrez" : 8.4,
+        "type" : "Appartement"
+      }
+    ],
+    "date" : "2024-03-18",
+    "id" : "2024-1197420",
+    "lat" : 48.8598,
+    "lon" : 2.34845,
+    "nature" : 1,
+    "pieces" : 1,
+    "prix" : 72000,
+    "surfBati" : 9,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 2,
+        "surfBati" : 37,
+        "surfCarrez" : 39,
+        "type" : "Appartement"
+      }
+    ],
+    "date" : "2024-04-11",
+    "id" : "2024-1197482",
+    "lat" : 48.86423,
+    "lon" : 2.34187,
+    "nature" : 1,
+    "pieces" : 2,
+    "prix" : 864200,
+    "surfBati" : 37,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 0,
+        "surfBati" : 25,
+        "surfCarrez" : 25.1,
+        "type" : "Local industriel. commercial ou assimilé"
+      }
+    ],
+    "date" : "2024-03-26",
+    "id" : "2024-1197540",
+    "lat" : 48.86534,
+    "lon" : 2.329,
+    "nature" : 1,
+    "pieces" : 0,
+    "prix" : 647000,
+    "surfBati" : 25,
+    "surfTerrain" : 0,
+    "type" : 4
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 2,
+        "surfBati" : 65,
+        "surfCarrez" : 63.98,
+        "type" : "Appartement"
+      },
+      {
+        "pieces" : 0,
+        "surfCarrez" : 63.98,
+        "type" : "Dépendance"
+      }
+    ],
+    "date" : "2024-04-02",
+    "id" : "2024-1197641",
+    "lat" : 48.86154,
+    "lon" : 2.34942,
+    "nature" : 1,
+    "pieces" : 2,
+    "prix" : 700000,
+    "surfBati" : 65,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 2,
+        "surfBati" : 53,
+        "surfCarrez" : 53.42,
+        "type" : "Appartement"
+      },
+      {
+        "pieces" : 0,
+        "surfCarrez" : 53.42,
+        "type" : "Dépendance"
+      }
+    ],
+    "date" : "2024-04-22",
+    "id" : "2024-1197651",
+    "lat" : 48.86532,
+    "lon" : 2.33007,
+    "nature" : 1,
+    "pieces" : 2,
+    "prix" : 841701,
+    "surfBati" : 53,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 0,
+        "surfBati" : 48,
+        "surfCarrez" : 45.9,
+        "type" : "Local industriel. commercial ou assimilé"
+      },
+      {
+        "pieces" : 0,
+        "surfBati" : 120,
+        "type" : "Local industriel. commercial ou assimilé"
+      },
+      {
+        "pieces" : 0,
+        "surfBati" : 760,
+        "surfCarrez" : 72.2,
+        "type" : "Local industriel. commercial ou assimilé"
+      }
+    ],
+    "date" : "2024-04-09",
+    "id" : "2024-1197674",
+    "lat" : 48.8668,
+    "lon" : 2.3347,
+    "nature" : 1,
+    "pieces" : 0,
+    "prix" : 12100000,
+    "surfBati" : 928,
+    "surfTerrain" : 0,
+    "type" : 4
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 2,
+        "surfBati" : 55,
+        "surfCarrez" : 50.88,
+        "type" : "Appartement"
+      },
+      {
+        "pieces" : 0,
+        "surfCarrez" : 50.88,
+        "type" : "Dépendance"
+      }
+    ],
+    "date" : "2024-04-22",
+    "id" : "2024-1197691",
+    "lat" : 48.86113,
+    "lon" : 2.34307,
+    "nature" : 1,
+    "pieces" : 2,
+    "prix" : 664400,
+    "surfBati" : 55,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 0,
+        "surfBati" : 131,
+        "surfCarrez" : 131.14,
+        "type" : "Local industriel. commercial ou assimilé"
+      },
+      {
+        "pieces" : 0,
+        "type" : "Dépendance"
+      },
+      {
+        "pieces" : 0,
+        "type" : "Dépendance"
+      }
+    ],
+    "date" : "2024-04-18",
+    "id" : "2024-1197698",
+    "lat" : 48.86355,
+    "lon" : 2.34175,
+    "nature" : 1,
+    "pieces" : 0,
+    "prix" : 1390200,
+    "surfBati" : 131,
+    "surfTerrain" : 0,
+    "type" : 4
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 0,
+        "surfBati" : 76,
+        "surfCarrez" : 77.23,
+        "type" : "Local industriel. commercial ou assimilé"
+      }
+    ],
+    "date" : "2024-04-18",
+    "id" : "2024-1197699",
+    "lat" : 48.86355,
+    "lon" : 2.34175,
+    "nature" : 1,
+    "pieces" : 0,
+    "prix" : 765000,
+    "surfBati" : 76,
+    "surfTerrain" : 0,
+    "type" : 4
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 0,
+        "surfBati" : 122,
+        "type" : "Local industriel. commercial ou assimilé"
+      }
+    ],
+    "date" : "2024-04-18",
+    "id" : "2024-1197700",
+    "lat" : 48.86269,
+    "lon" : 2.3413,
+    "nature" : 1,
+    "pieces" : 0,
+    "prix" : 1750000,
+    "surfBati" : 122,
+    "surfTerrain" : 0,
+    "type" : 4
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 1,
+        "surfBati" : 15,
+        "surfCarrez" : 9.11,
+        "type" : "Appartement"
+      }
+    ],
+    "date" : "2024-03-28",
+    "id" : "2024-1197750",
+    "lat" : 48.86513,
+    "lon" : 2.33633,
+    "nature" : 1,
+    "pieces" : 1,
+    "prix" : 66000,
+    "surfBati" : 15,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 2,
+        "surfBati" : 30,
+        "surfCarrez" : 32.26,
+        "type" : "Appartement"
+      }
+    ],
+    "date" : "2024-04-05",
+    "id" : "2024-1197798",
+    "lat" : 48.86697,
+    "lon" : 2.3331,
+    "nature" : 1,
+    "pieces" : 2,
+    "prix" : 600350,
+    "surfBati" : 30,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 0,
+        "surfBati" : 913,
+        "type" : "Local industriel. commercial ou assimilé"
+      }
+    ],
+    "date" : "2024-04-22",
+    "id" : "2024-1197804",
+    "lat" : 48.8652,
+    "lon" : 2.33349,
+    "nature" : 1,
+    "pieces" : 0,
+    "prix" : 15400000,
+    "surfBati" : 913,
+    "surfTerrain" : 0,
+    "type" : 4
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 4,
+        "surfBati" : 80,
+        "type" : "Appartement"
+      }
+    ],
+    "date" : "2024-04-10",
+    "id" : "2024-1197856",
+    "lat" : 48.86454,
+    "lon" : 2.33059,
+    "nature" : 1,
+    "pieces" : 4,
+    "prix" : 2800,
+    "surfBati" : 80,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 2,
+        "surfBati" : 40,
+        "type" : "Appartement"
+      },
+      {
+        "pieces" : 0,
+        "type" : "Dépendance"
+      }
+    ],
+    "date" : "2024-04-26",
+    "id" : "2024-1197903",
+    "lat" : 48.86546,
+    "lon" : 2.34073,
+    "nature" : 1,
+    "pieces" : 2,
+    "prix" : 800000,
+    "surfBati" : 40,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 2,
+        "surfBati" : 42,
+        "surfCarrez" : 41.28,
+        "type" : "Appartement"
+      }
+    ],
+    "date" : "2024-04-18",
+    "id" : "2024-1197957",
+    "lat" : 48.86485,
+    "lon" : 2.33597,
+    "nature" : 1,
+    "pieces" : 2,
+    "prix" : 496183,
+    "surfBati" : 42,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 0,
+        "type" : "Dépendance"
+      }
+    ],
+    "date" : "2024-04-10",
+    "id" : "2024-1198018",
+    "lat" : 48.86523,
+    "lon" : 2.34152,
+    "nature" : 1,
+    "pieces" : 0,
+    "prix" : 50000,
+    "surfBati" : 0,
+    "surfTerrain" : 0,
+    "type" : 5
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 3,
+        "surfBati" : 78,
+        "surfCarrez" : 78.2,
+        "type" : "Appartement"
+      }
+    ],
+    "date" : "2024-04-16",
+    "id" : "2024-1198031",
+    "lat" : 48.8591,
+    "lon" : 2.34131,
+    "nature" : 1,
+    "pieces" : 3,
+    "prix" : 891225,
+    "surfBati" : 78,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 0,
+        "surfBati" : 28,
+        "type" : "Local industriel. commercial ou assimilé"
+      },
+      {
+        "pieces" : 0,
+        "surfBati" : 120,
+        "type" : "Local industriel. commercial ou assimilé"
+      }
+    ],
+    "date" : "2024-04-15",
+    "id" : "2024-1198091",
+    "lat" : 48.86009,
+    "lon" : 2.34697,
+    "nature" : 1,
+    "pieces" : 0,
+    "prix" : 2100000,
+    "surfBati" : 148,
+    "surfTerrain" : 0,
+    "type" : 4
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 5,
+        "surfBati" : 155,
+        "type" : "Appartement"
+      }
+    ],
+    "date" : "2024-04-30",
+    "id" : "2024-1198464",
+    "lat" : 48.86454,
+    "lon" : 2.33059,
+    "nature" : 1,
+    "pieces" : 5,
+    "prix" : 8700,
+    "surfBati" : 155,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 2,
+        "surfBati" : 38,
+        "surfCarrez" : 31.28,
+        "type" : "Appartement"
+      }
+    ],
+    "date" : "2024-05-02",
+    "id" : "2024-1198480",
+    "lat" : 48.86489,
+    "lon" : 2.3314,
+    "nature" : 1,
+    "pieces" : 2,
+    "prix" : 400000,
+    "surfBati" : 38,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 1,
+        "surfBati" : 22,
+        "surfCarrez" : 20.8,
+        "type" : "Appartement"
+      },
+      {
+        "pieces" : 0,
+        "surfCarrez" : 20.8,
+        "type" : "Dépendance"
+      }
+    ],
+    "date" : "2024-05-02",
+    "id" : "2024-1198486",
+    "lat" : 48.8599,
+    "lon" : 2.34231,
+    "nature" : 1,
+    "pieces" : 1,
+    "prix" : 500000,
+    "surfBati" : 22,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 2,
+        "surfBati" : 44,
+        "surfCarrez" : 45.01,
+        "type" : "Appartement"
+      }
+    ],
+    "date" : "2024-04-30",
+    "id" : "2024-1198508",
+    "lat" : 48.86423,
+    "lon" : 2.34187,
+    "nature" : 1,
+    "pieces" : 2,
+    "prix" : 1011691,
+    "surfBati" : 44,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 1,
+        "surfBati" : 25,
+        "surfCarrez" : 20.91,
+        "type" : "Appartement"
+      }
+    ],
+    "date" : "2024-04-26",
+    "id" : "2024-1198524",
+    "lat" : 48.86829,
+    "lon" : 2.32529,
+    "nature" : 1,
+    "pieces" : 1,
+    "prix" : 299900,
+    "surfBati" : 25,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 0,
+        "surfBati" : 150,
+        "surfCarrez" : 150.11,
+        "type" : "Local industriel. commercial ou assimilé"
+      }
+    ],
+    "date" : "2024-05-03",
+    "id" : "2024-1198562",
+    "lat" : 48.86651,
+    "lon" : 2.33125,
+    "nature" : 1,
+    "pieces" : 0,
+    "prix" : 1250000,
+    "surfBati" : 150,
+    "surfTerrain" : 0,
+    "type" : 4
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 2,
+        "surfBati" : 41,
+        "type" : "Appartement"
+      },
+      {
+        "pieces" : 0,
+        "type" : "Dépendance"
+      }
+    ],
+    "date" : "2024-04-30",
+    "id" : "2024-1198579",
+    "lat" : 48.86755,
+    "lon" : 2.33125,
+    "nature" : 1,
+    "pieces" : 2,
+    "prix" : 564650,
+    "surfBati" : 41,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 0,
+        "surfBati" : 5,
+        "type" : "Appartement"
+      },
+      {
+        "pieces" : 2,
+        "surfBati" : 50,
+        "type" : "Appartement"
+      }
+    ],
+    "date" : "2024-04-26",
+    "id" : "2024-1198632",
+    "lat" : 48.8611,
+    "lon" : 2.34807,
+    "nature" : 1,
+    "pieces" : 2,
+    "prix" : 593845,
+    "surfBati" : 55,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 4,
+        "surfBati" : 108,
+        "surfCarrez" : 100.15,
+        "type" : "Appartement"
+      },
+      {
+        "pieces" : 0,
+        "surfCarrez" : 100.15,
+        "type" : "Dépendance"
+      },
+      {
+        "pieces" : 0,
+        "surfCarrez" : 100.15,
+        "type" : "Dépendance"
+      }
+    ],
+    "date" : "2024-05-13",
+    "id" : "2024-1198635",
+    "lat" : 48.86435,
+    "lon" : 2.34585,
+    "nature" : 1,
+    "pieces" : 4,
+    "prix" : 1462250,
+    "surfBati" : 108,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 4,
+        "surfBati" : 110,
+        "surfCarrez" : 126.82,
+        "type" : "Appartement"
+      },
+      {
+        "pieces" : 0,
+        "surfCarrez" : 126.82,
+        "type" : "Dépendance"
+      }
+    ],
+    "date" : "2024-05-13",
+    "id" : "2024-1198681",
+    "lat" : 48.86575,
+    "lon" : 2.33711,
+    "nature" : 1,
+    "pieces" : 4,
+    "prix" : 1780000,
+    "surfBati" : 110,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 1,
+        "surfBati" : 45,
+        "surfCarrez" : 42.29,
+        "type" : "Appartement"
+      }
+    ],
+    "date" : "2024-05-03",
+    "id" : "2024-1198692",
+    "lat" : 48.85865,
+    "lon" : 2.34502,
+    "nature" : 1,
+    "pieces" : 1,
+    "prix" : 415000,
+    "surfBati" : 45,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 1,
+        "surfBati" : 30,
+        "type" : "Appartement"
+      },
+      {
+        "pieces" : 6,
+        "surfBati" : 110,
+        "type" : "Appartement"
+      },
+      {
+        "pieces" : 0,
+        "type" : "Dépendance"
+      }
+    ],
+    "date" : "2024-05-15",
+    "id" : "2024-1198741",
+    "lat" : 48.86413,
+    "lon" : 2.34222,
+    "nature" : 1,
+    "pieces" : 7,
+    "prix" : 3063850,
+    "surfBati" : 140,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 2,
+        "surfBati" : 30,
+        "type" : "Appartement"
+      },
+      {
+        "pieces" : 0,
+        "surfBati" : 22,
+        "type" : "Local industriel. commercial ou assimilé"
+      },
+      {
+        "pieces" : 0,
+        "type" : "Dépendance"
+      }
+    ],
+    "date" : "2024-04-22",
+    "id" : "2024-1198786",
+    "lat" : 48.86377,
+    "lon" : 2.34771,
+    "nature" : 1,
+    "pieces" : 2,
+    "prix" : 674050,
+    "surfBati" : 52,
+    "surfTerrain" : 0,
+    "type" : 3
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 0,
+        "surfBati" : 223,
+        "type" : "Local industriel. commercial ou assimilé"
+      }
+    ],
+    "date" : "2024-05-14",
+    "id" : "2024-1198863",
+    "lat" : 48.8585,
+    "lon" : 2.345,
+    "nature" : 1,
+    "pieces" : 0,
+    "prix" : 1,
+    "surfBati" : 223,
+    "surfTerrain" : 0,
+    "type" : 4
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 1,
+        "surfBati" : 40,
+        "surfCarrez" : 37.51,
+        "type" : "Appartement"
+      }
+    ],
+    "date" : "2024-05-15",
+    "id" : "2024-1198864",
+    "lat" : 48.8666,
+    "lon" : 2.3352,
+    "nature" : 1,
+    "pieces" : 1,
+    "prix" : 553100,
+    "surfBati" : 40,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 2,
+        "surfBati" : 68,
+        "type" : "Appartement"
+      }
+    ],
+    "date" : "2024-05-03",
+    "id" : "2024-1199016",
+    "lat" : 48.86711,
+    "lon" : 2.33069,
+    "nature" : 1,
+    "pieces" : 2,
+    "prix" : 2100,
+    "surfBati" : 68,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 0,
+        "surfBati" : 96,
+        "type" : "Local industriel. commercial ou assimilé"
+      }
+    ],
+    "date" : "2024-05-03",
+    "id" : "2024-1199017",
+    "lat" : 48.86711,
+    "lon" : 2.33069,
+    "nature" : 1,
+    "pieces" : 0,
+    "prix" : 2500,
+    "surfBati" : 96,
+    "surfTerrain" : 0,
+    "type" : 4
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 5,
+        "surfBati" : 92,
+        "surfCarrez" : 93.03,
+        "type" : "Appartement"
+      },
+      {
+        "pieces" : 0,
+        "surfCarrez" : 93.03,
+        "type" : "Dépendance"
+      }
+    ],
+    "date" : "2024-05-24",
+    "id" : "2024-1199112",
+    "lat" : 48.8663,
+    "lon" : 2.33305,
+    "nature" : 1,
+    "pieces" : 5,
+    "prix" : 1169800,
+    "surfBati" : 92,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 0,
+        "surfBati" : 160,
+        "type" : "Local industriel. commercial ou assimilé"
+      }
+    ],
+    "date" : "2024-04-04",
+    "id" : "2024-1199143",
+    "lat" : 48.86631,
+    "lon" : 2.3345,
+    "nature" : 1,
+    "pieces" : 0,
+    "prix" : 2500,
+    "surfBati" : 160,
+    "surfTerrain" : 0,
+    "type" : 4
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 0,
+        "surfBati" : 44,
+        "surfCarrez" : 27.17,
+        "type" : "Local industriel. commercial ou assimilé"
+      },
+      {
+        "pieces" : 0,
+        "surfBati" : 52,
+        "surfCarrez" : 59.77,
+        "type" : "Local industriel. commercial ou assimilé"
+      },
+      {
+        "pieces" : 0,
+        "surfBati" : 55,
+        "surfCarrez" : 38.32,
+        "type" : "Local industriel. commercial ou assimilé"
+      },
+      {
+        "pieces" : 0,
+        "surfBati" : 149,
+        "type" : "Local industriel. commercial ou assimilé"
+      },
+      {
+        "pieces" : 0,
+        "surfBati" : 209,
+        "surfCarrez" : 135.47,
+        "type" : "Local industriel. commercial ou assimilé"
+      },
+      {
+        "pieces" : 0,
+        "surfBati" : 323,
+        "surfCarrez" : 217.93,
+        "type" : "Local industriel. commercial ou assimilé"
+      }
+    ],
+    "date" : "2024-05-15",
+    "id" : "2024-1199154",
+    "lat" : 48.86606,
+    "lon" : 2.32908,
+    "nature" : 1,
+    "pieces" : 0,
+    "prix" : 32725000,
+    "surfBati" : 832,
+    "surfTerrain" : 0,
+    "type" : 4
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 2,
+        "surfBati" : 40,
+        "surfCarrez" : 38.1,
+        "type" : "Appartement"
+      }
+    ],
+    "date" : "2024-05-13",
+    "id" : "2024-1199182",
+    "lat" : 48.86429,
+    "lon" : 2.34496,
+    "nature" : 1,
+    "pieces" : 2,
+    "prix" : 678247,
+    "surfBati" : 40,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 2,
+        "surfBati" : 26,
+        "type" : "Appartement"
+      }
+    ],
+    "date" : "2024-05-22",
+    "id" : "2024-1199203",
+    "lat" : 48.86275,
+    "lon" : 2.33985,
+    "nature" : 1,
+    "pieces" : 2,
+    "prix" : 346000,
+    "surfBati" : 26,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 3,
+        "surfBati" : 62,
+        "type" : "Appartement"
+      },
+      {
+        "pieces" : 0,
+        "type" : "Dépendance"
+      }
+    ],
+    "date" : "2024-05-21",
+    "id" : "2024-1199205",
+    "lat" : 48.85997,
+    "lon" : 2.34439,
+    "nature" : 1,
+    "pieces" : 3,
+    "prix" : 898950,
+    "surfBati" : 62,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 2,
+        "surfBati" : 56,
+        "surfCarrez" : 58.44,
+        "type" : "Appartement"
+      }
+    ],
+    "date" : "2024-05-02",
+    "id" : "2024-1199219",
+    "lat" : 48.86805,
+    "lon" : 2.32513,
+    "nature" : 1,
+    "pieces" : 2,
+    "prix" : 585000,
+    "surfBati" : 56,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 2,
+        "surfBati" : 45,
+        "surfCarrez" : 42.08,
+        "type" : "Appartement"
+      }
+    ],
+    "date" : "2024-05-17",
+    "id" : "2024-1199233",
+    "lat" : 48.86266,
+    "lon" : 2.34022,
+    "nature" : 1,
+    "pieces" : 2,
+    "prix" : 430000,
+    "surfBati" : 45,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 0,
+        "type" : "Dépendance"
+      }
+    ],
+    "date" : "2024-05-22",
+    "id" : "2024-1199279",
+    "lat" : 48.8637,
+    "lon" : 2.34033,
+    "nature" : 1,
+    "pieces" : 0,
+    "prix" : 40000,
+    "surfBati" : 0,
+    "surfTerrain" : 0,
+    "type" : 5
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 3,
+        "surfBati" : 93,
+        "type" : "Appartement"
+      },
+      {
+        "pieces" : 0,
+        "type" : "Dépendance"
+      },
+      {
+        "pieces" : 0,
+        "type" : "Dépendance"
+      }
+    ],
+    "date" : "2024-05-22",
+    "id" : "2024-1199353",
+    "lat" : 48.86555,
+    "lon" : 2.33602,
+    "nature" : 1,
+    "pieces" : 3,
+    "prix" : 1316950,
+    "surfBati" : 93,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 0,
+        "surfBati" : 10,
+        "surfCarrez" : 10.38,
+        "type" : "Local industriel. commercial ou assimilé"
+      }
+    ],
+    "date" : "2024-05-22",
+    "id" : "2024-1199357",
+    "lat" : 48.86287,
+    "lon" : 2.34038,
+    "nature" : 1,
+    "pieces" : 0,
+    "prix" : 50000,
+    "surfBati" : 10,
+    "surfTerrain" : 0,
+    "type" : 4
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 1,
+        "surfBati" : 9,
+        "surfCarrez" : 6.22,
+        "type" : "Appartement"
+      }
+    ],
+    "date" : "2024-05-24",
+    "id" : "2024-1199387",
+    "lat" : 48.86259,
+    "lon" : 2.33963,
+    "nature" : 1,
+    "pieces" : 1,
+    "prix" : 60000,
+    "surfBati" : 9,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 3,
+        "surfBati" : 83,
+        "type" : "Appartement"
+      }
+    ],
+    "date" : "2024-05-28",
+    "id" : "2024-1199392",
+    "lat" : 48.8638,
+    "lon" : 2.34082,
+    "nature" : 1,
+    "pieces" : 3,
+    "prix" : 545000,
+    "surfBati" : 83,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 1,
+        "surfBati" : 22,
+        "surfCarrez" : 25.2,
+        "type" : "Appartement"
+      },
+      {
+        "pieces" : 0,
+        "surfCarrez" : 25.2,
+        "type" : "Dépendance"
+      }
+    ],
+    "date" : "2024-05-23",
+    "id" : "2024-1199399",
+    "lat" : 48.86275,
+    "lon" : 2.33985,
+    "nature" : 1,
+    "pieces" : 1,
+    "prix" : 410000,
+    "surfBati" : 22,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 4,
+        "surfBati" : 75,
+        "type" : "Appartement"
+      }
+    ],
+    "date" : "2024-05-29",
+    "id" : "2024-1199407",
+    "lat" : 48.86454,
+    "lon" : 2.33059,
+    "nature" : 1,
+    "pieces" : 4,
+    "prix" : 5900,
+    "surfBati" : 75,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 0,
+        "type" : "Dépendance"
+      }
+    ],
+    "date" : "2024-05-22",
+    "id" : "2024-1199455",
+    "lat" : 48.86531,
+    "lon" : 2.332,
+    "nature" : 1,
+    "pieces" : 0,
+    "prix" : 6000,
+    "surfBati" : 0,
+    "surfTerrain" : 0,
+    "type" : 5
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 1,
+        "surfBati" : 17,
+        "surfCarrez" : 17.93,
+        "type" : "Appartement"
+      },
+      {
+        "pieces" : 0,
+        "surfCarrez" : 17.93,
+        "type" : "Dépendance"
+      }
+    ],
+    "date" : "2024-05-30",
+    "id" : "2024-1199456",
+    "lat" : 48.86404,
+    "lon" : 2.3412,
+    "nature" : 1,
+    "pieces" : 1,
+    "prix" : 287850,
+    "surfBati" : 17,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 0,
+        "type" : "Dépendance"
+      }
+    ],
+    "date" : "2024-06-04",
+    "id" : "2024-1199511",
+    "lat" : 48.86485,
+    "lon" : 2.33597,
+    "nature" : 1,
+    "pieces" : 0,
+    "prix" : 4350,
+    "surfBati" : 0,
+    "surfTerrain" : 0,
+    "type" : 5
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 1,
+        "surfBati" : 41,
+        "surfCarrez" : 41.17,
+        "type" : "Appartement"
+      }
+    ],
+    "date" : "2024-05-28",
+    "id" : "2024-1199668",
+    "lat" : 48.86645,
+    "lon" : 2.33683,
+    "nature" : 1,
+    "pieces" : 1,
+    "prix" : 640260,
+    "surfBati" : 41,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 5,
+        "surfBati" : 120,
+        "surfCarrez" : 144.71,
+        "type" : "Appartement"
+      }
+    ],
+    "date" : "2024-05-06",
+    "id" : "2024-1199677",
+    "lat" : 48.86086,
+    "lon" : 2.34401,
+    "nature" : 1,
+    "pieces" : 5,
+    "prix" : 1850000,
+    "surfBati" : 120,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 3,
+        "surfBati" : 53,
+        "surfCarrez" : 51.66,
+        "type" : "Appartement"
+      }
+    ],
+    "date" : "2024-05-13",
+    "id" : "2024-1199679",
+    "lat" : 48.86177,
+    "lon" : 2.34349,
+    "nature" : 1,
+    "pieces" : 3,
+    "prix" : 1000000,
+    "surfBati" : 53,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 2,
+        "surfBati" : 48,
+        "surfCarrez" : 44.91,
+        "type" : "Appartement"
+      }
+    ],
+    "date" : "2024-05-21",
+    "id" : "2024-1199681",
+    "lat" : 48.86143,
+    "lon" : 2.34348,
+    "nature" : 1,
+    "pieces" : 2,
+    "prix" : 700000,
+    "surfBati" : 48,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 0,
+        "surfBati" : 87,
+        "type" : "Local industriel. commercial ou assimilé"
+      }
+    ],
+    "date" : "2024-05-29",
+    "id" : "2024-1199698",
+    "lat" : 48.86365,
+    "lon" : 2.33842,
+    "nature" : 1,
+    "pieces" : 0,
+    "prix" : 1457000,
+    "surfBati" : 87,
+    "surfTerrain" : 0,
+    "type" : 4
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 0,
+        "surfBati" : 50,
+        "surfCarrez" : 79.85,
+        "type" : "Local industriel. commercial ou assimilé"
+      }
+    ],
+    "date" : "2024-05-14",
+    "id" : "2024-1199785",
+    "lat" : 48.86035,
+    "lon" : 2.34778,
+    "nature" : 1,
+    "pieces" : 0,
+    "prix" : 1590000,
+    "surfBati" : 50,
+    "surfTerrain" : 0,
+    "type" : 4
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 2,
+        "surfBati" : 43,
+        "type" : "Appartement"
+      }
+    ],
+    "date" : "2024-05-14",
+    "id" : "2024-1199832",
+    "lat" : 48.86277,
+    "lon" : 2.34813,
+    "nature" : 1,
+    "pieces" : 2,
+    "prix" : 35000,
+    "surfBati" : 43,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 0,
+        "surfBati" : 20,
+        "type" : "Local industriel. commercial ou assimilé"
+      }
+    ],
+    "date" : "2024-05-22",
+    "id" : "2024-1199979",
+    "lat" : 48.8637,
+    "lon" : 2.34033,
+    "nature" : 1,
+    "pieces" : 0,
+    "prix" : 80000,
+    "surfBati" : 20,
+    "surfTerrain" : 0,
+    "type" : 4
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 2,
+        "surfBati" : 29,
+        "surfCarrez" : 29.48,
+        "type" : "Appartement"
+      },
+      {
+        "pieces" : 0,
+        "type" : "Dépendance"
+      },
+      {
+        "pieces" : 0,
+        "surfCarrez" : 29.48,
+        "type" : "Dépendance"
+      }
+    ],
+    "date" : "2024-05-23",
+    "id" : "2024-1200056",
+    "lat" : 48.86182,
+    "lon" : 2.342,
+    "nature" : 1,
+    "pieces" : 2,
+    "prix" : 365000,
+    "surfBati" : 29,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 1,
+        "surfBati" : 26,
+        "surfCarrez" : 24.12,
+        "type" : "Appartement"
+      }
+    ],
+    "date" : "2024-06-07",
+    "id" : "2024-1200122",
+    "lat" : 48.86106,
+    "lon" : 2.3483,
+    "nature" : 1,
+    "pieces" : 1,
+    "prix" : 273000,
+    "surfBati" : 26,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 1,
+        "surfBati" : 29,
+        "type" : "Appartement"
+      },
+      {
+        "pieces" : 0,
+        "type" : "Dépendance"
+      }
+    ],
+    "date" : "2024-05-16",
+    "id" : "2024-1200130",
+    "lat" : 48.86458,
+    "lon" : 2.33339,
+    "nature" : 1,
+    "pieces" : 1,
+    "prix" : 305000,
+    "surfBati" : 29,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 1,
+        "surfBati" : 18,
+        "type" : "Appartement"
+      },
+      {
+        "pieces" : 2,
+        "surfBati" : 25,
+        "type" : "Appartement"
+      },
+      {
+        "pieces" : 2,
+        "surfBati" : 34,
+        "type" : "Appartement"
+      }
+    ],
+    "date" : "2024-05-21",
+    "id" : "2024-1200278",
+    "lat" : 48.86569,
+    "lon" : 2.32929,
+    "nature" : 4,
+    "pieces" : 5,
+    "prix" : 5000,
+    "surfBati" : 77,
+    "surfTerrain" : 0,
+    "type" : 3
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 1,
+        "surfBati" : 20,
+        "type" : "Appartement"
+      }
+    ],
+    "date" : "2024-06-11",
+    "id" : "2024-1200384",
+    "lat" : 48.86291,
+    "lon" : 2.34916,
+    "nature" : 1,
+    "pieces" : 1,
+    "prix" : 180000,
+    "surfBati" : 20,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 4,
+        "surfBati" : 146,
+        "type" : "Appartement"
+      },
+      {
+        "pieces" : 0,
+        "type" : "Dépendance"
+      }
+    ],
+    "date" : "2024-06-11",
+    "id" : "2024-1200387",
+    "lat" : 48.86182,
+    "lon" : 2.342,
+    "nature" : 1,
+    "pieces" : 4,
+    "prix" : 1750000,
+    "surfBati" : 146,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 1,
+        "surfBati" : 34,
+        "type" : "Appartement"
+      }
+    ],
+    "date" : "2024-06-14",
+    "id" : "2024-1200391",
+    "lat" : 48.86262,
+    "lon" : 2.34932,
+    "nature" : 1,
+    "pieces" : 1,
+    "prix" : 40000,
+    "surfBati" : 34,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 3,
+        "surfBati" : 103,
+        "surfCarrez" : 98.83,
+        "type" : "Appartement"
+      }
+    ],
+    "date" : "2024-05-30",
+    "id" : "2024-1200430",
+    "lat" : 48.86616,
+    "lon" : 2.33679,
+    "nature" : 1,
+    "pieces" : 3,
+    "prix" : 1846154,
+    "surfBati" : 103,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 3,
+        "surfBati" : 80,
+        "type" : "Appartement"
+      },
+      {
+        "pieces" : 0,
+        "type" : "Dépendance"
+      },
+      {
+        "pieces" : 0,
+        "type" : "Dépendance"
+      }
+    ],
+    "date" : "2024-06-04",
+    "id" : "2024-1200446",
+    "lat" : 48.86503,
+    "lon" : 2.3302,
+    "nature" : 1,
+    "pieces" : 3,
+    "prix" : 990385,
+    "surfBati" : 80,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 1,
+        "surfBati" : 29,
+        "type" : "Appartement"
+      }
+    ],
+    "date" : "2024-06-04",
+    "id" : "2024-1200447",
+    "lat" : 48.86302,
+    "lon" : 2.34884,
+    "nature" : 1,
+    "pieces" : 1,
+    "prix" : 300000,
+    "surfBati" : 29,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 2,
+        "surfBati" : 32,
+        "type" : "Appartement"
+      }
+    ],
+    "date" : "2024-04-30",
+    "id" : "2024-1200503",
+    "lat" : 48.86191,
+    "lon" : 2.34875,
+    "nature" : 1,
+    "pieces" : 2,
+    "prix" : 351500,
+    "surfBati" : 32,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 1,
+        "surfBati" : 16,
+        "type" : "Appartement"
+      }
+    ],
+    "date" : "2024-05-21",
+    "id" : "2024-1200523",
+    "lat" : 48.86569,
+    "lon" : 2.32929,
+    "nature" : 1,
+    "pieces" : 1,
+    "prix" : 1,
+    "surfBati" : 16,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 3,
+        "surfBati" : 108,
+        "surfCarrez" : 108.58,
+        "type" : "Appartement"
+      }
+    ],
+    "date" : "2024-06-03",
+    "id" : "2024-1200530",
+    "lat" : 48.8664,
+    "lon" : 2.32728,
+    "nature" : 1,
+    "pieces" : 3,
+    "prix" : 1320000,
+    "surfBati" : 108,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 2,
+        "surfBati" : 40,
+        "surfCarrez" : 41.22,
+        "type" : "Appartement"
+      }
+    ],
+    "date" : "2024-06-11",
+    "id" : "2024-1200590",
+    "lat" : 48.86189,
+    "lon" : 2.34895,
+    "nature" : 1,
+    "pieces" : 2,
+    "prix" : 509400,
+    "surfBati" : 40,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 2,
+        "surfBati" : 45,
+        "type" : "Appartement"
+      },
+      {
+        "pieces" : 0,
+        "type" : "Dépendance"
+      }
+    ],
+    "date" : "2024-06-20",
+    "id" : "2024-1200653",
+    "lat" : 48.86177,
+    "lon" : 2.34304,
+    "nature" : 1,
+    "pieces" : 2,
+    "prix" : 482000,
+    "surfBati" : 45,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 4,
+        "surfBati" : 67,
+        "surfCarrez" : 68.34,
+        "type" : "Appartement"
+      },
+      {
+        "pieces" : 0,
+        "surfCarrez" : 68.34,
+        "type" : "Dépendance"
+      }
+    ],
+    "date" : "2024-06-20",
+    "id" : "2024-1200694",
+    "lat" : 48.86431,
+    "lon" : 2.3321,
+    "nature" : 1,
+    "pieces" : 4,
+    "prix" : 879000,
+    "surfBati" : 67,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 3,
+        "surfBati" : 59,
+        "surfCarrez" : 62.22,
+        "type" : "Appartement"
+      },
+      {
+        "pieces" : 0,
+        "surfCarrez" : 62.22,
+        "type" : "Dépendance"
+      }
+    ],
+    "date" : "2024-06-14",
+    "id" : "2024-1200762",
+    "lat" : 48.86431,
+    "lon" : 2.3321,
+    "nature" : 1,
+    "pieces" : 3,
+    "prix" : 850000,
+    "surfBati" : 59,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 0,
+        "type" : "Dépendance"
+      }
+    ],
+    "date" : "2024-06-18",
+    "id" : "2024-1200780",
+    "lat" : 48.86619,
+    "lon" : 2.33041,
+    "nature" : 1,
+    "pieces" : 0,
+    "prix" : 70000,
+    "surfBati" : 0,
+    "surfTerrain" : 0,
+    "type" : 5
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 2,
+        "surfBati" : 42,
+        "type" : "Appartement"
+      }
+    ],
+    "date" : "2024-06-27",
+    "id" : "2024-1200900",
+    "lat" : 48.86228,
+    "lon" : 2.3403,
+    "nature" : 1,
+    "pieces" : 2,
+    "prix" : 380000,
+    "surfBati" : 42,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 3,
+        "surfBati" : 69,
+        "surfCarrez" : 70.13,
+        "type" : "Appartement"
+      }
+    ],
+    "date" : "2024-06-20",
+    "id" : "2024-1200905",
+    "lat" : 48.85842,
+    "lon" : 2.34612,
+    "nature" : 1,
+    "pieces" : 3,
+    "prix" : 1036550,
+    "surfBati" : 69,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 2,
+        "surfBati" : 31,
+        "type" : "Appartement"
+      },
+      {
+        "pieces" : 0,
+        "type" : "Dépendance"
+      }
+    ],
+    "date" : "2024-06-28",
+    "id" : "2024-1201188",
+    "lat" : 48.86662,
+    "lon" : 2.33633,
+    "nature" : 1,
+    "pieces" : 2,
+    "prix" : 380000,
+    "surfBati" : 31,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 1,
+        "surfBati" : 18,
+        "surfCarrez" : 16.39,
+        "type" : "Appartement"
+      }
+    ],
+    "date" : "2024-07-03",
+    "id" : "2024-1201297",
+    "lat" : 48.86363,
+    "lon" : 2.3334,
+    "nature" : 1,
+    "pieces" : 1,
+    "prix" : 230000,
+    "surfBati" : 18,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 3,
+        "surfBati" : 70,
+        "surfCarrez" : 70.61,
+        "type" : "Appartement"
+      },
+      {
+        "pieces" : 0,
+        "type" : "Dépendance"
+      }
+    ],
+    "date" : "2024-06-28",
+    "id" : "2024-1201301",
+    "lat" : 48.86476,
+    "lon" : 2.33144,
+    "nature" : 1,
+    "pieces" : 3,
+    "prix" : 900000,
+    "surfBati" : 70,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 0,
+        "surfBati" : 80,
+        "type" : "Local industriel. commercial ou assimilé"
+      }
+    ],
+    "date" : "2024-06-20",
+    "id" : "2024-1201404",
+    "lat" : 48.86463,
+    "lon" : 2.34493,
+    "nature" : 1,
+    "pieces" : 0,
+    "prix" : 910000,
+    "surfBati" : 80,
+    "surfTerrain" : 0,
+    "type" : 4
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 0,
+        "type" : "Dépendance"
+      }
+    ],
+    "date" : "2024-06-27",
+    "id" : "2024-1201513",
+    "lat" : 48.8637,
+    "lon" : 2.34033,
+    "nature" : 1,
+    "pieces" : 0,
+    "prix" : 50000,
+    "surfBati" : 0,
+    "surfTerrain" : 0,
+    "type" : 5
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 1,
+        "surfBati" : 40,
+        "surfCarrez" : 27.01,
+        "type" : "Appartement"
+      }
+    ],
+    "date" : "2024-06-17",
+    "id" : "2024-1201542",
+    "lat" : 48.86572,
+    "lon" : 2.33174,
+    "nature" : 1,
+    "pieces" : 1,
+    "prix" : 270000,
+    "surfBati" : 40,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 2,
+        "surfBati" : 19,
+        "surfCarrez" : 21.63,
+        "type" : "Appartement"
+      }
+    ],
+    "date" : "2024-06-27",
+    "id" : "2024-1201552",
+    "lat" : 48.86097,
+    "lon" : 2.34362,
+    "nature" : 1,
+    "pieces" : 2,
+    "prix" : 200000,
+    "surfBati" : 19,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 5,
+        "surfBati" : 102,
+        "type" : "Appartement"
+      },
+      {
+        "pieces" : 0,
+        "type" : "Dépendance"
+      },
+      {
+        "pieces" : 0,
+        "type" : "Dépendance"
+      }
+    ],
+    "date" : "2024-07-01",
+    "id" : "2024-1201568",
+    "lat" : 48.85851,
+    "lon" : 2.34774,
+    "nature" : 1,
+    "pieces" : 5,
+    "prix" : 1953964,
+    "surfBati" : 102,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 3,
+        "surfBati" : 54,
+        "type" : "Appartement"
+      },
+      {
+        "pieces" : 0,
+        "type" : "Dépendance"
+      }
+    ],
+    "date" : "2024-07-01",
+    "id" : "2024-1201592",
+    "lat" : 48.86381,
+    "lon" : 2.34343,
+    "nature" : 1,
+    "pieces" : 3,
+    "prix" : 580000,
+    "surfBati" : 54,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 3,
+        "surfBati" : 52,
+        "surfCarrez" : 54.08,
+        "type" : "Appartement"
+      },
+      {
+        "pieces" : 0,
+        "surfCarrez" : 54.08,
+        "type" : "Dépendance"
+      }
+    ],
+    "date" : "2024-06-28",
+    "id" : "2024-1201627",
+    "lat" : 48.86001,
+    "lon" : 2.34797,
+    "nature" : 1,
+    "pieces" : 3,
+    "prix" : 654500,
+    "surfBati" : 52,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 2,
+        "surfBati" : 59,
+        "surfCarrez" : 105.71,
+        "type" : "Appartement"
+      }
+    ],
+    "date" : "2024-06-26",
+    "id" : "2024-1201700",
+    "lat" : 48.85919,
+    "lon" : 2.34749,
+    "nature" : 1,
+    "pieces" : 2,
+    "prix" : 535000,
+    "surfBati" : 59,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 0,
+        "type" : "Dépendance"
+      }
+    ],
+    "date" : "2024-07-02",
+    "id" : "2024-1201751",
+    "lat" : 48.86414,
+    "lon" : 2.33316,
+    "nature" : 1,
+    "pieces" : 0,
+    "prix" : 62000,
+    "surfBati" : 0,
+    "surfTerrain" : 0,
+    "type" : 5
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 0,
+        "surfBati" : 140,
+        "surfCarrez" : 151,
+        "type" : "Local industriel. commercial ou assimilé"
+      }
+    ],
+    "date" : "2024-07-04",
+    "id" : "2024-1201779",
+    "lat" : 48.86651,
+    "lon" : 2.32918,
+    "nature" : 1,
+    "pieces" : 0,
+    "prix" : 2416000,
+    "surfBati" : 140,
+    "surfTerrain" : 0,
+    "type" : 4
+  },
+  {
+    "biens" : [
+
+    ],
+    "date" : "2024-07-10",
+    "id" : "2024-1201824",
+    "lat" : 48.86671,
+    "lon" : 2.32704,
+    "nature" : 1,
+    "pieces" : 0,
+    "prix" : 148098496,
+    "surfBati" : 0,
+    "surfTerrain" : 0
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 1,
+        "surfBati" : 54,
+        "type" : "Appartement"
+      }
+    ],
+    "date" : "2024-07-02",
+    "id" : "2024-1202051",
+    "lat" : 48.86805,
+    "lon" : 2.32513,
+    "nature" : 4,
+    "pieces" : 1,
+    "prix" : 795000,
+    "surfBati" : 54,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 4,
+        "surfBati" : 110,
+        "surfCarrez" : 110.65,
+        "type" : "Appartement"
+      }
+    ],
+    "date" : "2024-07-15",
+    "id" : "2024-1202091",
+    "lat" : 48.86766,
+    "lon" : 2.33097,
+    "nature" : 1,
+    "pieces" : 4,
+    "prix" : 1628700,
+    "surfBati" : 110,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 0,
+        "surfBati" : 15,
+        "surfCarrez" : 20.33,
+        "type" : "Local industriel. commercial ou assimilé"
+      }
+    ],
+    "date" : "2024-07-05",
+    "id" : "2024-1202176",
+    "lat" : 48.86608,
+    "lon" : 2.33807,
+    "nature" : 1,
+    "pieces" : 0,
+    "prix" : 925000,
+    "surfBati" : 15,
+    "surfTerrain" : 0,
+    "type" : 4
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 2,
+        "surfBati" : 52,
+        "surfCarrez" : 43.79,
+        "type" : "Appartement"
+      }
+    ],
+    "date" : "2024-07-01",
+    "id" : "2024-1202200",
+    "lat" : 48.8638,
+    "lon" : 2.34539,
+    "nature" : 1,
+    "pieces" : 2,
+    "prix" : 386000,
+    "surfBati" : 52,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 2,
+        "surfBati" : 39,
+        "type" : "Appartement"
+      },
+      {
+        "pieces" : 3,
+        "surfBati" : 54,
+        "surfCarrez" : 53.77,
+        "type" : "Appartement"
+      },
+      {
+        "pieces" : 0,
+        "surfCarrez" : 53.77,
+        "type" : "Dépendance"
+      }
+    ],
+    "date" : "2024-07-11",
+    "id" : "2024-1202214",
+    "lat" : 48.85861,
+    "lon" : 2.34578,
+    "nature" : 1,
+    "pieces" : 5,
+    "prix" : 610900,
+    "surfBati" : 93,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 2,
+        "surfBati" : 66,
+        "type" : "Appartement"
+      },
+      {
+        "pieces" : 0,
+        "type" : "Dépendance"
+      },
+      {
+        "pieces" : 0,
+        "type" : "Dépendance"
+      }
+    ],
+    "date" : "2024-07-01",
+    "id" : "2024-1202236",
+    "lat" : 48.86394,
+    "lon" : 2.34067,
+    "nature" : 1,
+    "pieces" : 2,
+    "prix" : 750000,
+    "surfBati" : 66,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 5,
+        "surfBati" : 122,
+        "type" : "Appartement"
+      }
+    ],
+    "date" : "2024-07-09",
+    "id" : "2024-1202309",
+    "lat" : 48.861,
+    "lon" : 2.34905,
+    "nature" : 1,
+    "pieces" : 5,
+    "prix" : 1321000,
+    "surfBati" : 122,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 0,
+        "surfBati" : 21,
+        "type" : "Local industriel. commercial ou assimilé"
+      },
+      {
+        "pieces" : 0,
+        "surfBati" : 47,
+        "type" : "Local industriel. commercial ou assimilé"
+      },
+      {
+        "pieces" : 0,
+        "surfBati" : 146,
+        "surfCarrez" : 138.06,
+        "type" : "Local industriel. commercial ou assimilé"
+      }
+    ],
+    "date" : "2024-06-28",
+    "id" : "2024-1202372",
+    "lat" : 48.86662,
+    "lon" : 2.33633,
+    "nature" : 1,
+    "pieces" : 0,
+    "prix" : 1050000,
+    "surfBati" : 214,
+    "surfTerrain" : 0,
+    "type" : 4
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 4,
+        "surfBati" : 90,
+        "surfCarrez" : 61.57,
+        "type" : "Appartement"
+      }
+    ],
+    "date" : "2024-07-18",
+    "id" : "2024-1202402",
+    "lat" : 48.86287,
+    "lon" : 2.34038,
+    "nature" : 1,
+    "pieces" : 4,
+    "prix" : 1063330,
+    "surfBati" : 90,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 0,
+        "type" : "Dépendance"
+      }
+    ],
+    "date" : "2024-07-17",
+    "id" : "2024-1202419",
+    "lat" : 48.86115,
+    "lon" : 2.34276,
+    "nature" : 1,
+    "pieces" : 0,
+    "prix" : 10000,
+    "surfBati" : 0,
+    "surfTerrain" : 0,
+    "type" : 5
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 1,
+        "surfBati" : 27,
+        "surfCarrez" : 26.03,
+        "type" : "Appartement"
+      }
+    ],
+    "date" : "2024-07-16",
+    "id" : "2024-1202438",
+    "lat" : 48.86763,
+    "lon" : 2.33248,
+    "nature" : 1,
+    "pieces" : 1,
+    "prix" : 392000,
+    "surfBati" : 27,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 1,
+        "surfBati" : 9,
+        "surfCarrez" : 12.01,
+        "type" : "Appartement"
+      }
+    ],
+    "date" : "2024-07-08",
+    "id" : "2024-1202446",
+    "lat" : 48.86651,
+    "lon" : 2.3311,
+    "nature" : 1,
+    "pieces" : 1,
+    "prix" : 85000,
+    "surfBati" : 9,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 2,
+        "surfBati" : 50,
+        "type" : "Appartement"
+      }
+    ],
+    "date" : "2024-07-16",
+    "id" : "2024-1202485",
+    "lat" : 48.86116,
+    "lon" : 2.34832,
+    "nature" : 1,
+    "pieces" : 2,
+    "prix" : 612000,
+    "surfBati" : 50,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 0,
+        "surfBati" : 159,
+        "surfCarrez" : 130,
+        "type" : "Local industriel. commercial ou assimilé"
+      }
+    ],
+    "date" : "2024-07-22",
+    "id" : "2024-1202509",
+    "lat" : 48.86365,
+    "lon" : 2.33842,
+    "nature" : 1,
+    "pieces" : 0,
+    "prix" : 2590500,
+    "surfBati" : 159,
+    "surfTerrain" : 0,
+    "type" : 4
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 1,
+        "surfBati" : 12,
+        "surfCarrez" : 11.36,
+        "type" : "Appartement"
+      }
+    ],
+    "date" : "2024-07-22",
+    "id" : "2024-1202515",
+    "lat" : 48.86237,
+    "lon" : 2.33987,
+    "nature" : 1,
+    "pieces" : 1,
+    "prix" : 138000,
+    "surfBati" : 12,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 1,
+        "surfBati" : 28,
+        "type" : "Appartement"
+      }
+    ],
+    "date" : "2024-07-04",
+    "id" : "2024-1202553",
+    "lat" : 48.86454,
+    "lon" : 2.33059,
+    "nature" : 1,
+    "pieces" : 1,
+    "prix" : 449600,
+    "surfBati" : 28,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 4,
+        "surfBati" : 95,
+        "surfCarrez" : 15.9,
+        "type" : "Appartement"
+      }
+    ],
+    "date" : "2024-06-26",
+    "id" : "2024-1202590",
+    "lat" : 48.86454,
+    "lon" : 2.33059,
+    "nature" : 1,
+    "pieces" : 4,
+    "prix" : 7950,
+    "surfBati" : 95,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 0,
+        "surfBati" : 25,
+        "type" : "Local industriel. commercial ou assimilé"
+      },
+      {
+        "pieces" : 0,
+        "surfBati" : 53,
+        "type" : "Local industriel. commercial ou assimilé"
+      },
+      {
+        "pieces" : 0,
+        "surfBati" : 106,
+        "type" : "Local industriel. commercial ou assimilé"
+      },
+      {
+        "pieces" : 0,
+        "surfBati" : 249,
+        "type" : "Local industriel. commercial ou assimilé"
+      }
+    ],
+    "date" : "2024-07-11",
+    "id" : "2024-1202695",
+    "lat" : 48.86624,
+    "lon" : 2.32895,
+    "nature" : 1,
+    "pieces" : 0,
+    "prix" : 4166000,
+    "surfBati" : 433,
+    "surfTerrain" : 0,
+    "type" : 4
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 1,
+        "surfBati" : 31,
+        "type" : "Appartement"
+      }
+    ],
+    "date" : "2024-07-15",
+    "id" : "2024-1202712",
+    "lat" : 48.86098,
+    "lon" : 2.34573,
+    "nature" : 1,
+    "pieces" : 1,
+    "prix" : 415000,
+    "surfBati" : 31,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 3,
+        "surfBati" : 52,
+        "surfCarrez" : 52.67,
+        "type" : "Appartement"
+      },
+      {
+        "pieces" : 0,
+        "surfCarrez" : 52.67,
+        "type" : "Dépendance"
+      }
+    ],
+    "date" : "2024-07-23",
+    "id" : "2024-1202718",
+    "lat" : 48.86377,
+    "lon" : 2.34771,
+    "nature" : 1,
+    "pieces" : 3,
+    "prix" : 680000,
+    "surfBati" : 52,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 0,
+        "surfBati" : 31,
+        "surfTerrain" : 138,
+        "type" : "Local industriel. commercial ou assimilé"
+      },
+      {
+        "pieces" : 0,
+        "surfBati" : 32,
+        "surfTerrain" : 138,
+        "type" : "Local industriel. commercial ou assimilé"
+      },
+      {
+        "pieces" : 0,
+        "surfBati" : 135,
+        "surfTerrain" : 138,
+        "type" : "Local industriel. commercial ou assimilé"
+      }
+    ],
+    "date" : "2024-07-03",
+    "id" : "2024-1202740",
+    "lat" : 48.86679,
+    "lon" : 2.33591,
+    "nature" : 1,
+    "pieces" : 0,
+    "prix" : 3373000,
+    "surfBati" : 198,
+    "surfTerrain" : 138,
+    "type" : 4
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 3,
+        "surfBati" : 80,
+        "surfCarrez" : 80.2,
+        "type" : "Appartement"
+      },
+      {
+        "pieces" : 3,
+        "surfBati" : 93,
+        "surfCarrez" : 92,
+        "type" : "Appartement"
+      },
+      {
+        "pieces" : 5,
+        "surfBati" : 107,
+        "surfCarrez" : 83.3,
+        "type" : "Appartement"
+      },
+      {
+        "pieces" : 6,
+        "surfBati" : 196,
+        "surfCarrez" : 196.4,
+        "type" : "Appartement"
+      },
+      {
+        "pieces" : 0,
+        "surfBati" : 172,
+        "surfCarrez" : 172.8,
+        "type" : "Local industriel. commercial ou assimilé"
+      },
+      {
+        "pieces" : 0,
+        "surfBati" : 172,
+        "surfCarrez" : 181.04,
+        "type" : "Local industriel. commercial ou assimilé"
+      },
+      {
+        "pieces" : 0,
+        "type" : "Dépendance"
+      },
+      {
+        "pieces" : 0,
+        "type" : "Dépendance"
+      }
+    ],
+    "date" : "2024-07-11",
+    "id" : "2024-1202759",
+    "lat" : 48.86624,
+    "lon" : 2.32895,
+    "nature" : 1,
+    "pieces" : 17,
+    "prix" : 3021000,
+    "surfBati" : 820,
+    "surfTerrain" : 0,
+    "type" : 3
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 1,
+        "surfBati" : 17,
+        "surfTerrain" : 1511,
+        "type" : "Appartement"
+      },
+      {
+        "pieces" : 1,
+        "surfBati" : 29,
+        "surfTerrain" : 1511,
+        "type" : "Appartement"
+      },
+      {
+        "pieces" : 2,
+        "surfBati" : 30,
+        "surfTerrain" : 1511,
+        "type" : "Appartement"
+      },
+      {
+        "pieces" : 1,
+        "surfBati" : 33,
+        "surfTerrain" : 1511,
+        "type" : "Appartement"
+      },
+      {
+        "pieces" : 2,
+        "surfBati" : 33,
+        "surfTerrain" : 1511,
+        "type" : "Appartement"
+      },
+      {
+        "pieces" : 2,
+        "surfBati" : 36,
+        "surfTerrain" : 1511,
+        "type" : "Appartement"
+      },
+      {
+        "pieces" : 2,
+        "surfBati" : 38,
+        "surfTerrain" : 1511,
+        "type" : "Appartement"
+      },
+      {
+        "pieces" : 2,
+        "surfBati" : 46,
+        "surfTerrain" : 1511,
+        "type" : "Appartement"
+      },
+      {
+        "pieces" : 2,
+        "surfBati" : 48,
+        "surfTerrain" : 1511,
+        "type" : "Appartement"
+      },
+      {
+        "pieces" : 2,
+        "surfBati" : 53,
+        "surfTerrain" : 1511,
+        "type" : "Appartement"
+      },
+      {
+        "pieces" : 2,
+        "surfBati" : 55,
+        "surfTerrain" : 1511,
+        "type" : "Appartement"
+      },
+      {
+        "pieces" : 3,
+        "surfBati" : 65,
+        "surfTerrain" : 1511,
+        "type" : "Appartement"
+      },
+      {
+        "pieces" : 7,
+        "surfBati" : 273,
+        "surfTerrain" : 1511,
+        "type" : "Appartement"
+      },
+      {
+        "pieces" : 0,
+        "surfBati" : 6,
+        "surfTerrain" : 1511,
+        "type" : "Local industriel. commercial ou assimilé"
+      },
+      {
+        "pieces" : 0,
+        "surfBati" : 11,
+        "surfTerrain" : 1511,
+        "type" : "Local industriel. commercial ou assimilé"
+      },
+      {
+        "pieces" : 0,
+        "surfBati" : 12,
+        "surfTerrain" : 1511,
+        "type" : "Local industriel. commercial ou assimilé"
+      },
+      {
+        "pieces" : 0,
+        "surfBati" : 30,
+        "surfTerrain" : 1511,
+        "type" : "Local industriel. commercial ou assimilé"
+      },
+      {
+        "pieces" : 0,
+        "surfBati" : 61,
+        "surfTerrain" : 1511,
+        "type" : "Local industriel. commercial ou assimilé"
+      },
+      {
+        "pieces" : 0,
+        "surfBati" : 62,
+        "surfTerrain" : 1511,
+        "type" : "Local industriel. commercial ou assimilé"
+      },
+      {
+        "pieces" : 0,
+        "surfBati" : 73,
+        "surfTerrain" : 1511,
+        "type" : "Local industriel. commercial ou assimilé"
+      },
+      {
+        "pieces" : 0,
+        "surfBati" : 77,
+        "surfTerrain" : 1511,
+        "type" : "Local industriel. commercial ou assimilé"
+      },
+      {
+        "pieces" : 0,
+        "surfBati" : 87,
+        "surfTerrain" : 1511,
+        "type" : "Local industriel. commercial ou assimilé"
+      },
+      {
+        "pieces" : 0,
+        "surfBati" : 97,
+        "surfTerrain" : 1511,
+        "type" : "Local industriel. commercial ou assimilé"
+      },
+      {
+        "pieces" : 0,
+        "surfBati" : 110,
+        "surfTerrain" : 1511,
+        "type" : "Local industriel. commercial ou assimilé"
+      },
+      {
+        "pieces" : 0,
+        "surfBati" : 153,
+        "surfTerrain" : 1511,
+        "type" : "Local industriel. commercial ou assimilé"
+      },
+      {
+        "pieces" : 0,
+        "surfBati" : 154,
+        "surfTerrain" : 1511,
+        "type" : "Local industriel. commercial ou assimilé"
+      },
+      {
+        "pieces" : 0,
+        "surfBati" : 158,
+        "surfTerrain" : 1511,
+        "type" : "Local industriel. commercial ou assimilé"
+      },
+      {
+        "pieces" : 0,
+        "surfBati" : 161,
+        "surfTerrain" : 1511,
+        "type" : "Local industriel. commercial ou assimilé"
+      },
+      {
+        "pieces" : 0,
+        "surfBati" : 165,
+        "surfTerrain" : 1511,
+        "type" : "Local industriel. commercial ou assimilé"
+      },
+      {
+        "pieces" : 0,
+        "surfBati" : 220,
+        "surfTerrain" : 1511,
+        "type" : "Local industriel. commercial ou assimilé"
+      },
+      {
+        "pieces" : 0,
+        "surfBati" : 244,
+        "surfTerrain" : 1511,
+        "type" : "Local industriel. commercial ou assimilé"
+      },
+      {
+        "pieces" : 0,
+        "surfBati" : 251,
+        "surfTerrain" : 1511,
+        "type" : "Local industriel. commercial ou assimilé"
+      },
+      {
+        "pieces" : 0,
+        "surfBati" : 254,
+        "surfTerrain" : 1511,
+        "type" : "Local industriel. commercial ou assimilé"
+      },
+      {
+        "pieces" : 0,
+        "surfBati" : 269,
+        "surfTerrain" : 1511,
+        "type" : "Local industriel. commercial ou assimilé"
+      },
+      {
+        "pieces" : 0,
+        "surfBati" : 279,
+        "surfTerrain" : 1511,
+        "type" : "Local industriel. commercial ou assimilé"
+      },
+      {
+        "pieces" : 0,
+        "surfBati" : 319,
+        "surfTerrain" : 1511,
+        "type" : "Local industriel. commercial ou assimilé"
+      },
+      {
+        "pieces" : 0,
+        "surfBati" : 362,
+        "surfTerrain" : 1511,
+        "type" : "Local industriel. commercial ou assimilé"
+      },
+      {
+        "pieces" : 0,
+        "surfBati" : 367,
+        "surfTerrain" : 1511,
+        "type" : "Local industriel. commercial ou assimilé"
+      },
+      {
+        "pieces" : 0,
+        "surfBati" : 950,
+        "surfTerrain" : 1511,
+        "type" : "Local industriel. commercial ou assimilé"
+      },
+      {
+        "pieces" : 0,
+        "surfTerrain" : 1511,
+        "type" : "Dépendance"
+      }
+    ],
+    "date" : "2024-07-10",
+    "id" : "2024-1202784",
+    "lat" : 48.86468,
+    "lon" : 2.33453,
+    "nature" : 1,
+    "pieces" : 29,
+    "prix" : 94000000,
+    "surfBati" : 5688,
+    "surfTerrain" : 1511,
+    "type" : 3
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 2,
+        "surfBati" : 44,
+        "surfCarrez" : 43.92,
+        "type" : "Appartement"
+      }
+    ],
+    "date" : "2024-07-05",
+    "id" : "2024-1202788",
+    "lat" : 48.86072,
+    "lon" : 2.34523,
+    "nature" : 1,
+    "pieces" : 2,
+    "prix" : 595000,
+    "surfBati" : 44,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 2,
+        "surfBati" : 78,
+        "surfCarrez" : 74.01,
+        "type" : "Appartement"
+      },
+      {
+        "pieces" : 0,
+        "surfCarrez" : 74.01,
+        "type" : "Dépendance"
+      }
+    ],
+    "date" : "2024-07-16",
+    "id" : "2024-1202807",
+    "lat" : 48.86009,
+    "lon" : 2.34697,
+    "nature" : 1,
+    "pieces" : 2,
+    "prix" : 1096700,
+    "surfBati" : 78,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 2,
+        "surfBati" : 44,
+        "surfCarrez" : 49.32,
+        "type" : "Appartement"
+      }
+    ],
+    "date" : "2024-07-19",
+    "id" : "2024-1203034",
+    "lat" : 48.85686,
+    "lon" : 2.34245,
+    "nature" : 1,
+    "pieces" : 2,
+    "prix" : 955000,
+    "surfBati" : 44,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 2,
+        "surfBati" : 44,
+        "type" : "Appartement"
+      },
+      {
+        "pieces" : 0,
+        "surfBati" : 18,
+        "surfCarrez" : 18.55,
+        "type" : "Local industriel. commercial ou assimilé"
+      }
+    ],
+    "date" : "2024-07-19",
+    "id" : "2024-1203036",
+    "lat" : 48.85686,
+    "lon" : 2.34245,
+    "nature" : 1,
+    "pieces" : 2,
+    "prix" : 290000,
+    "surfBati" : 62,
+    "surfTerrain" : 0,
+    "type" : 3
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 1,
+        "surfBati" : 32,
+        "surfCarrez" : 31.51,
+        "type" : "Appartement"
+      }
+    ],
+    "date" : "2024-07-25",
+    "id" : "2024-1203126",
+    "lat" : 48.86619,
+    "lon" : 2.33179,
+    "nature" : 1,
+    "pieces" : 1,
+    "prix" : 430000,
+    "surfBati" : 32,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 6,
+        "surfBati" : 170,
+        "type" : "Appartement"
+      }
+    ],
+    "date" : "2024-07-31",
+    "id" : "2024-1203140",
+    "lat" : 48.86532,
+    "lon" : 2.33034,
+    "nature" : 1,
+    "pieces" : 6,
+    "prix" : 2337000,
+    "surfBati" : 170,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 0,
+        "type" : "Dépendance"
+      },
+      {
+        "pieces" : 0,
+        "surfCarrez" : 10.31,
+        "type" : "Dépendance"
+      }
+    ],
+    "date" : "2024-07-31",
+    "id" : "2024-1203160",
+    "lat" : 48.86539,
+    "lon" : 2.33357,
+    "nature" : 1,
+    "pieces" : 0,
+    "prix" : 115000,
+    "surfBati" : 0,
+    "surfTerrain" : 0,
+    "type" : 5
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 2,
+        "surfBati" : 28,
+        "surfCarrez" : 27.72,
+        "type" : "Appartement"
+      }
+    ],
+    "date" : "2024-06-14",
+    "id" : "2024-1203178",
+    "lat" : 48.86355,
+    "lon" : 2.34175,
+    "nature" : 1,
+    "pieces" : 2,
+    "prix" : 493850,
+    "surfBati" : 28,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 1,
+        "surfBati" : 39,
+        "surfCarrez" : 40.26,
+        "type" : "Appartement"
+      }
+    ],
+    "date" : "2024-08-01",
+    "id" : "2024-1203240",
+    "lat" : 48.86195,
+    "lon" : 2.34219,
+    "nature" : 1,
+    "pieces" : 1,
+    "prix" : 520000,
+    "surfBati" : 39,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 0,
+        "type" : "Dépendance"
+      }
+    ],
+    "date" : "2024-07-29",
+    "id" : "2024-1203296",
+    "lat" : 48.86463,
+    "lon" : 2.3332,
+    "nature" : 1,
+    "pieces" : 0,
+    "prix" : 60000,
+    "surfBati" : 0,
+    "surfTerrain" : 0,
+    "type" : 5
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 4,
+        "surfBati" : 85,
+        "surfCarrez" : 91.62,
+        "type" : "Appartement"
+      },
+      {
+        "pieces" : 0,
+        "type" : "Dépendance"
+      },
+      {
+        "pieces" : 0,
+        "surfCarrez" : 91.62,
+        "type" : "Dépendance"
+      }
+    ],
+    "date" : "2024-07-17",
+    "id" : "2024-1203417",
+    "lat" : 48.86511,
+    "lon" : 2.32884,
+    "nature" : 1,
+    "pieces" : 4,
+    "prix" : 1580000,
+    "surfBati" : 85,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 2,
+        "surfBati" : 32,
+        "surfCarrez" : 29.6,
+        "type" : "Appartement"
+      },
+      {
+        "pieces" : 0,
+        "surfCarrez" : 29.6,
+        "type" : "Dépendance"
+      },
+      {
+        "pieces" : 0,
+        "surfCarrez" : 29.6,
+        "type" : "Dépendance"
+      }
+    ],
+    "date" : "2024-07-16",
+    "id" : "2024-1203461",
+    "lat" : 48.86505,
+    "lon" : 2.34265,
+    "nature" : 1,
+    "pieces" : 2,
+    "prix" : 325000,
+    "surfBati" : 32,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 0,
+        "surfBati" : 12,
+        "type" : "Local industriel. commercial ou assimilé"
+      }
+    ],
+    "date" : "2024-08-05",
+    "id" : "2024-1203612",
+    "lat" : 48.85889,
+    "lon" : 2.34443,
+    "nature" : 1,
+    "pieces" : 0,
+    "prix" : 35000,
+    "surfBati" : 12,
+    "surfTerrain" : 0,
+    "type" : 4
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 0,
+        "surfBati" : 420,
+        "surfCarrez" : 350.02,
+        "type" : "Local industriel. commercial ou assimilé"
+      }
+    ],
+    "date" : "2024-07-02",
+    "id" : "2024-1203646",
+    "lat" : 48.86401,
+    "lon" : 2.34284,
+    "nature" : 1,
+    "pieces" : 0,
+    "prix" : 5170000,
+    "surfBati" : 420,
+    "surfTerrain" : 0,
+    "type" : 4
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 2,
+        "surfBati" : 44,
+        "type" : "Appartement"
+      }
+    ],
+    "date" : "2024-07-19",
+    "id" : "2024-1203649",
+    "lat" : 48.85686,
+    "lon" : 2.34245,
+    "nature" : 1,
+    "pieces" : 2,
+    "prix" : 1187500,
+    "surfBati" : 44,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 0,
+        "type" : "Dépendance"
+      }
+    ],
+    "date" : "2024-08-13",
+    "id" : "2024-1203669",
+    "lat" : 48.85847,
+    "lon" : 2.34562,
+    "nature" : 1,
+    "pieces" : 0,
+    "prix" : 40000,
+    "surfBati" : 0,
+    "surfTerrain" : 0,
+    "type" : 5
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 1,
+        "surfBati" : 17,
+        "type" : "Appartement"
+      }
+    ],
+    "date" : "2024-08-08",
+    "id" : "2024-1203681",
+    "lat" : 48.86577,
+    "lon" : 2.32912,
+    "nature" : 1,
+    "pieces" : 1,
+    "prix" : 12500,
+    "surfBati" : 17,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 1,
+        "surfBati" : 45,
+        "surfCarrez" : 40.08,
+        "type" : "Appartement"
+      },
+      {
+        "pieces" : 0,
+        "surfCarrez" : 40.08,
+        "type" : "Dépendance"
+      }
+    ],
+    "date" : "2024-08-02",
+    "id" : "2024-1203713",
+    "lat" : 48.85883,
+    "lon" : 2.34577,
+    "nature" : 1,
+    "pieces" : 1,
+    "prix" : 600000,
+    "surfBati" : 45,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 3,
+        "surfBati" : 70,
+        "surfCarrez" : 64.76,
+        "type" : "Appartement"
+      }
+    ],
+    "date" : "2024-07-25",
+    "id" : "2024-1203732",
+    "lat" : 48.8628,
+    "lon" : 2.34079,
+    "nature" : 1,
+    "pieces" : 3,
+    "prix" : 1089000,
+    "surfBati" : 70,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 0,
+        "surfCarrez" : 6.87,
+        "type" : "Dépendance"
+      }
+    ],
+    "date" : "2024-08-19",
+    "id" : "2024-1203748",
+    "lat" : 48.86534,
+    "lon" : 2.329,
+    "nature" : 1,
+    "pieces" : 0,
+    "prix" : 125000,
+    "surfBati" : 0,
+    "surfTerrain" : 0,
+    "type" : 5
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 5,
+        "surfBati" : 113,
+        "surfCarrez" : 114.66,
+        "type" : "Appartement"
+      }
+    ],
+    "date" : "2024-08-20",
+    "id" : "2024-1203787",
+    "lat" : 48.85847,
+    "lon" : 2.34562,
+    "nature" : 1,
+    "pieces" : 5,
+    "prix" : 1215800,
+    "surfBati" : 113,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 0,
+        "surfBati" : 84,
+        "surfCarrez" : 82.09,
+        "type" : "Local industriel. commercial ou assimilé"
+      }
+    ],
+    "date" : "2024-08-19",
+    "id" : "2024-1203791",
+    "lat" : 48.86024,
+    "lon" : 2.34596,
+    "nature" : 1,
+    "pieces" : 0,
+    "prix" : 891900,
+    "surfBati" : 84,
+    "surfTerrain" : 0,
+    "type" : 4
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 1,
+        "surfBati" : 18,
+        "surfCarrez" : 17.89,
+        "type" : "Appartement"
+      }
+    ],
+    "date" : "2024-07-31",
+    "id" : "2024-1203881",
+    "lat" : 48.8654,
+    "lon" : 2.33657,
+    "nature" : 1,
+    "pieces" : 1,
+    "prix" : 211790,
+    "surfBati" : 18,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 2,
+        "surfBati" : 40,
+        "surfCarrez" : 41.7,
+        "type" : "Appartement"
+      },
+      {
+        "pieces" : 0,
+        "surfCarrez" : 41.7,
+        "type" : "Dépendance"
+      },
+      {
+        "pieces" : 0,
+        "surfCarrez" : 41.7,
+        "type" : "Dépendance"
+      }
+    ],
+    "date" : "2024-07-31",
+    "id" : "2024-1203892",
+    "lat" : 48.86197,
+    "lon" : 2.34965,
+    "nature" : 1,
+    "pieces" : 2,
+    "prix" : 496000,
+    "surfBati" : 40,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 0,
+        "surfBati" : 50,
+        "surfCarrez" : 8.2,
+        "type" : "Local industriel. commercial ou assimilé"
+      }
+    ],
+    "date" : "2024-07-31",
+    "id" : "2024-1203911",
+    "lat" : 48.86652,
+    "lon" : 2.32688,
+    "nature" : 1,
+    "pieces" : 0,
+    "prix" : 90200,
+    "surfBati" : 50,
+    "surfTerrain" : 0,
+    "type" : 4
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 2,
+        "surfBati" : 63,
+        "surfCarrez" : 63.83,
+        "type" : "Appartement"
+      }
+    ],
+    "date" : "2024-08-09",
+    "id" : "2024-1203933",
+    "lat" : 48.86444,
+    "lon" : 2.34495,
+    "nature" : 1,
+    "pieces" : 2,
+    "prix" : 912425,
+    "surfBati" : 63,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 1,
+        "surfBati" : 18,
+        "surfCarrez" : 17.38,
+        "type" : "Appartement"
+      }
+    ],
+    "date" : "2024-08-08",
+    "id" : "2024-1204082",
+    "lat" : 48.86235,
+    "lon" : 2.34005,
+    "nature" : 1,
+    "pieces" : 1,
+    "prix" : 245000,
+    "surfBati" : 18,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 3,
+        "surfBati" : 46,
+        "surfCarrez" : 34.3,
+        "type" : "Appartement"
+      }
+    ],
+    "date" : "2024-08-29",
+    "id" : "2024-1204169",
+    "lat" : 48.86411,
+    "lon" : 2.34587,
+    "nature" : 1,
+    "pieces" : 3,
+    "prix" : 379000,
+    "surfBati" : 46,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 1,
+        "surfBati" : 10,
+        "surfCarrez" : 10.69,
+        "type" : "Appartement"
+      }
+    ],
+    "date" : "2024-08-13",
+    "id" : "2024-1204182",
+    "lat" : 48.8664,
+    "lon" : 2.33102,
+    "nature" : 1,
+    "pieces" : 1,
+    "prix" : 127000,
+    "surfBati" : 10,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 4,
+        "surfBati" : 112,
+        "surfCarrez" : 105.8,
+        "type" : "Appartement"
+      },
+      {
+        "pieces" : 0,
+        "surfCarrez" : 105.8,
+        "type" : "Dépendance"
+      }
+    ],
+    "date" : "2024-08-30",
+    "id" : "2024-1204244",
+    "lat" : 48.86025,
+    "lon" : 2.34455,
+    "nature" : 1,
+    "pieces" : 4,
+    "prix" : 1600000,
+    "surfBati" : 112,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 2,
+        "surfBati" : 17,
+        "surfCarrez" : 42.48,
+        "type" : "Appartement"
+      }
+    ],
+    "date" : "2024-09-05",
+    "id" : "2024-1204288",
+    "lat" : 48.86503,
+    "lon" : 2.3302,
+    "nature" : 1,
+    "pieces" : 2,
+    "prix" : 226180,
+    "surfBati" : 17,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 2,
+        "surfBati" : 40,
+        "type" : "Appartement"
+      },
+      {
+        "pieces" : 0,
+        "type" : "Dépendance"
+      }
+    ],
+    "date" : "2024-09-05",
+    "id" : "2024-1204313",
+    "lat" : 48.86328,
+    "lon" : 2.34957,
+    "nature" : 1,
+    "pieces" : 2,
+    "prix" : 479920,
+    "surfBati" : 40,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 2,
+        "surfBati" : 70,
+        "surfCarrez" : 79.23,
+        "type" : "Appartement"
+      },
+      {
+        "pieces" : 0,
+        "surfCarrez" : 79.23,
+        "type" : "Dépendance"
+      }
+    ],
+    "date" : "2024-09-03",
+    "id" : "2024-1204341",
+    "lat" : 48.86062,
+    "lon" : 2.34872,
+    "nature" : 1,
+    "pieces" : 2,
+    "prix" : 1375000,
+    "surfBati" : 70,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 1,
+        "surfBati" : 22,
+        "surfCarrez" : 22,
+        "type" : "Appartement"
+      }
+    ],
+    "date" : "2024-09-02",
+    "id" : "2024-1204419",
+    "lat" : 48.86638,
+    "lon" : 2.33573,
+    "nature" : 1,
+    "pieces" : 1,
+    "prix" : 298617,
+    "surfBati" : 22,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 2,
+        "surfBati" : 30,
+        "surfCarrez" : 23.81,
+        "type" : "Appartement"
+      },
+      {
+        "pieces" : 0,
+        "surfCarrez" : 23.81,
+        "type" : "Dépendance"
+      }
+    ],
+    "date" : "2024-07-24",
+    "id" : "2024-1204433",
+    "lat" : 48.86744,
+    "lon" : 2.32477,
+    "nature" : 1,
+    "pieces" : 2,
+    "prix" : 352620,
+    "surfBati" : 30,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 1,
+        "surfBati" : 14,
+        "surfCarrez" : 14.71,
+        "type" : "Appartement"
+      }
+    ],
+    "date" : "2024-09-02",
+    "id" : "2024-1204445",
+    "lat" : 48.86039,
+    "lon" : 2.34739,
+    "nature" : 1,
+    "pieces" : 1,
+    "prix" : 189900,
+    "surfBati" : 14,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 2,
+        "surfBati" : 29,
+        "surfCarrez" : 30,
+        "type" : "Appartement"
+      }
+    ],
+    "date" : "2024-09-04",
+    "id" : "2024-1204447",
+    "lat" : 48.8639,
+    "lon" : 2.34021,
+    "nature" : 1,
+    "pieces" : 2,
+    "prix" : 380000,
+    "surfBati" : 29,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 3,
+        "surfBati" : 40,
+        "type" : "Appartement"
+      },
+      {
+        "pieces" : 0,
+        "type" : "Dépendance"
+      }
+    ],
+    "date" : "2024-08-22",
+    "id" : "2024-1204454",
+    "lat" : 48.86343,
+    "lon" : 2.33887,
+    "nature" : 1,
+    "pieces" : 3,
+    "prix" : 482000,
+    "surfBati" : 40,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 1,
+        "surfBati" : 23,
+        "surfCarrez" : 43,
+        "type" : "Appartement"
+      }
+    ],
+    "date" : "2024-09-12",
+    "id" : "2024-1204607",
+    "lat" : 48.86532,
+    "lon" : 2.33034,
+    "nature" : 1,
+    "pieces" : 1,
+    "prix" : 575000,
+    "surfBati" : 23,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 2,
+        "surfBati" : 39,
+        "type" : "Appartement"
+      },
+      {
+        "pieces" : 0,
+        "type" : "Dépendance"
+      }
+    ],
+    "date" : "2024-09-09",
+    "id" : "2024-1204722",
+    "lat" : 48.86328,
+    "lon" : 2.34957,
+    "nature" : 1,
+    "pieces" : 2,
+    "prix" : 420350,
+    "surfBati" : 39,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 0,
+        "surfBati" : 15,
+        "surfTerrain" : 538,
+        "type" : "Local industriel. commercial ou assimilé"
+      },
+      {
+        "pieces" : 0,
+        "surfBati" : 102,
+        "surfTerrain" : 538,
+        "type" : "Local industriel. commercial ou assimilé"
+      },
+      {
+        "pieces" : 0,
+        "surfBati" : 111,
+        "surfTerrain" : 538,
+        "type" : "Local industriel. commercial ou assimilé"
+      },
+      {
+        "pieces" : 0,
+        "surfBati" : 133,
+        "surfTerrain" : 538,
+        "type" : "Local industriel. commercial ou assimilé"
+      },
+      {
+        "pieces" : 0,
+        "surfBati" : 140,
+        "surfTerrain" : 538,
+        "type" : "Local industriel. commercial ou assimilé"
+      },
+      {
+        "pieces" : 0,
+        "surfBati" : 155,
+        "surfTerrain" : 538,
+        "type" : "Local industriel. commercial ou assimilé"
+      },
+      {
+        "pieces" : 0,
+        "surfBati" : 245,
+        "surfTerrain" : 538,
+        "type" : "Local industriel. commercial ou assimilé"
+      },
+      {
+        "pieces" : 0,
+        "surfBati" : 258,
+        "surfTerrain" : 538,
+        "type" : "Local industriel. commercial ou assimilé"
+      },
+      {
+        "pieces" : 0,
+        "surfBati" : 267,
+        "surfTerrain" : 538,
+        "type" : "Local industriel. commercial ou assimilé"
+      },
+      {
+        "pieces" : 0,
+        "surfBati" : 275,
+        "surfTerrain" : 538,
+        "type" : "Local industriel. commercial ou assimilé"
+      },
+      {
+        "pieces" : 0,
+        "surfBati" : 312,
+        "surfTerrain" : 538,
+        "type" : "Local industriel. commercial ou assimilé"
+      },
+      {
+        "pieces" : 0,
+        "surfBati" : 421,
+        "surfTerrain" : 538,
+        "type" : "Local industriel. commercial ou assimilé"
+      },
+      {
+        "pieces" : 0,
+        "surfTerrain" : 538,
+        "type" : "Dépendance"
+      }
+    ],
+    "date" : "2024-09-11",
+    "id" : "2024-1204746",
+    "lat" : 48.86798,
+    "lon" : 2.32634,
+    "nature" : 1,
+    "pieces" : 0,
+    "prix" : 118000000,
+    "surfBati" : 2434,
+    "surfTerrain" : 538,
+    "type" : 4
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 3,
+        "surfBati" : 67,
+        "surfCarrez" : 62.33,
+        "type" : "Appartement"
+      },
+      {
+        "pieces" : 0,
+        "surfCarrez" : 62.33,
+        "type" : "Dépendance"
+      }
+    ],
+    "date" : "2024-09-16",
+    "id" : "2024-1204955",
+    "lat" : 48.86217,
+    "lon" : 2.34009,
+    "nature" : 1,
+    "pieces" : 3,
+    "prix" : 1044100,
+    "surfBati" : 67,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 1,
+        "surfBati" : 14,
+        "surfCarrez" : 12,
+        "type" : "Appartement"
+      }
+    ],
+    "date" : "2024-09-11",
+    "id" : "2024-1204997",
+    "lat" : 48.8601,
+    "lon" : 2.34743,
+    "nature" : 1,
+    "pieces" : 1,
+    "prix" : 120000,
+    "surfBati" : 14,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 0,
+        "type" : "Dépendance"
+      },
+      {
+        "pieces" : 0,
+        "type" : "Dépendance"
+      }
+    ],
+    "date" : "2024-09-16",
+    "id" : "2024-1205120",
+    "lat" : 48.86458,
+    "lon" : 2.3413,
+    "nature" : 1,
+    "pieces" : 0,
+    "prix" : 1000,
+    "surfBati" : 0,
+    "surfTerrain" : 0,
+    "type" : 5
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 3,
+        "surfBati" : 60,
+        "surfCarrez" : 51.44,
+        "type" : "Appartement"
+      },
+      {
+        "pieces" : 0,
+        "surfCarrez" : 51.44,
+        "type" : "Dépendance"
+      }
+    ],
+    "date" : "2024-08-28",
+    "id" : "2024-1205127",
+    "lat" : 48.86097,
+    "lon" : 2.34362,
+    "nature" : 1,
+    "pieces" : 3,
+    "prix" : 530000,
+    "surfBati" : 60,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 2,
+        "surfBati" : 86,
+        "type" : "Appartement"
+      },
+      {
+        "pieces" : 0,
+        "type" : "Dépendance"
+      }
+    ],
+    "date" : "2024-08-30",
+    "id" : "2024-1205138",
+    "lat" : 48.86621,
+    "lon" : 2.33869,
+    "nature" : 1,
+    "pieces" : 2,
+    "prix" : 885000,
+    "surfBati" : 86,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 1,
+        "surfBati" : 19,
+        "type" : "Appartement"
+      },
+      {
+        "pieces" : 0,
+        "type" : "Dépendance"
+      }
+    ],
+    "date" : "2024-09-19",
+    "id" : "2024-1205217",
+    "lat" : 48.86039,
+    "lon" : 2.34739,
+    "nature" : 1,
+    "pieces" : 1,
+    "prix" : 230000,
+    "surfBati" : 19,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 1,
+        "surfBati" : 22,
+        "type" : "Appartement"
+      }
+    ],
+    "date" : "2024-09-23",
+    "id" : "2024-1205226",
+    "lat" : 48.86266,
+    "lon" : 2.34022,
+    "nature" : 1,
+    "pieces" : 1,
+    "prix" : 257250,
+    "surfBati" : 22,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 1,
+        "surfBati" : 13,
+        "surfCarrez" : 13.02,
+        "type" : "Appartement"
+      }
+    ],
+    "date" : "2024-09-05",
+    "id" : "2024-1205291",
+    "lat" : 48.86419,
+    "lon" : 2.33175,
+    "nature" : 1,
+    "pieces" : 1,
+    "prix" : 150000,
+    "surfBati" : 13,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 1,
+        "surfBati" : 12,
+        "surfCarrez" : 13.69,
+        "type" : "Appartement"
+      }
+    ],
+    "date" : "2024-09-19",
+    "id" : "2024-1205318",
+    "lat" : 48.86413,
+    "lon" : 2.34738,
+    "nature" : 1,
+    "pieces" : 1,
+    "prix" : 208000,
+    "surfBati" : 12,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 4,
+        "surfBati" : 99,
+        "surfCarrez" : 100.44,
+        "type" : "Appartement"
+      }
+    ],
+    "date" : "2024-09-26",
+    "id" : "2024-1205397",
+    "lat" : 48.86395,
+    "lon" : 2.34392,
+    "nature" : 1,
+    "pieces" : 4,
+    "prix" : 1571500,
+    "surfBati" : 99,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 9,
+        "surfBati" : 205,
+        "surfCarrez" : 195.1,
+        "type" : "Appartement"
+      },
+      {
+        "pieces" : 0,
+        "surfCarrez" : 195.1,
+        "type" : "Dépendance"
+      }
+    ],
+    "date" : "2024-09-26",
+    "id" : "2024-1205405",
+    "lat" : 48.86706,
+    "lon" : 2.32435,
+    "nature" : 1,
+    "pieces" : 9,
+    "prix" : 3560000,
+    "surfBati" : 205,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 4,
+        "surfBati" : 81,
+        "surfCarrez" : 67.7,
+        "type" : "Appartement"
+      }
+    ],
+    "date" : "2024-09-24",
+    "id" : "2024-1205409",
+    "lat" : 48.85919,
+    "lon" : 2.34749,
+    "nature" : 1,
+    "pieces" : 4,
+    "prix" : 907600,
+    "surfBati" : 81,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 3,
+        "surfBati" : 78,
+        "surfCarrez" : 80.29,
+        "type" : "Appartement"
+      },
+      {
+        "pieces" : 0,
+        "type" : "Dépendance"
+      }
+    ],
+    "date" : "2024-09-11",
+    "id" : "2024-1205470",
+    "lat" : 48.86105,
+    "lon" : 2.34327,
+    "nature" : 1,
+    "pieces" : 3,
+    "prix" : 895000,
+    "surfBati" : 78,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 3,
+        "surfBati" : 65,
+        "type" : "Appartement"
+      },
+      {
+        "pieces" : 0,
+        "type" : "Dépendance"
+      }
+    ],
+    "date" : "2024-09-13",
+    "id" : "2024-1205485",
+    "lat" : 48.86413,
+    "lon" : 2.34738,
+    "nature" : 1,
+    "pieces" : 3,
+    "prix" : 889650,
+    "surfBati" : 65,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 0,
+        "surfBati" : 104,
+        "type" : "Local industriel. commercial ou assimilé"
+      }
+    ],
+    "date" : "2024-09-24",
+    "id" : "2024-1205570",
+    "lat" : 48.86454,
+    "lon" : 2.33059,
+    "nature" : 1,
+    "pieces" : 0,
+    "prix" : 100,
+    "surfBati" : 104,
+    "surfTerrain" : 0,
+    "type" : 4
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 4,
+        "surfBati" : 86,
+        "surfCarrez" : 86.35,
+        "type" : "Appartement"
+      }
+    ],
+    "date" : "2024-10-02",
+    "id" : "2024-1205600",
+    "lat" : 48.86337,
+    "lon" : 2.34951,
+    "nature" : 1,
+    "pieces" : 4,
+    "prix" : 892046,
+    "surfBati" : 86,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 0,
+        "surfBati" : 195,
+        "type" : "Local industriel. commercial ou assimilé"
+      },
+      {
+        "pieces" : 0,
+        "type" : "Dépendance"
+      },
+      {
+        "pieces" : 0,
+        "type" : "Dépendance"
+      }
+    ],
+    "date" : "2024-09-18",
+    "id" : "2024-1205619",
+    "lat" : 48.86619,
+    "lon" : 2.33041,
+    "nature" : 1,
+    "pieces" : 0,
+    "prix" : 2500000,
+    "surfBati" : 195,
+    "surfTerrain" : 0,
+    "type" : 4
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 2,
+        "surfBati" : 30,
+        "surfTerrain" : 152,
+        "type" : "Appartement"
+      },
+      {
+        "pieces" : 2,
+        "surfBati" : 37,
+        "surfTerrain" : 152,
+        "type" : "Appartement"
+      },
+      {
+        "pieces" : 2,
+        "surfBati" : 37,
+        "surfTerrain" : 152,
+        "type" : "Appartement"
+      },
+      {
+        "pieces" : 2,
+        "surfBati" : 38,
+        "surfTerrain" : 152,
+        "type" : "Appartement"
+      },
+      {
+        "pieces" : 3,
+        "surfBati" : 45,
+        "surfTerrain" : 152,
+        "type" : "Appartement"
+      },
+      {
+        "pieces" : 3,
+        "surfBati" : 60,
+        "surfTerrain" : 152,
+        "type" : "Appartement"
+      },
+      {
+        "pieces" : 3,
+        "surfBati" : 61,
+        "surfTerrain" : 152,
+        "type" : "Appartement"
+      },
+      {
+        "pieces" : 2,
+        "surfBati" : 66,
+        "surfTerrain" : 152,
+        "type" : "Appartement"
+      },
+      {
+        "pieces" : 0,
+        "surfBati" : 100,
+        "surfTerrain" : 152,
+        "type" : "Local industriel. commercial ou assimilé"
+      }
+    ],
+    "date" : "2024-09-30",
+    "id" : "2024-1205665",
+    "lat" : 48.86441,
+    "lon" : 2.34078,
+    "nature" : 1,
+    "pieces" : 19,
+    "prix" : 4845000,
+    "surfBati" : 474,
+    "surfTerrain" : 152,
+    "type" : 3
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 0,
+        "surfBati" : 22,
+        "surfCarrez" : 37.95,
+        "type" : "Local industriel. commercial ou assimilé"
+      }
+    ],
+    "date" : "2024-09-30",
+    "id" : "2024-1205680",
+    "lat" : 48.86785,
+    "lon" : 2.33128,
+    "nature" : 1,
+    "pieces" : 0,
+    "prix" : 600000,
+    "surfBati" : 22,
+    "surfTerrain" : 0,
+    "type" : 4
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 0,
+        "surfBati" : 208,
+        "surfCarrez" : 157.22,
+        "type" : "Local industriel. commercial ou assimilé"
+      }
+    ],
+    "date" : "2024-09-26",
+    "id" : "2024-1205784",
+    "lat" : 48.86368,
+    "lon" : 2.33374,
+    "nature" : 1,
+    "pieces" : 0,
+    "prix" : 1326000,
+    "surfBati" : 208,
+    "surfTerrain" : 0,
+    "type" : 4
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 5,
+        "surfBati" : 103,
+        "surfCarrez" : 104.68,
+        "type" : "Appartement"
+      },
+      {
+        "pieces" : 0,
+        "surfCarrez" : 104.68,
+        "type" : "Dépendance"
+      }
+    ],
+    "date" : "2024-09-30",
+    "id" : "2024-1205787",
+    "lat" : 48.86025,
+    "lon" : 2.34455,
+    "nature" : 1,
+    "pieces" : 5,
+    "prix" : 1600000,
+    "surfBati" : 103,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 4,
+        "surfBati" : 155,
+        "surfCarrez" : 168.47,
+        "type" : "Appartement"
+      },
+      {
+        "pieces" : 0,
+        "surfCarrez" : 168.47,
+        "type" : "Dépendance"
+      },
+      {
+        "pieces" : 0,
+        "surfCarrez" : 168.47,
+        "type" : "Dépendance"
+      }
+    ],
+    "date" : "2024-10-04",
+    "id" : "2024-1205860",
+    "lat" : 48.86401,
+    "lon" : 2.34284,
+    "nature" : 1,
+    "pieces" : 4,
+    "prix" : 2512980,
+    "surfBati" : 155,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 1,
+        "surfBati" : 20,
+        "type" : "Appartement"
+      },
+      {
+        "pieces" : 0,
+        "type" : "Dépendance"
+      }
+    ],
+    "date" : "2024-10-04",
+    "id" : "2024-1205877",
+    "lat" : 48.85905,
+    "lon" : 2.34117,
+    "nature" : 1,
+    "pieces" : 1,
+    "prix" : 290000,
+    "surfBati" : 20,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 0,
+        "surfBati" : 106,
+        "surfCarrez" : 101.21,
+        "type" : "Local industriel. commercial ou assimilé"
+      }
+    ],
+    "date" : "2024-09-30",
+    "id" : "2024-1205953",
+    "lat" : 48.86654,
+    "lon" : 2.32678,
+    "nature" : 1,
+    "pieces" : 0,
+    "prix" : 1300000,
+    "surfBati" : 106,
+    "surfTerrain" : 0,
+    "type" : 4
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 1,
+        "surfBati" : 17,
+        "type" : "Appartement"
+      },
+      {
+        "pieces" : 0,
+        "type" : "Dépendance"
+      }
+    ],
+    "date" : "2024-09-25",
+    "id" : "2024-1205972",
+    "lat" : 48.86532,
+    "lon" : 2.33007,
+    "nature" : 1,
+    "pieces" : 1,
+    "prix" : 206000,
+    "surfBati" : 17,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 1,
+        "surfBati" : 15,
+        "type" : "Appartement"
+      },
+      {
+        "pieces" : 2,
+        "surfBati" : 45,
+        "type" : "Appartement"
+      },
+      {
+        "pieces" : 3,
+        "surfBati" : 115,
+        "type" : "Appartement"
+      },
+      {
+        "pieces" : 5,
+        "surfBati" : 252,
+        "type" : "Appartement"
+      },
+      {
+        "pieces" : 0,
+        "surfBati" : 15,
+        "type" : "Local industriel. commercial ou assimilé"
+      },
+      {
+        "pieces" : 0,
+        "type" : "Dépendance"
+      },
+      {
+        "pieces" : 0,
+        "type" : "Dépendance"
+      },
+      {
+        "pieces" : 0,
+        "type" : "Dépendance"
+      },
+      {
+        "pieces" : 0,
+        "type" : "Dépendance"
+      }
+    ],
+    "date" : "2024-10-10",
+    "id" : "2024-1206009",
+    "lat" : 48.86608,
+    "lon" : 2.33807,
+    "nature" : 1,
+    "pieces" : 11,
+    "prix" : 25000000,
+    "surfBati" : 442,
+    "surfTerrain" : 0,
+    "type" : 3
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 1,
+        "surfBati" : 17,
+        "surfCarrez" : 20.35,
+        "type" : "Appartement"
+      }
+    ],
+    "date" : "2024-09-30",
+    "id" : "2024-1206023",
+    "lat" : 48.8614,
+    "lon" : 2.34182,
+    "nature" : 1,
+    "pieces" : 1,
+    "prix" : 295600,
+    "surfBati" : 17,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 0,
+        "surfBati" : 68,
+        "surfCarrez" : 67.03,
+        "type" : "Local industriel. commercial ou assimilé"
+      }
+    ],
+    "date" : "2024-09-26",
+    "id" : "2024-1206043",
+    "lat" : 48.86614,
+    "lon" : 2.33015,
+    "nature" : 1,
+    "pieces" : 0,
+    "prix" : 635000,
+    "surfBati" : 68,
+    "surfTerrain" : 0,
+    "type" : 4
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 1,
+        "surfBati" : 17,
+        "surfCarrez" : 16.18,
+        "type" : "Appartement"
+      }
+    ],
+    "date" : "2024-09-16",
+    "id" : "2024-1206121",
+    "lat" : 48.86662,
+    "lon" : 2.33633,
+    "nature" : 1,
+    "pieces" : 1,
+    "prix" : 254500,
+    "surfBati" : 17,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 0,
+        "type" : "Dépendance"
+      },
+      {
+        "pieces" : 0,
+        "type" : "Dépendance"
+      }
+    ],
+    "date" : "2024-10-09",
+    "id" : "2024-1206165",
+    "lat" : 48.86754,
+    "lon" : 2.33282,
+    "nature" : 1,
+    "pieces" : 0,
+    "prix" : 67000,
+    "surfBati" : 0,
+    "surfTerrain" : 0,
+    "type" : 5
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 2,
+        "surfBati" : 53,
+        "type" : "Appartement"
+      },
+      {
+        "pieces" : 0,
+        "type" : "Dépendance"
+      }
+    ],
+    "date" : "2024-09-19",
+    "id" : "2024-1206171",
+    "lat" : 48.86372,
+    "lon" : 2.3407,
+    "nature" : 1,
+    "pieces" : 2,
+    "prix" : 667000,
+    "surfBati" : 53,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 2,
+        "surfBati" : 35,
+        "type" : "Appartement"
+      },
+      {
+        "pieces" : 4,
+        "surfBati" : 189,
+        "surfCarrez" : 223.09,
+        "type" : "Appartement"
+      },
+      {
+        "pieces" : 0,
+        "type" : "Dépendance"
+      },
+      {
+        "pieces" : 0,
+        "surfCarrez" : 223.09,
+        "type" : "Dépendance"
+      },
+      {
+        "pieces" : 0,
+        "surfCarrez" : 223.09,
+        "type" : "Dépendance"
+      }
+    ],
+    "date" : "2024-09-26",
+    "id" : "2024-1206191",
+    "lat" : 48.86511,
+    "lon" : 2.32884,
+    "nature" : 1,
+    "pieces" : 6,
+    "prix" : 8580000,
+    "surfBati" : 224,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 4,
+        "surfBati" : 80,
+        "surfCarrez" : 81.92,
+        "type" : "Appartement"
+      },
+      {
+        "pieces" : 0,
+        "type" : "Dépendance"
+      }
+    ],
+    "date" : "2024-10-10",
+    "id" : "2024-1206264",
+    "lat" : 48.85827,
+    "lon" : 2.34426,
+    "nature" : 1,
+    "pieces" : 4,
+    "prix" : 951691,
+    "surfBati" : 80,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 2,
+        "surfBati" : 47,
+        "surfCarrez" : 44.5,
+        "type" : "Appartement"
+      }
+    ],
+    "date" : "2024-10-10",
+    "id" : "2024-1206353",
+    "lat" : 48.86143,
+    "lon" : 2.34348,
+    "nature" : 1,
+    "pieces" : 2,
+    "prix" : 500000,
+    "surfBati" : 47,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 3,
+        "surfBati" : 77,
+        "surfCarrez" : 75.01,
+        "type" : "Appartement"
+      },
+      {
+        "pieces" : 0,
+        "surfCarrez" : 75.01,
+        "type" : "Dépendance"
+      }
+    ],
+    "date" : "2024-09-21",
+    "id" : "2024-1206390",
+    "lat" : 48.86175,
+    "lon" : 2.34269,
+    "nature" : 1,
+    "pieces" : 3,
+    "prix" : 928403,
+    "surfBati" : 77,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 0,
+        "type" : "Dépendance"
+      }
+    ],
+    "date" : "2024-10-18",
+    "id" : "2024-1206433",
+    "lat" : 48.86023,
+    "lon" : 2.34493,
+    "nature" : 1,
+    "pieces" : 0,
+    "prix" : 4500,
+    "surfBati" : 0,
+    "surfTerrain" : 0,
+    "type" : 5
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 1,
+        "surfBati" : 25,
+        "surfCarrez" : 20.83,
+        "type" : "Appartement"
+      }
+    ],
+    "date" : "2024-10-11",
+    "id" : "2024-1206438",
+    "lat" : 48.86063,
+    "lon" : 2.34876,
+    "nature" : 1,
+    "pieces" : 1,
+    "prix" : 245500,
+    "surfBati" : 25,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 0,
+        "surfBati" : 175,
+        "type" : "Local industriel. commercial ou assimilé"
+      }
+    ],
+    "date" : "2024-10-16",
+    "id" : "2024-1206570",
+    "lat" : 48.86659,
+    "lon" : 2.33093,
+    "nature" : 1,
+    "pieces" : 0,
+    "prix" : 7900000,
+    "surfBati" : 175,
+    "surfTerrain" : 0,
+    "type" : 4
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 1,
+        "surfBati" : 12,
+        "type" : "Appartement"
+      },
+      {
+        "pieces" : 0,
+        "type" : "Dépendance"
+      }
+    ],
+    "date" : "2024-10-09",
+    "id" : "2024-1206629",
+    "lat" : 48.8651,
+    "lon" : 2.34132,
+    "nature" : 1,
+    "pieces" : 1,
+    "prix" : 67000,
+    "surfBati" : 12,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 3,
+        "surfBati" : 51,
+        "surfCarrez" : 51.39,
+        "type" : "Appartement"
+      }
+    ],
+    "date" : "2024-10-16",
+    "id" : "2024-1206670",
+    "lat" : 48.8659,
+    "lon" : 2.34008,
+    "nature" : 1,
+    "pieces" : 3,
+    "prix" : 645000,
+    "surfBati" : 51,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 1,
+        "surfBati" : 20,
+        "type" : "Appartement"
+      }
+    ],
+    "date" : "2024-10-04",
+    "id" : "2024-1206784",
+    "lat" : 48.85677,
+    "lon" : 2.34289,
+    "nature" : 1,
+    "pieces" : 1,
+    "prix" : 370000,
+    "surfBati" : 20,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 6,
+        "surfBati" : 208,
+        "surfCarrez" : 207.03,
+        "type" : "Appartement"
+      },
+      {
+        "pieces" : 0,
+        "type" : "Dépendance"
+      }
+    ],
+    "date" : "2024-10-17",
+    "id" : "2024-1206798",
+    "lat" : 48.86569,
+    "lon" : 2.32929,
+    "nature" : 1,
+    "pieces" : 6,
+    "prix" : 4437329,
+    "surfBati" : 208,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 1,
+        "surfBati" : 28,
+        "surfCarrez" : 22.84,
+        "type" : "Appartement"
+      }
+    ],
+    "date" : "2024-10-11",
+    "id" : "2024-1206839",
+    "lat" : 48.86422,
+    "lon" : 2.34588,
+    "nature" : 1,
+    "pieces" : 1,
+    "prix" : 270000,
+    "surfBati" : 28,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 0,
+        "surfBati" : 31,
+        "surfCarrez" : 30.13,
+        "type" : "Local industriel. commercial ou assimilé"
+      }
+    ],
+    "date" : "2024-10-24",
+    "id" : "2024-1206841",
+    "lat" : 48.86805,
+    "lon" : 2.32513,
+    "nature" : 1,
+    "pieces" : 0,
+    "prix" : 360000,
+    "surfBati" : 31,
+    "surfTerrain" : 0,
+    "type" : 4
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 1,
+        "surfBati" : 8,
+        "surfCarrez" : 6.2,
+        "type" : "Appartement"
+      }
+    ],
+    "date" : "2024-10-25",
+    "id" : "2024-1207008",
+    "lat" : 48.86494,
+    "lon" : 2.33543,
+    "nature" : 1,
+    "pieces" : 1,
+    "prix" : 84000,
+    "surfBati" : 8,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 1,
+        "surfBati" : 15,
+        "surfCarrez" : 14.6,
+        "type" : "Appartement"
+      }
+    ],
+    "date" : "2024-10-23",
+    "id" : "2024-1207023",
+    "lat" : 48.8639,
+    "lon" : 2.34021,
+    "nature" : 1,
+    "pieces" : 1,
+    "prix" : 174500,
+    "surfBati" : 15,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 0,
+        "surfCarrez" : 5.96,
+        "type" : "Dépendance"
+      },
+      {
+        "pieces" : 0,
+        "surfCarrez" : 7.59,
+        "type" : "Dépendance"
+      },
+      {
+        "pieces" : 0,
+        "surfCarrez" : 10.3,
+        "type" : "Dépendance"
+      }
+    ],
+    "date" : "2024-10-24",
+    "id" : "2024-1207169",
+    "lat" : 48.86053,
+    "lon" : 2.34477,
+    "nature" : 1,
+    "pieces" : 0,
+    "prix" : 220000,
+    "surfBati" : 0,
+    "surfTerrain" : 0,
+    "type" : 5
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 3,
+        "surfBati" : 72,
+        "surfCarrez" : 65.19,
+        "type" : "Appartement"
+      }
+    ],
+    "date" : "2024-10-29",
+    "id" : "2024-1207245",
+    "lat" : 48.861,
+    "lon" : 2.34905,
+    "nature" : 1,
+    "pieces" : 3,
+    "prix" : 654900,
+    "surfBati" : 72,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 3,
+        "surfBati" : 86,
+        "type" : "Appartement"
+      },
+      {
+        "pieces" : 0,
+        "type" : "Dépendance"
+      }
+    ],
+    "date" : "2024-10-31",
+    "id" : "2024-1207288",
+    "lat" : 48.86422,
+    "lon" : 2.34588,
+    "nature" : 1,
+    "pieces" : 3,
+    "prix" : 750090,
+    "surfBati" : 86,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 2,
+        "surfBati" : 32,
+        "surfCarrez" : 22.97,
+        "type" : "Appartement"
+      }
+    ],
+    "date" : "2024-10-29",
+    "id" : "2024-1207446",
+    "lat" : 48.8664,
+    "lon" : 2.33102,
+    "nature" : 1,
+    "pieces" : 2,
+    "prix" : 165000,
+    "surfBati" : 32,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 2,
+        "surfBati" : 38,
+        "surfCarrez" : 52.73,
+        "type" : "Appartement"
+      }
+    ],
+    "date" : "2024-10-16",
+    "id" : "2024-1207549",
+    "lat" : 48.86651,
+    "lon" : 2.33527,
+    "nature" : 1,
+    "pieces" : 2,
+    "prix" : 395000,
+    "surfBati" : 38,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 3,
+        "surfBati" : 80,
+        "surfCarrez" : 81.76,
+        "type" : "Appartement"
+      }
+    ],
+    "date" : "2024-10-21",
+    "id" : "2024-1207550",
+    "lat" : 48.8662,
+    "lon" : 2.33492,
+    "nature" : 1,
+    "pieces" : 3,
+    "prix" : 1225600,
+    "surfBati" : 80,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 2,
+        "surfBati" : 45,
+        "type" : "Appartement"
+      }
+    ],
+    "date" : "2024-10-17",
+    "id" : "2024-1207574",
+    "lat" : 48.86531,
+    "lon" : 2.33575,
+    "nature" : 1,
+    "pieces" : 2,
+    "prix" : 428571,
+    "surfBati" : 45,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 2,
+        "surfBati" : 70,
+        "surfCarrez" : 66.06,
+        "type" : "Appartement"
+      },
+      {
+        "pieces" : 0,
+        "surfCarrez" : 66.06,
+        "type" : "Dépendance"
+      }
+    ],
+    "date" : "2024-11-07",
+    "id" : "2024-1207589",
+    "lat" : 48.8621,
+    "lon" : 2.34044,
+    "nature" : 1,
+    "pieces" : 2,
+    "prix" : 915500,
+    "surfBati" : 70,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 2,
+        "surfBati" : 35,
+        "type" : "Appartement"
+      },
+      {
+        "pieces" : 0,
+        "type" : "Dépendance"
+      }
+    ],
+    "date" : "2024-09-30",
+    "id" : "2024-1207591",
+    "lat" : 48.86563,
+    "lon" : 2.33211,
+    "nature" : 1,
+    "pieces" : 2,
+    "prix" : 360000,
+    "surfBati" : 35,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 4,
+        "surfBati" : 95,
+        "surfCarrez" : 86.19,
+        "type" : "Appartement"
+      }
+    ],
+    "date" : "2024-11-08",
+    "id" : "2024-1207594",
+    "lat" : 48.86182,
+    "lon" : 2.342,
+    "nature" : 1,
+    "pieces" : 4,
+    "prix" : 1070000,
+    "surfBati" : 95,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 2,
+        "surfBati" : 33,
+        "surfCarrez" : 30.68,
+        "type" : "Appartement"
+      }
+    ],
+    "date" : "2024-10-16",
+    "id" : "2024-1207677",
+    "lat" : 48.86086,
+    "lon" : 2.34415,
+    "nature" : 1,
+    "pieces" : 2,
+    "prix" : 144900,
+    "surfBati" : 33,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 1,
+        "surfBati" : 18,
+        "surfCarrez" : 35.78,
+        "type" : "Appartement"
+      }
+    ],
+    "date" : "2024-11-14",
+    "id" : "2024-1207713",
+    "lat" : 48.86393,
+    "lon" : 2.34529,
+    "nature" : 1,
+    "pieces" : 1,
+    "prix" : 175000,
+    "surfBati" : 18,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 3,
+        "surfBati" : 63,
+        "surfCarrez" : 59.85,
+        "type" : "Appartement"
+      }
+    ],
+    "date" : "2024-01-11",
+    "id" : "2024-1207731",
+    "lat" : 48.8614,
+    "lon" : 2.34182,
+    "nature" : 3,
+    "pieces" : 3,
+    "prix" : 610000,
+    "surfBati" : 63,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 4,
+        "surfBati" : 100,
+        "surfCarrez" : 89.64,
+        "type" : "Appartement"
+      }
+    ],
+    "date" : "2024-10-31",
+    "id" : "2024-1207771",
+    "lat" : 48.85837,
+    "lon" : 2.34488,
+    "nature" : 1,
+    "pieces" : 4,
+    "prix" : 1080000,
+    "surfBati" : 100,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 0,
+        "type" : "Dépendance"
+      }
+    ],
+    "date" : "2024-11-05",
+    "id" : "2024-1207774",
+    "lat" : 48.86377,
+    "lon" : 2.33361,
+    "nature" : 1,
+    "pieces" : 0,
+    "prix" : 26000,
+    "surfBati" : 0,
+    "surfTerrain" : 0,
+    "type" : 5
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 2,
+        "surfBati" : 59,
+        "type" : "Appartement"
+      }
+    ],
+    "date" : "2024-10-21",
+    "id" : "2024-1207788",
+    "lat" : 48.86002,
+    "lon" : 2.34738,
+    "nature" : 1,
+    "pieces" : 2,
+    "prix" : 612750,
+    "surfBati" : 59,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 2,
+        "surfBati" : 34,
+        "surfCarrez" : 35.38,
+        "type" : "Appartement"
+      },
+      {
+        "pieces" : 0,
+        "surfCarrez" : 35.38,
+        "type" : "Dépendance"
+      }
+    ],
+    "date" : "2024-11-13",
+    "id" : "2024-1207806",
+    "lat" : 48.86148,
+    "lon" : 2.34343,
+    "nature" : 1,
+    "pieces" : 2,
+    "prix" : 430000,
+    "surfBati" : 34,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 2,
+        "surfBati" : 67,
+        "type" : "Appartement"
+      },
+      {
+        "pieces" : 0,
+        "type" : "Dépendance"
+      }
+    ],
+    "date" : "2024-10-23",
+    "id" : "2024-1207842",
+    "lat" : 48.86601,
+    "lon" : 2.33314,
+    "nature" : 1,
+    "pieces" : 2,
+    "prix" : 1360000,
+    "surfBati" : 67,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 0,
+        "surfBati" : 65,
+        "type" : "Local industriel. commercial ou assimilé"
+      }
+    ],
+    "date" : "2024-10-25",
+    "id" : "2024-1207851",
+    "lat" : 48.85935,
+    "lon" : 2.34752,
+    "nature" : 1,
+    "pieces" : 0,
+    "prix" : 1200000,
+    "surfBati" : 65,
+    "surfTerrain" : 0,
+    "type" : 4
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 2,
+        "surfBati" : 33,
+        "type" : "Appartement"
+      },
+      {
+        "pieces" : 0,
+        "type" : "Dépendance"
+      }
+    ],
+    "date" : "2024-10-25",
+    "id" : "2024-1207867",
+    "lat" : 48.86025,
+    "lon" : 2.34455,
+    "nature" : 1,
+    "pieces" : 2,
+    "prix" : 10800,
+    "surfBati" : 33,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 0,
+        "type" : "Dépendance"
+      }
+    ],
+    "date" : "2024-11-15",
+    "id" : "2024-1207937",
+    "lat" : 48.85889,
+    "lon" : 2.34443,
+    "nature" : 1,
+    "pieces" : 0,
+    "prix" : 55000,
+    "surfBati" : 0,
+    "surfTerrain" : 0,
+    "type" : 5
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 0,
+        "surfBati" : 12,
+        "type" : "Local industriel. commercial ou assimilé"
+      }
+    ],
+    "date" : "2024-11-15",
+    "id" : "2024-1207940",
+    "lat" : 48.85889,
+    "lon" : 2.34443,
+    "nature" : 1,
+    "pieces" : 0,
+    "prix" : 44000,
+    "surfBati" : 12,
+    "surfTerrain" : 0,
+    "type" : 4
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 1,
+        "surfBati" : 22,
+        "type" : "Appartement"
+      },
+      {
+        "pieces" : 0,
+        "type" : "Dépendance"
+      }
+    ],
+    "date" : "2024-11-07",
+    "id" : "2024-1208063",
+    "lat" : 48.86494,
+    "lon" : 2.33543,
+    "nature" : 1,
+    "pieces" : 1,
+    "prix" : 197000,
+    "surfBati" : 22,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 3,
+        "surfBati" : 69,
+        "surfCarrez" : 69.37,
+        "type" : "Appartement"
+      },
+      {
+        "pieces" : 0,
+        "surfCarrez" : 69.37,
+        "type" : "Dépendance"
+      }
+    ],
+    "date" : "2024-11-15",
+    "id" : "2024-1208077",
+    "lat" : 48.86081,
+    "lon" : 2.34432,
+    "nature" : 1,
+    "pieces" : 3,
+    "prix" : 950000,
+    "surfBati" : 69,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 2,
+        "surfBati" : 65,
+        "type" : "Appartement"
+      },
+      {
+        "pieces" : 3,
+        "surfBati" : 66,
+        "type" : "Appartement"
+      },
+      {
+        "pieces" : 0,
+        "type" : "Dépendance"
+      }
+    ],
+    "date" : "2024-11-25",
+    "id" : "2024-1208081",
+    "lat" : 48.85812,
+    "lon" : 2.3449,
+    "nature" : 1,
+    "pieces" : 5,
+    "prix" : 1490385,
+    "surfBati" : 131,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 4,
+        "surfBati" : 79,
+        "surfCarrez" : 82.08,
+        "type" : "Appartement"
+      },
+      {
+        "pieces" : 0,
+        "surfCarrez" : 82.08,
+        "type" : "Dépendance"
+      },
+      {
+        "pieces" : 0,
+        "surfCarrez" : 82.08,
+        "type" : "Dépendance"
+      },
+      {
+        "pieces" : 0,
+        "surfCarrez" : 82.08,
+        "type" : "Dépendance"
+      }
+    ],
+    "date" : "2024-11-19",
+    "id" : "2024-1208150",
+    "lat" : 48.86638,
+    "lon" : 2.33636,
+    "nature" : 1,
+    "pieces" : 4,
+    "prix" : 1687000,
+    "surfBati" : 79,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 2,
+        "surfBati" : 44,
+        "type" : "Appartement"
+      }
+    ],
+    "date" : "2024-11-01",
+    "id" : "2024-1208255",
+    "lat" : 48.86292,
+    "lon" : 2.34901,
+    "nature" : 1,
+    "pieces" : 2,
+    "prix" : 380000,
+    "surfBati" : 44,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 1,
+        "surfBati" : 14,
+        "type" : "Appartement"
+      }
+    ],
+    "date" : "2024-10-30",
+    "id" : "2024-1208301",
+    "lat" : 48.86572,
+    "lon" : 2.33174,
+    "nature" : 1,
+    "pieces" : 1,
+    "prix" : 173000,
+    "surfBati" : 14,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 0,
+        "type" : "Dépendance"
+      }
+    ],
+    "date" : "2024-11-19",
+    "id" : "2024-1208338",
+    "lat" : 48.86494,
+    "lon" : 2.33543,
+    "nature" : 1,
+    "pieces" : 0,
+    "prix" : 23000,
+    "surfBati" : 0,
+    "surfTerrain" : 0,
+    "type" : 5
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 4,
+        "surfBati" : 119,
+        "type" : "Appartement"
+      },
+      {
+        "pieces" : 5,
+        "surfBati" : 141,
+        "type" : "Appartement"
+      },
+      {
+        "pieces" : 0,
+        "type" : "Dépendance"
+      }
+    ],
+    "date" : "2024-11-05",
+    "id" : "2024-1208383",
+    "lat" : 48.86147,
+    "lon" : 2.34932,
+    "nature" : 4,
+    "pieces" : 9,
+    "prix" : 1200000,
+    "surfBati" : 260,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 1,
+        "surfBati" : 16,
+        "type" : "Appartement"
+      }
+    ],
+    "date" : "2024-11-14",
+    "id" : "2024-1208450",
+    "lat" : 48.86431,
+    "lon" : 2.3321,
+    "nature" : 1,
+    "pieces" : 1,
+    "prix" : 210000,
+    "surfBati" : 16,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 2,
+        "surfBati" : 55,
+        "surfCarrez" : 53.95,
+        "type" : "Appartement"
+      },
+      {
+        "pieces" : 0,
+        "surfCarrez" : 53.95,
+        "type" : "Dépendance"
+      }
+    ],
+    "date" : "2024-11-29",
+    "id" : "2024-1208595",
+    "lat" : 48.86457,
+    "lon" : 2.34166,
+    "nature" : 1,
+    "pieces" : 2,
+    "prix" : 750000,
+    "surfBati" : 55,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 1,
+        "surfBati" : 40,
+        "surfTerrain" : 460,
+        "type" : "Appartement"
+      },
+      {
+        "pieces" : 2,
+        "surfBati" : 43,
+        "surfTerrain" : 460,
+        "type" : "Appartement"
+      },
+      {
+        "pieces" : 1,
+        "surfBati" : 44,
+        "surfTerrain" : 460,
+        "type" : "Appartement"
+      },
+      {
+        "pieces" : 3,
+        "surfBati" : 79,
+        "surfTerrain" : 460,
+        "type" : "Appartement"
+      },
+      {
+        "pieces" : 0,
+        "surfBati" : 23,
+        "surfTerrain" : 460,
+        "type" : "Local industriel. commercial ou assimilé"
+      },
+      {
+        "pieces" : 0,
+        "surfBati" : 33,
+        "surfTerrain" : 460,
+        "type" : "Local industriel. commercial ou assimilé"
+      },
+      {
+        "pieces" : 0,
+        "surfBati" : 69,
+        "surfTerrain" : 460,
+        "type" : "Local industriel. commercial ou assimilé"
+      },
+      {
+        "pieces" : 0,
+        "surfBati" : 98,
+        "surfTerrain" : 460,
+        "type" : "Local industriel. commercial ou assimilé"
+      },
+      {
+        "pieces" : 0,
+        "surfBati" : 111,
+        "surfTerrain" : 460,
+        "type" : "Local industriel. commercial ou assimilé"
+      },
+      {
+        "pieces" : 0,
+        "surfBati" : 149,
+        "surfTerrain" : 460,
+        "type" : "Local industriel. commercial ou assimilé"
+      },
+      {
+        "pieces" : 0,
+        "surfBati" : 184,
+        "surfTerrain" : 460,
+        "type" : "Local industriel. commercial ou assimilé"
+      },
+      {
+        "pieces" : 0,
+        "surfBati" : 343,
+        "surfTerrain" : 460,
+        "type" : "Local industriel. commercial ou assimilé"
+      },
+      {
+        "pieces" : 0,
+        "surfTerrain" : 460,
+        "type" : "Dépendance"
+      },
+      {
+        "pieces" : 0,
+        "surfTerrain" : 460,
+        "type" : "Dépendance"
+      },
+      {
+        "pieces" : 0,
+        "surfTerrain" : 460,
+        "type" : "Dépendance"
+      },
+      {
+        "pieces" : 0,
+        "surfTerrain" : 460,
+        "type" : "Dépendance"
+      }
+    ],
+    "date" : "2024-12-05",
+    "id" : "2024-1208698",
+    "lat" : 48.86703,
+    "lon" : 2.32678,
+    "nature" : 1,
+    "pieces" : 7,
+    "prix" : 42700000,
+    "surfBati" : 1216,
+    "surfTerrain" : 460,
+    "type" : 3
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 0,
+        "surfBati" : 85,
+        "type" : "Local industriel. commercial ou assimilé"
+      }
+    ],
+    "date" : "2024-11-14",
+    "id" : "2024-1208714",
+    "lat" : 48.8664,
+    "lon" : 2.33102,
+    "nature" : 1,
+    "pieces" : 0,
+    "prix" : 880000,
+    "surfBati" : 85,
+    "surfTerrain" : 0,
+    "type" : 4
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 2,
+        "surfBati" : 70,
+        "type" : "Appartement"
+      }
+    ],
+    "date" : "2024-11-29",
+    "id" : "2024-1208717",
+    "lat" : 48.86454,
+    "lon" : 2.33059,
+    "nature" : 1,
+    "pieces" : 2,
+    "prix" : 17150,
+    "surfBati" : 70,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 0,
+        "surfBati" : 120,
+        "surfCarrez" : 120.71,
+        "type" : "Local industriel. commercial ou assimilé"
+      }
+    ],
+    "date" : "2024-11-20",
+    "id" : "2024-1208786",
+    "lat" : 48.86339,
+    "lon" : 2.35013,
+    "nature" : 1,
+    "pieces" : 0,
+    "prix" : 1600000,
+    "surfBati" : 120,
+    "surfTerrain" : 0,
+    "type" : 4
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 4,
+        "surfBati" : 124,
+        "surfCarrez" : 117.5,
+        "type" : "Appartement"
+      },
+      {
+        "pieces" : 0,
+        "surfCarrez" : 117.5,
+        "type" : "Dépendance"
+      }
+    ],
+    "date" : "2024-11-28",
+    "id" : "2024-1208806",
+    "lat" : 48.86454,
+    "lon" : 2.33059,
+    "nature" : 1,
+    "pieces" : 4,
+    "prix" : 1505660,
+    "surfBati" : 124,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 3,
+        "surfBati" : 54,
+        "surfCarrez" : 53.77,
+        "type" : "Appartement"
+      },
+      {
+        "pieces" : 0,
+        "surfCarrez" : 53.77,
+        "type" : "Dépendance"
+      }
+    ],
+    "date" : "2024-12-05",
+    "id" : "2024-1208868",
+    "lat" : 48.86,
+    "lon" : 2.34754,
+    "nature" : 1,
+    "pieces" : 3,
+    "prix" : 780000,
+    "surfBati" : 54,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 1,
+        "surfBati" : 20,
+        "surfCarrez" : 18.67,
+        "type" : "Appartement"
+      }
+    ],
+    "date" : "2024-12-06",
+    "id" : "2024-1208961",
+    "lat" : 48.86137,
+    "lon" : 2.34225,
+    "nature" : 1,
+    "pieces" : 1,
+    "prix" : 219000,
+    "surfBati" : 20,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 2,
+        "surfBati" : 43,
+        "surfCarrez" : 43.16,
+        "type" : "Appartement"
+      },
+      {
+        "pieces" : 0,
+        "surfCarrez" : 43.16,
+        "type" : "Dépendance"
+      }
+    ],
+    "date" : "2024-12-12",
+    "id" : "2024-1208998",
+    "lat" : 48.86376,
+    "lon" : 2.3437,
+    "nature" : 1,
+    "pieces" : 2,
+    "prix" : 550000,
+    "surfBati" : 43,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 1,
+        "surfBati" : 15,
+        "type" : "Appartement"
+      },
+      {
+        "pieces" : 1,
+        "surfBati" : 20,
+        "type" : "Appartement"
+      }
+    ],
+    "date" : "2024-12-09",
+    "id" : "2024-1209022",
+    "lat" : 48.86093,
+    "lon" : 2.34457,
+    "nature" : 1,
+    "pieces" : 2,
+    "prix" : 3400,
+    "surfBati" : 35,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 0,
+        "type" : "Dépendance"
+      }
+    ],
+    "date" : "2024-12-09",
+    "id" : "2024-1209075",
+    "lat" : 48.86093,
+    "lon" : 2.34457,
+    "nature" : 1,
+    "pieces" : 0,
+    "prix" : 10000,
+    "surfBati" : 0,
+    "surfTerrain" : 0,
+    "type" : 5
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 2,
+        "surfBati" : 40,
+        "surfCarrez" : 40.08,
+        "type" : "Appartement"
+      }
+    ],
+    "date" : "2024-12-03",
+    "id" : "2024-1209081",
+    "lat" : 48.86697,
+    "lon" : 2.3331,
+    "nature" : 1,
+    "pieces" : 2,
+    "prix" : 540083,
+    "surfBati" : 40,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 2,
+        "surfBati" : 37,
+        "surfCarrez" : 37.45,
+        "type" : "Appartement"
+      }
+    ],
+    "date" : "2024-12-05",
+    "id" : "2024-1209087",
+    "lat" : 48.86336,
+    "lon" : 2.34922,
+    "nature" : 1,
+    "pieces" : 2,
+    "prix" : 455050,
+    "surfBati" : 37,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 0,
+        "surfBati" : 105,
+        "type" : "Local industriel. commercial ou assimilé"
+      }
+    ],
+    "date" : "2024-12-05",
+    "id" : "2024-1209089",
+    "lat" : 48.86039,
+    "lon" : 2.34739,
+    "nature" : 1,
+    "pieces" : 0,
+    "prix" : 1426720,
+    "surfBati" : 105,
+    "surfTerrain" : 0,
+    "type" : 4
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 0,
+        "surfBati" : 461,
+        "type" : "Local industriel. commercial ou assimilé"
+      },
+      {
+        "pieces" : 0,
+        "type" : "Dépendance"
+      },
+      {
+        "pieces" : 0,
+        "type" : "Dépendance"
+      }
+    ],
+    "date" : "2024-12-09",
+    "id" : "2024-1209267",
+    "lat" : 48.86355,
+    "lon" : 2.34175,
+    "nature" : 1,
+    "pieces" : 0,
+    "prix" : 5250000,
+    "surfBati" : 461,
+    "surfTerrain" : 0,
+    "type" : 4
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 1,
+        "surfBati" : 18,
+        "surfCarrez" : 14.13,
+        "type" : "Appartement"
+      }
+    ],
+    "date" : "2024-12-17",
+    "id" : "2024-1209291",
+    "lat" : 48.8613,
+    "lon" : 2.34224,
+    "nature" : 1,
+    "pieces" : 1,
+    "prix" : 165000,
+    "surfBati" : 18,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 1,
+        "surfBati" : 32,
+        "surfCarrez" : 32.06,
+        "type" : "Appartement"
+      }
+    ],
+    "date" : "2024-12-16",
+    "id" : "2024-1209337",
+    "lat" : 48.85992,
+    "lon" : 2.34799,
+    "nature" : 1,
+    "pieces" : 1,
+    "prix" : 310000,
+    "surfBati" : 32,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 1,
+        "surfBati" : 19,
+        "surfCarrez" : 19.02,
+        "type" : "Appartement"
+      }
+    ],
+    "date" : "2024-12-18",
+    "id" : "2024-1209373",
+    "lat" : 48.86393,
+    "lon" : 2.34529,
+    "nature" : 1,
+    "pieces" : 1,
+    "prix" : 180000,
+    "surfBati" : 19,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+
+    ],
+    "date" : "2024-11-18",
+    "id" : "2024-1209383",
+    "lat" : 48.86775,
+    "lon" : 2.33205,
+    "nature" : 1,
+    "pieces" : 0,
+    "prix" : 47000000,
+    "surfBati" : 0,
+    "surfTerrain" : 0
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 2,
+        "surfBati" : 51,
+        "surfCarrez" : 47,
+        "type" : "Appartement"
+      },
+      {
+        "pieces" : 0,
+        "surfBati" : 103,
+        "type" : "Local industriel. commercial ou assimilé"
+      }
+    ],
+    "date" : "2024-12-17",
+    "id" : "2024-1209386",
+    "lat" : 48.85683,
+    "lon" : 2.34286,
+    "nature" : 1,
+    "pieces" : 2,
+    "prix" : 950000,
+    "surfBati" : 154,
+    "surfTerrain" : 0,
+    "type" : 3
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 1,
+        "surfBati" : 24,
+        "surfCarrez" : 24.36,
+        "type" : "Appartement"
+      }
+    ],
+    "date" : "2024-12-19",
+    "id" : "2024-1209448",
+    "lat" : 48.86556,
+    "lon" : 2.33555,
+    "nature" : 1,
+    "pieces" : 1,
+    "prix" : 700000,
+    "surfBati" : 24,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 3,
+        "surfBati" : 40,
+        "type" : "Appartement"
+      },
+      {
+        "pieces" : 0,
+        "type" : "Dépendance"
+      }
+    ],
+    "date" : "2024-12-02",
+    "id" : "2024-1209459",
+    "lat" : 48.85865,
+    "lon" : 2.34502,
+    "nature" : 1,
+    "pieces" : 3,
+    "prix" : 310000,
+    "surfBati" : 40,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 2,
+        "surfBati" : 43,
+        "type" : "Appartement"
+      }
+    ],
+    "date" : "2024-12-20",
+    "id" : "2024-1209557",
+    "lat" : 48.86626,
+    "lon" : 2.33852,
+    "nature" : 1,
+    "pieces" : 2,
+    "prix" : 205000,
+    "surfBati" : 43,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 1,
+        "surfBati" : 18,
+        "surfCarrez" : 17.74,
+        "type" : "Appartement"
+      }
+    ],
+    "date" : "2024-12-09",
+    "id" : "2024-1209592",
+    "lat" : 48.8626,
+    "lon" : 2.34809,
+    "nature" : 1,
+    "pieces" : 1,
+    "prix" : 120000,
+    "surfBati" : 18,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 1,
+        "surfBati" : 25,
+        "surfCarrez" : 20.36,
+        "type" : "Appartement"
+      }
+    ],
+    "date" : "2024-12-30",
+    "id" : "2024-1209691",
+    "lat" : 48.86403,
+    "lon" : 2.34678,
+    "nature" : 1,
+    "pieces" : 1,
+    "prix" : 229000,
+    "surfBati" : 25,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 4,
+        "surfBati" : 86,
+        "surfCarrez" : 89.49,
+        "type" : "Appartement"
+      },
+      {
+        "pieces" : 0,
+        "surfCarrez" : 89.49,
+        "type" : "Dépendance"
+      },
+      {
+        "pieces" : 0,
+        "surfCarrez" : 89.49,
+        "type" : "Dépendance"
+      }
+    ],
+    "date" : "2024-12-19",
+    "id" : "2024-1209708",
+    "lat" : 48.86167,
+    "lon" : 2.34224,
+    "nature" : 1,
+    "pieces" : 4,
+    "prix" : 1805158,
+    "surfBati" : 86,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 2,
+        "surfBati" : 74,
+        "surfCarrez" : 72.93,
+        "type" : "Appartement"
+      }
+    ],
+    "date" : "2024-12-18",
+    "id" : "2024-1209819",
+    "lat" : 48.8635,
+    "lon" : 2.33806,
+    "nature" : 1,
+    "pieces" : 2,
+    "prix" : 880195,
+    "surfBati" : 74,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 2,
+        "surfBati" : 35,
+        "surfCarrez" : 28.06,
+        "type" : "Appartement"
+      },
+      {
+        "pieces" : 0,
+        "surfCarrez" : 28.06,
+        "type" : "Dépendance"
+      }
+    ],
+    "date" : "2024-12-16",
+    "id" : "2024-1209873",
+    "lat" : 48.86749,
+    "lon" : 2.33301,
+    "nature" : 1,
+    "pieces" : 2,
+    "prix" : 341000,
+    "surfBati" : 35,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 0,
+        "surfBati" : 155,
+        "surfCarrez" : 151.83,
+        "type" : "Local industriel. commercial ou assimilé"
+      }
+    ],
+    "date" : "2024-12-31",
+    "id" : "2024-1209931",
+    "lat" : 48.86457,
+    "lon" : 2.34166,
+    "nature" : 1,
+    "pieces" : 0,
+    "prix" : 1535599,
+    "surfBati" : 155,
+    "surfTerrain" : 0,
+    "type" : 4
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 2,
+        "surfBati" : 45,
+        "surfCarrez" : 42.05,
+        "type" : "Appartement"
+      }
+    ],
+    "date" : "2024-12-26",
+    "id" : "2024-1209938",
+    "lat" : 48.86266,
+    "lon" : 2.34022,
+    "nature" : 1,
+    "pieces" : 2,
+    "prix" : 480000,
+    "surfBati" : 45,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 3,
+        "surfBati" : 48,
+        "type" : "Appartement"
+      },
+      {
+        "pieces" : 0,
+        "surfCarrez" : 82.42,
+        "type" : "Dépendance"
+      }
+    ],
+    "date" : "2024-12-17",
+    "id" : "2024-1209975",
+    "lat" : 48.86633,
+    "lon" : 2.33826,
+    "nature" : 1,
+    "pieces" : 3,
+    "prix" : 1400000,
+    "surfBati" : 48,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 2,
+        "surfBati" : 56,
+        "surfCarrez" : 59.09,
+        "type" : "Appartement"
+      }
+    ],
+    "date" : "2024-12-17",
+    "id" : "2024-1209990",
+    "lat" : 48.8662,
+    "lon" : 2.33492,
+    "nature" : 1,
+    "pieces" : 2,
+    "prix" : 1083000,
+    "surfBati" : 56,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 1,
+        "surfBati" : 36,
+        "surfCarrez" : 35.89,
+        "type" : "Appartement"
+      }
+    ],
+    "date" : "2024-12-20",
+    "id" : "2024-1210020",
+    "lat" : 48.86106,
+    "lon" : 2.3483,
+    "nature" : 1,
+    "pieces" : 1,
+    "prix" : 374000,
+    "surfBati" : 36,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 6,
+        "surfBati" : 195,
+        "type" : "Appartement"
+      },
+      {
+        "pieces" : 0,
+        "type" : "Dépendance"
+      }
+    ],
+    "date" : "2024-12-20",
+    "id" : "2024-1210067",
+    "lat" : 48.86454,
+    "lon" : 2.33059,
+    "nature" : 1,
+    "pieces" : 6,
+    "prix" : 19600,
+    "surfBati" : 195,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 1,
+        "surfBati" : 20,
+        "surfCarrez" : 23.78,
+        "type" : "Appartement"
+      },
+      {
+        "pieces" : 0,
+        "surfCarrez" : 23.78,
+        "type" : "Dépendance"
+      }
+    ],
+    "date" : "2024-12-20",
+    "id" : "2024-1210071",
+    "lat" : 48.86417,
+    "lon" : 2.34036,
+    "nature" : 1,
+    "pieces" : 1,
+    "prix" : 250000,
+    "surfBati" : 20,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 0,
+        "surfBati" : 100,
+        "surfCarrez" : 29.47,
+        "type" : "Local industriel. commercial ou assimilé"
+      }
+    ],
+    "date" : "2024-12-30",
+    "id" : "2024-1210075",
+    "lat" : 48.86664,
+    "lon" : 2.33603,
+    "nature" : 1,
+    "pieces" : 0,
+    "prix" : 750000,
+    "surfBati" : 100,
+    "surfTerrain" : 0,
+    "type" : 4
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 0,
+        "surfCarrez" : 10.1,
+        "type" : "Dépendance"
+      }
+    ],
+    "date" : "2024-12-26",
+    "id" : "2024-1210157",
+    "lat" : 48.8661,
+    "lon" : 2.33516,
+    "nature" : 1,
+    "pieces" : 0,
+    "prix" : 94000,
+    "surfBati" : 0,
+    "surfTerrain" : 0,
+    "type" : 5
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 0,
+        "surfBati" : 84,
+        "surfCarrez" : 89.77,
+        "type" : "Local industriel. commercial ou assimilé"
+      }
+    ],
+    "date" : "2024-12-20",
+    "id" : "2024-1210199",
+    "lat" : 48.86558,
+    "lon" : 2.33147,
+    "nature" : 1,
+    "pieces" : 0,
+    "prix" : 735000,
+    "surfBati" : 84,
+    "surfTerrain" : 0,
+    "type" : 4
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 0,
+        "surfBati" : 55,
+        "surfCarrez" : 51.3,
+        "type" : "Local industriel. commercial ou assimilé"
+      },
+      {
+        "pieces" : 0,
+        "surfBati" : 142,
+        "surfCarrez" : 134.88,
+        "type" : "Local industriel. commercial ou assimilé"
+      }
+    ],
+    "date" : "2024-12-16",
+    "id" : "2024-1210216",
+    "lat" : 48.86357,
+    "lon" : 2.34392,
+    "nature" : 1,
+    "pieces" : 0,
+    "prix" : 2555000,
+    "surfBati" : 197,
+    "surfTerrain" : 0,
+    "type" : 4
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 4,
+        "surfBati" : 122,
+        "surfCarrez" : 122.27,
+        "type" : "Appartement"
+      },
+      {
+        "pieces" : 0,
+        "surfCarrez" : 122.27,
+        "type" : "Dépendance"
+      }
+    ],
+    "date" : "2024-12-30",
+    "id" : "2024-1210234",
+    "lat" : 48.86355,
+    "lon" : 2.34175,
+    "nature" : 1,
+    "pieces" : 4,
+    "prix" : 1839200,
+    "surfBati" : 122,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 2,
+        "surfBati" : 40,
+        "surfCarrez" : 52.56,
+        "type" : "Appartement"
+      }
+    ],
+    "date" : "2024-12-27",
+    "id" : "2024-1210264",
+    "lat" : 48.86457,
+    "lon" : 2.34166,
+    "nature" : 1,
+    "pieces" : 2,
+    "prix" : 662000,
+    "surfBati" : 40,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 0,
+        "surfBati" : 25,
+        "type" : "Local industriel. commercial ou assimilé"
+      },
+      {
+        "pieces" : 0,
+        "surfBati" : 53,
+        "type" : "Local industriel. commercial ou assimilé"
+      },
+      {
+        "pieces" : 0,
+        "surfBati" : 106,
+        "type" : "Local industriel. commercial ou assimilé"
+      },
+      {
+        "pieces" : 0,
+        "surfBati" : 249,
+        "type" : "Local industriel. commercial ou assimilé"
+      }
+    ],
+    "date" : "2024-12-31",
+    "id" : "2024-1210278",
+    "lat" : 48.86624,
+    "lon" : 2.32895,
+    "nature" : 1,
+    "pieces" : 0,
+    "prix" : 74385,
+    "surfBati" : 433,
+    "surfTerrain" : 0,
+    "type" : 4
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 3,
+        "surfBati" : 80,
+        "type" : "Appartement"
+      },
+      {
+        "pieces" : 3,
+        "surfBati" : 93,
+        "type" : "Appartement"
+      },
+      {
+        "pieces" : 5,
+        "surfBati" : 107,
+        "type" : "Appartement"
+      },
+      {
+        "pieces" : 6,
+        "surfBati" : 196,
+        "type" : "Appartement"
+      },
+      {
+        "pieces" : 0,
+        "surfBati" : 172,
+        "type" : "Local industriel. commercial ou assimilé"
+      },
+      {
+        "pieces" : 0,
+        "surfBati" : 172,
+        "type" : "Local industriel. commercial ou assimilé"
+      },
+      {
+        "pieces" : 0,
+        "type" : "Dépendance"
+      },
+      {
+        "pieces" : 0,
+        "type" : "Dépendance"
+      }
+    ],
+    "date" : "2024-12-31",
+    "id" : "2024-1210279",
+    "lat" : 48.86624,
+    "lon" : 2.32895,
+    "nature" : 1,
+    "pieces" : 17,
+    "prix" : 317921,
+    "surfBati" : 820,
+    "surfTerrain" : 0,
+    "type" : 3
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 0,
+        "surfBati" : 40,
+        "surfCarrez" : 35.7,
+        "type" : "Local industriel. commercial ou assimilé"
+      }
+    ],
+    "date" : "2024-12-20",
+    "id" : "2024-1210296",
+    "lat" : 48.86707,
+    "lon" : 2.33473,
+    "nature" : 1,
+    "pieces" : 0,
+    "prix" : 407000,
+    "surfBati" : 40,
+    "surfTerrain" : 0,
+    "type" : 4
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 3,
+        "surfBati" : 35,
+        "surfCarrez" : 71.22,
+        "type" : "Appartement"
+      }
+    ],
+    "date" : "2024-12-20",
+    "id" : "2024-1210355",
+    "lat" : 48.86563,
+    "lon" : 2.33211,
+    "nature" : 1,
+    "pieces" : 3,
+    "prix" : 510000,
+    "surfBati" : 35,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 1,
+        "surfBati" : 6,
+        "type" : "Appartement"
+      }
+    ],
+    "date" : "2024-01-25",
+    "id" : "2024-1210394",
+    "lat" : 48.86404,
+    "lon" : 2.34403,
+    "nature" : 3,
+    "pieces" : 1,
+    "prix" : 63800,
+    "surfBati" : 6,
+    "surfTerrain" : 0,
+    "type" : 2
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 0,
+        "surfBati" : 25,
+        "type" : "Local industriel. commercial ou assimilé"
+      },
+      {
+        "pieces" : 0,
+        "surfBati" : 25,
+        "type" : "Local industriel. commercial ou assimilé"
+      },
+      {
+        "pieces" : 0,
+        "surfBati" : 53,
+        "type" : "Local industriel. commercial ou assimilé"
+      },
+      {
+        "pieces" : 0,
+        "surfBati" : 53,
+        "type" : "Local industriel. commercial ou assimilé"
+      },
+      {
+        "pieces" : 0,
+        "surfBati" : 106,
+        "type" : "Local industriel. commercial ou assimilé"
+      },
+      {
+        "pieces" : 0,
+        "surfBati" : 106,
+        "type" : "Local industriel. commercial ou assimilé"
+      },
+      {
+        "pieces" : 0,
+        "surfBati" : 249,
+        "type" : "Local industriel. commercial ou assimilé"
+      },
+      {
+        "pieces" : 0,
+        "surfBati" : 249,
+        "type" : "Local industriel. commercial ou assimilé"
+      }
+    ],
+    "date" : "2024-12-31",
+    "id" : "2024-1210439",
+    "lat" : 48.86624,
+    "lon" : 2.32895,
+    "nature" : 1,
+    "pieces" : 0,
+    "prix" : 74385,
+    "surfBati" : 866,
+    "surfTerrain" : 0,
+    "type" : 4
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 3,
+        "surfBati" : 80,
+        "surfCarrez" : 80.2,
+        "type" : "Appartement"
+      },
+      {
+        "pieces" : 3,
+        "surfBati" : 80,
+        "surfCarrez" : 80.2,
+        "type" : "Appartement"
+      },
+      {
+        "pieces" : 3,
+        "surfBati" : 93,
+        "surfCarrez" : 92,
+        "type" : "Appartement"
+      },
+      {
+        "pieces" : 3,
+        "surfBati" : 93,
+        "surfCarrez" : 92,
+        "type" : "Appartement"
+      },
+      {
+        "pieces" : 5,
+        "surfBati" : 107,
+        "surfCarrez" : 83.3,
+        "type" : "Appartement"
+      },
+      {
+        "pieces" : 5,
+        "surfBati" : 107,
+        "surfCarrez" : 83.3,
+        "type" : "Appartement"
+      },
+      {
+        "pieces" : 6,
+        "surfBati" : 196,
+        "surfCarrez" : 196.4,
+        "type" : "Appartement"
+      },
+      {
+        "pieces" : 6,
+        "surfBati" : 196,
+        "surfCarrez" : 196.4,
+        "type" : "Appartement"
+      },
+      {
+        "pieces" : 0,
+        "surfBati" : 172,
+        "surfCarrez" : 172.8,
+        "type" : "Local industriel. commercial ou assimilé"
+      },
+      {
+        "pieces" : 0,
+        "surfBati" : 172,
+        "surfCarrez" : 172.8,
+        "type" : "Local industriel. commercial ou assimilé"
+      },
+      {
+        "pieces" : 0,
+        "surfBati" : 172,
+        "surfCarrez" : 181.04,
+        "type" : "Local industriel. commercial ou assimilé"
+      },
+      {
+        "pieces" : 0,
+        "surfBati" : 172,
+        "surfCarrez" : 181.04,
+        "type" : "Local industriel. commercial ou assimilé"
+      },
+      {
+        "pieces" : 0,
+        "type" : "Dépendance"
+      },
+      {
+        "pieces" : 0,
+        "type" : "Dépendance"
+      },
+      {
+        "pieces" : 0,
+        "type" : "Dépendance"
+      },
+      {
+        "pieces" : 0,
+        "type" : "Dépendance"
+      }
+    ],
+    "date" : "2024-12-31",
+    "id" : "2024-1210440",
+    "lat" : 48.86624,
+    "lon" : 2.32895,
+    "nature" : 1,
+    "pieces" : 34,
+    "prix" : 317921,
+    "surfBati" : 1640,
+    "surfTerrain" : 0,
+    "type" : 3
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 0,
+        "surfBati" : 25,
+        "type" : "Local industriel. commercial ou assimilé"
+      },
+      {
+        "pieces" : 0,
+        "surfBati" : 53,
+        "type" : "Local industriel. commercial ou assimilé"
+      },
+      {
+        "pieces" : 0,
+        "surfBati" : 106,
+        "type" : "Local industriel. commercial ou assimilé"
+      },
+      {
+        "pieces" : 0,
+        "surfBati" : 249,
+        "type" : "Local industriel. commercial ou assimilé"
+      }
+    ],
+    "date" : "2024-12-31",
+    "id" : "2024-1210460",
+    "lat" : 48.86624,
+    "lon" : 2.32895,
+    "nature" : 1,
+    "pieces" : 0,
+    "prix" : 74385,
+    "surfBati" : 433,
+    "surfTerrain" : 0,
+    "type" : 4
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 3,
+        "surfBati" : 80,
+        "surfCarrez" : 80.2,
+        "type" : "Appartement"
+      },
+      {
+        "pieces" : 3,
+        "surfBati" : 93,
+        "surfCarrez" : 92,
+        "type" : "Appartement"
+      },
+      {
+        "pieces" : 5,
+        "surfBati" : 107,
+        "surfCarrez" : 83.3,
+        "type" : "Appartement"
+      },
+      {
+        "pieces" : 6,
+        "surfBati" : 196,
+        "surfCarrez" : 196.4,
+        "type" : "Appartement"
+      },
+      {
+        "pieces" : 0,
+        "surfBati" : 172,
+        "surfCarrez" : 172.8,
+        "type" : "Local industriel. commercial ou assimilé"
+      },
+      {
+        "pieces" : 0,
+        "surfBati" : 172,
+        "surfCarrez" : 181.04,
+        "type" : "Local industriel. commercial ou assimilé"
+      },
+      {
+        "pieces" : 0,
+        "type" : "Dépendance"
+      },
+      {
+        "pieces" : 0,
+        "type" : "Dépendance"
+      }
+    ],
+    "date" : "2024-12-31",
+    "id" : "2024-1210462",
+    "lat" : 48.86624,
+    "lon" : 2.32895,
+    "nature" : 1,
+    "pieces" : 17,
+    "prix" : 317921,
+    "surfBati" : 820,
+    "surfTerrain" : 0,
+    "type" : 3
+  },
+  {
+    "biens" : [
+      {
+        "pieces" : 0,
+        "surfBati" : 214,
+        "type" : "Local industriel. commercial ou assimilé"
+      }
+    ],
+    "date" : "2024-12-19",
+    "id" : "2024-1210526",
+    "lat" : 48.8667,
+    "lon" : 2.3362,
+    "nature" : 3,
+    "pieces" : 0,
+    "prix" : 2300000,
+    "surfBati" : 214,
+    "surfTerrain" : 0,
+    "type" : 4
+  }
+]

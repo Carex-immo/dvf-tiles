@@ -13,10 +13,13 @@ cd "$BUILD"
 # Surtout ne pas remettre --extend-zooms-if-still-dropping sur la passe basse :
 # elle regenererait des tuiles z13+ echantillonnees, fusionnees en doublons.
 
-echo "== mutations (points, z4-z12, echantillonne taille bornee) =="
+echo "== mutations (points, z4-z12, echantillonne taille bornee, sans adresse) =="
+# -x adr -x cp : l'adresse n'est garantie qu'a z13+ (liste iOS) — l'option est
+# PAR INVOCATION tippecanoe ; surtout pas sur tile-join (purgerait z13-14 aussi).
 tippecanoe -o mutations_z4_12.pmtiles -l mutations \
   -Z4 -z12 -B11 -P \
   --drop-densest-as-needed \
+  -x adr -x cp \
   --force --quiet \
   mutations.geojsonl
 

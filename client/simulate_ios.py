@@ -4,7 +4,8 @@ Simulateur du client iOS (MapKit natif) - valide le chemin de consommation :
   bbox ecran -> coordonnees de tuiles -> fetch -> decodage MVT -> filtres -> stats
 
 Ici les tuiles sont lues depuis l'archive PMTiles locale ; en production l'app
-appelle https://tiles.carex.immo/dvf/v1/mutations/{z}/{x}/{y}.mvt (meme contenu).
+lit des tuiles a plat sur Supabase Storage ({version}/tiles/{z}/{x}/{y}.pbf,
+contrat carex.immo 2026-06-11) — meme contenu MVT.
 
 Usage: python3 simulate_ios.py build/dvf.pmtiles
 """
@@ -60,16 +61,29 @@ def main():
     dt = (time.time() - t0) * 1000
     print(f"fetch+decode : {dt:.0f} ms, {total_bytes/1024:.0f} Ko compresses, {len(feats)} mutations")
 
-    # Filtres "iOS" en memoire : appartements, 2024-2025, 2000-8000 EUR/m2
+    # Filtres "iOS" en memoire : appartements, 2024-2025, 2000-8000 EUR/m2.
+    # annee et pm2 ne sont plus des attributs : derives de date et vf/sb
+    # (regle de l'app : pm2 seulement si vf et sb > 0).
+    def pm2(p):
+        return round(p["vf"] / p["sb"]) if p.get("vf", 0) > 0 and p.get("sb", 0) > 0 else None
+
     t0 = time.time()
     sel = [p for p in feats
-           if p.get("type") == 2 and p.get("annee", 0) >= 2024
-           and 2000 <= p.get("pm2", 0) <= 8000]
+           if p.get("type") == 2 and p.get("date", 0) // 10000 >= 2024
+           and pm2(p) is not None and 2000 <= pm2(p) <= 8000]
     dt = (time.time() - t0) * 1000
     print(f"filtre appart/2024+/2000-8000 EUR/m2 : {len(sel)} resultats en {dt:.1f} ms")
     if sel:
-        s = sorted(p["pm2"] for p in sel)
+        s = sorted(pm2(p) for p in sel)
         print(f"  pm2 median filtre : {s[len(s)//2]} EUR/m2")
+
+    # Adresse (liste iOS) : garantie a z>=13 uniquement (exclue de la passe z4-12)
+    with_adr = [p for p in feats if p.get("adr")]
+    print(f"adresses presentes (z{z}) : {len(with_adr)}/{len(feats)}")
+    if with_adr:
+        ex = with_adr[0]
+        print(f"  ex: {ex['adr']}" + (f" ({ex['cp']})" if ex.get("cp") else "")
+              + f" — com {ex.get('com', '?')}")
 
     # Couche agregee (z8, vue departementale) : recomposition d'un agregat filtre
     zt = bbox_to_tiles(4.5, 45.6, 5.2, 46.3, 8)
