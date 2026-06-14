@@ -8,7 +8,7 @@ import duckdb
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
-from stats_bundles import years, entity_stats, _dept_of  # noqa: E402
+from stats_bundles import years, entity_stats, build_stats_bundles, _dept_of  # noqa: E402
 
 
 def _con():
@@ -74,3 +74,33 @@ def test_entity_stats_commune_creuse_alignee():
     assert t2["pm2_med"] == [None, 5000]
     assert t2["sb_med"] == [None, 70]
     assert t2["np_med"] == [None, 3]
+
+
+def test_build_stats_bundles_ecrit_arbre(tmp_path):
+    con = _con()
+    out = str(tmp_path)
+    compteurs = build_stats_bundles(
+        con, {"01001": "A", "01002": "B"}, {"01": "Ain"},
+        out, version="V1", dense_threshold=4)
+
+    man = json.load(open(os.path.join(out, "stats", "manifest.json")))
+    assert man["version"] == "V1"
+    assert man["years"] == [2023, 2024]
+    assert man["dense_threshold"] == 4
+    assert man["departements"] == ["01"]
+    assert compteurs == {"departements": 1, "communes": 2, "bundles_dep": 1}
+
+    dep = json.load(open(os.path.join(out, "stats", "departements.json")))
+    assert dep["version"] == "V1"
+    assert {e["code"] for e in dep["entities"]} == {"01"}
+    assert dep["entities"][0]["n_tot"] == 9          # toutes les ventes du dépt
+
+    com = json.load(open(os.path.join(out, "stats", "dep", "01.json")))
+    assert com["version"] == "V1"
+    assert {e["code"] for e in com["entities"]} == {"01001", "01002"}
+
+
+def test_dept_of():
+    assert _dept_of("01001") == "01"
+    assert _dept_of("2A004") == "2A"
+    assert _dept_of("97123") == "971"

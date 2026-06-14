@@ -94,3 +94,40 @@ def entity_stats(con, key, names, yrs, dense_threshold=200):
                 out[code].setdefault("quarters", []).append(
                     {"p": f"{annee}Q{q}", "n": cnt, "pm2_med": p})
     return out
+
+
+def build_stats_bundles(con, com_names, dep_names, out_dir, version,
+                        dense_threshold=200):
+    """Écrit out_dir/stats/{manifest.json, departements.json, dep/{DD}.json}.
+    Retourne les compteurs (pour prepare_stats.json / QA)."""
+    yrs = years(con)
+    stats_dir = os.path.join(out_dir, "stats")
+    dep_dir = os.path.join(stats_dir, "dep")
+    os.makedirs(dep_dir, exist_ok=True)
+
+    dep_stats = entity_stats(con, "dep", dep_names, yrs, dense_threshold)
+    com_stats = entity_stats(con, "com", com_names, yrs, dense_threshold)
+
+    def _write(path, entities):
+        json.dump({"version": version, "entities": entities},
+                  open(path, "w"), separators=(",", ":"), ensure_ascii=False)
+
+    _write(os.path.join(stats_dir, "departements.json"), list(dep_stats.values()))
+
+    # communes regroupées par département -> un fichier par département
+    by_dep = {}
+    for code, e in com_stats.items():
+        by_dep.setdefault(_dept_of(code), []).append(e)
+    for dd, entities in by_dep.items():
+        _write(os.path.join(dep_dir, f"{dd}.json"), entities)
+
+    compteurs = {"departements": len(dep_stats), "communes": len(com_stats),
+                 "bundles_dep": len(by_dep)}
+    manifest = {"version": version, "generated": version,
+                "dense_threshold": dense_threshold, "years": yrs,
+                "layers": {"departements": "stats/departements.json",
+                           "communes": "stats/dep/{DD}.json"},
+                "departements": sorted(by_dep), "compteurs": compteurs}
+    json.dump(manifest, open(os.path.join(stats_dir, "manifest.json"), "w"),
+              separators=(",", ":"), ensure_ascii=False)
+    return compteurs
