@@ -53,7 +53,11 @@ const map = new maplibregl.Map({
     sources: {
       osm: { type:"raster", tiles:["https://tile.openstreetmap.org/{z}/{x}/{y}.png"],
              tileSize:256, attribution:"© OpenStreetMap · DVF/DGFiP" },
-      dvf: { type:"vector", url:"pmtiles://" + location.origin + "/build/dvf.pmtiles" }
+      // Archive de production servie depuis Supabase Storage (bucket public "tiles").
+      // MapLibre la lit par requetes HTTP Range (support natif du plugin pmtiles ; CORS *
+      // et Range 206 valides cote Storage) — meme chemin que le client iOS.
+      // Fallback local : "pmtiles://" + location.origin + "/build/dvf.pmtiles" (via demo/serve.py).
+      dvf: { type:"vector", url:"pmtiles://https://bqwbazolhtwizafxqzlr.supabase.co/storage/v1/object/public/tiles/dvf.pmtiles" }
     },
     layers: [
       { id:"osm", type:"raster", source:"osm", paint:{ "raster-saturation":-0.8, "raster-opacity":0.75 } },
