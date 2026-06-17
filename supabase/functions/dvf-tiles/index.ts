@@ -13,6 +13,7 @@ const LAYER_RANGES: Record<string, [number, number]> = {
   mutations: [4, 14],
   communes: [6, 10],
   departements: [4, 6],
+  iris: [10, 14], // couche optionnelle (présente si l'archive a été buildée WITH_IRIS=1)
 };
 
 // Cache for PMTiles metadata and tile index

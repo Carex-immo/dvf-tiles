@@ -3,12 +3,27 @@
 Production du service de tuiles DVF sur Supabase Storage + Edge Functions.
 
 > **Build en production depuis le 12/06/2026** (lot parité+adresse) : `dvf.pmtiles`
-> **678,2 MB / 206 231 tuiles**, `tiles_index.json` **17,5 MB / 206 216 tuiles indexées**,
+> **678,2 MB / 206 231 tuiles**, `tiles_index.json` **17,0 MB / 206 231 tuiles indexées**,
 > fonction déployée avec `--no-verify-jwt` (service public — corrige le 401 du premier
 > déploiement). Nouvel encodage : 12 attributs, `adr`/`cp` à z≥13 (cf.
 > `docs/superpowers/specs/2026-06-12-parite-consolidation-adresse-design.md`).
 > Les chiffres « 914 MB / 234 186 tuiles / 19.4 MB » plus bas datent du build v1.0
 > du 11/06 et restent comme trace de la mise en œuvre initiale.
+>
+> **Lot stats par entité (14/06/2026)** : le build produit aussi `build/stats/`
+> (médianes année×type par commune/département, pour le panneau iOS au tap), uploadé sur
+> le bucket aux URLs `…/public/tiles/stats/{manifest.json, departements.json, dep/{DD}.json}`
+> (~30 Mo, 102 fichiers statiques publics). Schéma : `docs/specs/2026-06-14-stats-bundles-contrat-aval-ios.md`.
+>
+> **Séquence de déploiement (impérative)** : `run_pipeline.sh` régénère l'archive mais
+> **pas** l'index. Après chaque build, régénérer `tiles_index.json` *depuis l'archive
+> courante* avant `deploy-supabase.sh` — celui-ci refuse (échec dur) un index dont la
+> taille (`metadata.pmtilesSize`) ne correspond pas à l'archive :
+> ```bash
+> ./pipeline/run_pipeline.sh france          # → build/dvf.pmtiles (+ build/stats/)
+> node scripts/build-pmtiles-index.mjs       # → build/tiles_index.json (depuis l'archive)
+> ./scripts/deploy-supabase.sh               # archive + index + build/stats/**
+> ```
 
 ## Architecture Finale
 
@@ -92,6 +107,19 @@ Ou utiliser le script d'automatisation :
 ```
 https://bqwbazolhtwizafxqzlr.supabase.co/functions/v1/dvf-tiles
 ```
+
+### 4. Bundles de stats par entité (panneau iOS au tap)
+
+`deploy-supabase.sh` uploade aussi l'arbre `build/stats/` (produit par `prepare.py`), en
+plus de l'archive et de l'index. Ce sont des **fichiers statiques publics**, lus directement
+par l'app (pas d'Edge Function) :
+
+- `…/public/tiles/stats/manifest.json` — version, années, seuil de densité, liste des départements
+- `…/public/tiles/stats/departements.json` — les ~109 départements
+- `…/public/tiles/stats/dep/{DD}.json` — communes d'un département (`{DD}` = code département)
+
+Schéma `EntityStats`, résolution du fichier au tap et règles de consommation :
+`docs/specs/2026-06-14-stats-bundles-contrat-aval-ios.md`.
 
 ## API
 

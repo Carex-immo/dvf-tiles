@@ -64,6 +64,21 @@ upload "$PMTILES_FILE" "ss:///$BUCKET/dvf.pmtiles"
 echo "📤 Upload de $INDEX_FILE..."
 upload "$INDEX_FILE" "ss:///$BUCKET/tiles_index.json"
 
+# Manifest IRIS (additif, AVANT l'upload des stats) : si l'index IRIS a été
+# produit (WITH_IRIS=1), patch_manifest.py enrichit build/stats/manifest.json
+# avec millesime_iris + layers.iris_index + compteurs.iris (idempotent, préserve
+# la version mintée par le pipeline stats). Le manifest patché est uploadé juste
+# après par le bloc STATS_DIR.
+IRIS_MILLESIME="${IRIS_MILLESIME:-2026}"
+if [ -d "build/iris_index" ] && [ -f "build/stats/manifest.json" ]; then
+  echo "🧩 Patch du manifest stats (bits IRIS)..."
+  python3 pipeline/patch_manifest.py \
+    --manifest-file build/stats/manifest.json \
+    --iris-index-dir build/iris_index \
+    --millesime "$IRIS_MILLESIME" \
+    --out build/stats/manifest.json
+fi
+
 # Bundles de stats par département (panneau iOS au tap) — fichiers statiques publics
 STATS_DIR="build/stats"
 if [ -d "$STATS_DIR" ]; then
@@ -77,6 +92,33 @@ else
   echo "ℹ️  $STATS_DIR absent : aucun bundle de stats à uploader (relancer prepare.py)"
 fi
 
+# Index IRIS départemental (résolution GPS→IRIS côté client) : stats/iris_index/{DD}.json
+if [ -d "build/iris_index" ]; then
+  N=$(find build/iris_index -name '*.json' | wc -l | tr -d ' ')
+  echo "📤 Upload de l'index IRIS départemental ($N fichiers → stats/iris_index/)..."
+  while IFS= read -r f; do
+    upload "$f" "ss:///$BUCKET/stats/iris_index/$(basename "$f")"
+  done < <(find build/iris_index -name '*.json')
+fi
+
+# Détail par IRIS (contour + stats + mutations, chargé au tap) : stats/iris/{code_iris}.json
+if [ -d "build/iris" ]; then
+  N=$(find build/iris -name '*.json' | wc -l | tr -d ' ')
+  if [ "$N" -gt 5000 ]; then
+    # À l'échelle France (~49 000 IRIS) l'upload CLI un-par-un est impraticable.
+    echo "ℹ️  Détail IRIS : $N fichiers — trop nombreux pour l'upload CLI un-par-un."
+    echo "    Pousser en bulk (S3, méthode éprouvée ; nécessite des clés S3 Supabase) :"
+    echo "      aws s3 sync build/iris s3://$BUCKET/stats/iris \\"
+    echo "        --endpoint-url https://$PROJECT_REF.storage.supabase.co/storage/v1/s3 \\"
+    echo "        --content-type application/json --cache-control 'public, max-age=86400'"
+  else
+    echo "📤 Upload du détail IRIS ($N fichiers → stats/iris/)..."
+    while IFS= read -r f; do
+      upload "$f" "ss:///$BUCKET/stats/iris/$(basename "$f")"
+    done < <(find build/iris -name '*.json')
+  fi
+fi
+
 # Étape 4 : Edge Function — tuiles open data, servies sans JWT
 echo "⚙️  Déploiement de l'Edge Function (--no-verify-jwt : service public)..."
 supabase functions deploy dvf-tiles --project-ref "$PROJECT_REF" --no-verify-jwt
@@ -88,6 +130,7 @@ echo "📍 URLs :"
 echo "   PMTiles : https://$PROJECT_REF.supabase.co/storage/v1/object/public/$BUCKET/dvf.pmtiles"
 echo "   Index   : https://$PROJECT_REF.supabase.co/storage/v1/object/public/$BUCKET/tiles_index.json"
 echo "   Stats   : https://$PROJECT_REF.supabase.co/storage/v1/object/public/$BUCKET/stats/manifest.json"
+[ -d "build/iris_index" ] && echo "   IRIS idx: https://$PROJECT_REF.supabase.co/storage/v1/object/public/$BUCKET/stats/iris_index/{DD}.json"
 echo "   API     : https://$PROJECT_REF.supabase.co/functions/v1/dvf-tiles/{couche}/{z}/{x}/{y}.mvt"
 echo ""
 echo "🧪 Test :"
