@@ -61,14 +61,22 @@ CSV geo-dvf (data/raw/)                 contours geo.api.gouv.fr (data/geo/)
             (remap COG, agrégats, exports)
               ├─ build/mutations_consolidees.jsonl (intermédiaire, 1 ligne/mutation)
               ├─ build/mutations.geojsonl   (points ; terrain nu exclu, compté)
+              ├─ build/mutations.parquet    (mêmes lignes que .geojsonl ; source jointure IRIS)
               ├─ build/communes.geojson     (agrégats année×type + centroïdes cx/cy)
               └─ build/departements.geojson
                         │
               pipeline/build_tiles.sh : tippecanoe par couche
               (mutations en 2 passes : z4–12 échantillonné SANS adr/cp,
-              z13–14 exhaustif avec adresse), puis tile-join
+              z13–14 exhaustif avec adresse ; couche iris ajoutée si présente),
+              puis tile-join
                         │
               build/dvf.pmtiles  ← artefact de production
+
+  Branche IRIS (opt-in WITH_IRIS=1, cf. § dédié) — entre prepare et build_tiles :
+    pipeline/build_iris.py (ST_Within mutations.parquet × CONTOURS-IRIS.gpkg)
+      ├─ build/iris_layer.geojson  (→ couche tuile iris z10–14)
+      └─ build/iris/{code_iris}.json (contour + stats + mutations, panneau iOS au tap)
+    pipeline/build_iris_index.py → build/iris_index/{DD}.json (résolution GPS→IRIS)
               pipeline/stats_bundles.py (depuis stats_src, après build_layer)
                         │
               build/stats/{manifest.json, departements.json, dep/{DD}.json}
@@ -78,7 +86,7 @@ CSV geo-dvf (data/raw/)                 contours geo.api.gouv.fr (data/geo/)
 
 Le travail métier (1 mutation par `id_mutation` : fusion des biens, type dominant avec règle immeuble, sommes, ancrage par la parcelle de la 1ʳᵉ ligne) vit dans `pipeline/parity/consolidate.py`, **copie verbatim de `carex.immo/tools/dvf-tiles/`** verrouillée par les goldens Swift et rejouée à chaque build (`pytest pipeline/parity`). Toute évolution de règle part du Swift côté carex.immo puis se propage par recopie (cf. `pipeline/parity/README.md`). `pipeline/parity/extended.py` (propre à dvf-tiles) ajoute seulement la lecture des champs annexes `adr`/`cp`/`com`/`dep` et le support gzip.
 
-Couches et stratégie de zoom (reprise côté clients) : `departements` z4–6, `communes` z6–10, `mutations` z4–14 — échantillonnées jusqu'à z12 (taille de tuile bornée), **exhaustives dès z13** (passe tippecanoe dédiée `-pk -pf`, contrôle bloquant dans `qa_checks.py`). Côté client : z<7 départements, z7–10 communes, z≥11 points (échantillon d'affichage), stats exactes (comptes, médianes) à z≥13 uniquement ; zoom de données plafonné à 14 ; les filtres s'appliquent en mémoire côté client, jamais par le réseau.
+Couches et stratégie de zoom (reprise côté clients) : `departements` z4–6, `communes` z6–10, `mutations` z4–14 — échantillonnées jusqu'à z12 (taille de tuile bornée), **exhaustives dès z13** (passe tippecanoe dédiée `-pk -pf`, contrôle bloquant dans `qa_checks.py`) — plus `iris` z10–14 (couche **optionnelle**, présente seulement si l'archive a été buildée `WITH_IRIS=1`). Côté client : z<7 départements, z7–10 communes, z≥11 points (échantillon d'affichage), stats exactes (comptes, médianes) à z≥13 uniquement ; zoom de données plafonné à 14 ; les filtres s'appliquent en mémoire côté client, jamais par le réseau.
 
 ## Encodage compact partagé — à garder synchronisé
 
@@ -98,6 +106,35 @@ Produit par `pipeline/stats_bundles.py` depuis `stats_src` (mêmes données que
 les agrégats des tuiles → parité vérifiée en QA). **N'entre pas** dans le contrat
 des « 4 fichiers consommateurs » des tuiles ; lu directement par iOS au tap d'un
 département/commune.
+
+## Couche IRIS (opt-in `WITH_IRIS=1`)
+
+Le pipeline expose, pour un point GPS, toutes les mutations DVF de sa zone IRIS
+(spec/plan `docs/superpowers/{specs,plans}/2026-06-16-iris-*` et `2026-06-17-iris-index-*`).
+**Désactivée par défaut** (le POC reste ~2 min) : activer via
+`WITH_IRIS=1 ./pipeline/run_pipeline.sh poc|france`.
+
+- `download.sh` (gardé `WITH_IRIS=1`) télécharge la dernière édition **CONTOURS-IRIS
+  GPKG WGS84G France** (`iris_latest.py` résout l'URL `.7z` ; **requiert `7z`/p7zip** ;
+  ~88 Mo, ~49 000 IRIS ; déjà EPSG:4326, aucune reprojection) → `data/geo/CONTOURS-IRIS.gpkg`.
+- `prepare.py` écrit toujours `build/mutations.parquet` (16 colonnes calées sur
+  `build_iris.COLS`, **même population que `mutations.geojsonl`** — terrain nu exclu,
+  invariant `count(parquet) == wc -l geojsonl`). `annee`/`pm2` sont dérivés ; **`nc`
+  (nature de culture) est toujours NULL** : le pont de parité (`consolidate.py` verbatim,
+  intouchable) ne porte pas ce champ — seul écart vs la lignée snapshot d'origine, sans
+  consommateur aval (omis du JSON par mutation).
+- `build_iris.py` (jointure `ST_Within`) → `build/iris_layer.geojson` (source de la
+  couche tuile `iris`) + `build/iris/{code_iris}.json` (contour + stats + mutations).
+  `build_iris_index.py` → `build/iris_index/{DD}.json` (point intérieur + bbox par IRIS,
+  pour la résolution GPS→IRIS côté client). `build_tiles.sh` **auto-détecte**
+  `iris_layer.geojson` et ajoute la couche `iris` au `tile-join` (sinon il l'ignore,
+  build POC normal sans IRIS).
+- **Déploiement** (`scripts/deploy-supabase.sh`) : `patch_manifest.py` enrichit
+  `build/stats/manifest.json` (additif : `millesime_iris`, `layers.iris_index`,
+  `compteurs.iris`) **avant** l'upload des stats ; `iris_index/{DD}.json` poussé par la
+  boucle CLI ; le **détail `iris/`** (jusqu'à ~49 000 fichiers) est poussé par boucle CLI
+  au POC mais doit passer en **bulk `aws s3 sync`** à l'échelle France (la commande est
+  imprimée par le script). L'Edge Function `dvf-tiles` accepte la couche `iris` (z10–14).
 
 ## Pièges connus
 

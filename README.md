@@ -8,9 +8,13 @@ Pipeline de production de tuiles vectorielles DVF (PMTiles statiques, 3 couches,
 # Prérequis : tippecanoe (brew install tippecanoe) + pip install duckdb mapbox-vector-tile pmtiles pytest
 ./pipeline/run_pipeline.sh poc      # 69 + 01 — validation, ~2 min
 ./pipeline/run_pipeline.sh france   # France entière — ~3 Go de CSV, ~8 Go RAM, 30–90 min
+
+# Couche IRIS (opt-in) — ajoute la couche tuile `iris` (z10–14) + build/iris/ + build/iris_index/.
+# Télécharge le GPKG CONTOURS-IRIS France (~88 Mo, requiert 7z/p7zip). Cf. CLAUDE.md § Couche IRIS.
+WITH_IRIS=1 ./pipeline/run_pipeline.sh poc
 ```
 
-L'orchestrateur enchaîne : CSV geo-dvf → contours → tests de parité (`pipeline/parity/`, bloquants) → `prepare.py` (consolidation parité + DuckDB aval) → `build_tiles.sh` (tippecanoe) → `qa_checks.py`. Sortie : `build/dvf.pmtiles` + `build/qa_report.json` (les comptages sont comparés au build précédent, tolérance ±20 % ; après un changement de périmètre ou de population : `--reset-baseline`).
+L'orchestrateur enchaîne : CSV geo-dvf → contours → tests de parité (`pipeline/parity/`, bloquants) → `prepare.py` (consolidation parité + DuckDB aval, + `build/mutations.parquet`) → *[IRIS si `WITH_IRIS=1`]* → `build_tiles.sh` (tippecanoe) → `qa_checks.py`. Sortie : `build/dvf.pmtiles` + `build/qa_report.json` (les comptages sont comparés au build précédent, tolérance ±20 % ; après un changement de périmètre ou de population : `--reset-baseline`).
 
 **Évolution 2026-06-12 — parité carex.immo + adresse.** La consolidation SQL est remplacée par le pont de parité de l'app iOS (`pipeline/parity/`, copie verbatim de `carex.immo/tools/dvf-tiles`, goldens Swift rejoués à chaque build) : codes `type`/`nat` de l'app (immeuble inclus, jamais 0), pièces sommées, fusion des biens, ancrage par la parcelle de la 1ʳᵉ ligne (sans ancre → rejet compté), plus de filtre `vf > 0` (attribut omis). La couche `mutations` porte désormais `adr` (adresse) et `cp` (code postal) **à z≥13 uniquement** — c'est ce qui alimente la liste de mutations de l'app au zoom rue ; `annee`/`pm2`/`nc`/`dep` sortent du schéma (dérivables côté client, cf. CLAUDE.md § Encodage). Les mesures France ci-dessous prédatent ce changement (à re-mesurer au prochain build France).
 

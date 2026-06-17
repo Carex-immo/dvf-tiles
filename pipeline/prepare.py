@@ -9,6 +9,7 @@ les coordonnees de la parcelle de sa 1re ligne (jamais de repli ; sans ancre
 (remap COG, agregats annee x type, exports). Sorties :
   - build/mutations_consolidees.jsonl  (intermediaire, 1 ligne par mutation)
   - build/mutations.geojsonl           (points ; terrain nu exclu de la couche)
+  - build/mutations.parquet            (mutations + lon/lat ; source jointure IRIS)
   - build/communes.geojson             (agregats + centroides cx/cy)
   - build/departements.geojson
 
@@ -431,6 +432,26 @@ def main() -> int:
                         "properties": props,
                     }, separators=(",", ":"), ensure_ascii=False) + "\n")
         print("->", out_pts, f"{os.path.getsize(out_pts)/1e6:.1f} Mo")
+
+        # Export Parquet — consomme par build_iris.py pour la jointure spatiale
+        # IRIS (ST_Within(point, polygone)). Colonnes calees sur build_iris.COLS.
+        # Meme population que la couche points : terrain nu (type NULL) exclu, donc
+        # 1 ligne Parquet par ligne de mutations.geojsonl (invariant verifie en QA).
+        # annee et pm2 sont des derives (date // 10000 ; round(vf/sb) si vf,sb > 0,
+        # entier €/m² comme les agregats). nc (nature de culture dominante) n'existe
+        # PAS dans le pont de parite (consolidate.py verbatim, intouchable) : colonne
+        # presente mais NULL (seul ecart vs la lignee snapshot, sans consommateur aval).
+        out_parquet = os.path.join(args.out, "mutations.parquet")
+        con.execute(f"""
+        COPY (
+          SELECT id, date, date // 10000 AS annee, nat, type, vf, sb, st,
+                 CASE WHEN vf > 0 AND sb > 0
+                      THEN CAST(round(vf * 1.0 / sb) AS INTEGER) END AS pm2,
+                 np, nl, NULL::INTEGER AS nc, dep, com, lon, lat
+          FROM mutations WHERE type IS NOT NULL
+        ) TO '{out_parquet}' (FORMAT parquet)
+        """)
+        print("->", out_parquet, f"{os.path.getsize(out_parquet)/1e6:.1f} Mo")
 
     # ---- Agregats annee x type --------------------------------------------
     # annee et pm2 sont des derives (la couche points ne les porte plus) :

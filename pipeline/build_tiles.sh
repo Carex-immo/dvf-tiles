@@ -44,9 +44,26 @@ tippecanoe -o departements.pmtiles -l departements \
   --force --quiet \
   departements.geojson
 
+# iris (polygones, z10-14 : resolution GPS->IRIS + choroplethe). Couche OPTIONNELLE,
+# presente seulement si build_iris.py a tourne (pipeline WITH_IRIS=1) et produit
+# iris_layer.geojson. Auto-detectee : aucune erreur sur un build sans IRIS (POC).
+IRIS_TILE=""
+if [ -s iris_layer.geojson ]; then
+  echo "== iris (polygones, z10-14) =="
+  tippecanoe -o iris.pmtiles -l iris \
+    -Z10 -z14 \
+    --coalesce-densest-as-needed --detect-shared-borders \
+    --force --quiet \
+    iris_layer.geojson
+  IRIS_TILE="iris.pmtiles"
+else
+  rm -f iris.pmtiles   # pas de couche iris ce build : pas de reliquat dans le join
+fi
+
 echo "== fusion =="
+# shellcheck disable=SC2086
 tile-join -o dvf.pmtiles --force --no-tile-size-limit \
   mutations_z4_12.pmtiles mutations_z13_14.pmtiles \
-  communes.pmtiles departements.pmtiles
+  communes.pmtiles departements.pmtiles $IRIS_TILE
 
 ls -la ./*.pmtiles

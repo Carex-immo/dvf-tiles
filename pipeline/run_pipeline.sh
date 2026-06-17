@@ -5,15 +5,23 @@
 #   ./pipeline/run_pipeline.sh france   # France entiere (prevoir ~3 Go de CSV,
 #                                       # ~8 Go RAM, 30-90 min selon machine)
 #
-# Etapes : download CSV -> download contours -> parite (goldens) ->
-#          prepare (consolidation parite + DuckDB aval) ->
-#          tippecanoe/tile-join -> controles qualite -> build/dvf.pmtiles
+# Couche IRIS (opt-in) : WITH_IRIS=1 ./pipeline/run_pipeline.sh poc|france
+#   telecharge le GPKG CONTOURS-IRIS France (~49k IRIS, requiert 7z), ajoute la
+#   couche tuile `iris` a dvf.pmtiles et produit build/iris/ + build/iris_index/.
+#   Desactive par defaut (le POC reste ~2 min sans le gros GPKG).
+#
+# Etapes : download CSV -> download contours (+IRIS si opt-in) -> parite (goldens)
+#          -> prepare (consolidation parite + DuckDB aval, + mutations.parquet)
+#          -> [IRIS] -> tippecanoe/tile-join -> controles qualite -> build/dvf.pmtiles
 set -euo pipefail
 cd "$(dirname "$0")/.."
 
 MODE="${1:-poc}"
 YEARS="${YEARS:-2021 2022 2023 2024 2025}"
 PREPARE_OPTS="${PREPARE_OPTS:-}"
+WITH_IRIS="${WITH_IRIS:-0}"            # 1 = couche IRIS + index departemental
+IRIS_MILLESIME="${IRIS_MILLESIME:-2026}"
+export WITH_IRIS                       # vu par pipeline/download.sh (telechargement GPKG)
 
 case "$MODE" in
   poc)    SCOPE_CSV="69 01"; SCOPE_GEO="69 01"
@@ -43,7 +51,15 @@ echo "==== [4/6] Preparation (consolidation parite + DuckDB aval) ===="
 python3 pipeline/prepare.py --raw data/raw --geo data/geo --out build \
   --pattern "$PATTERN" $PREPARE_OPTS
 
+if [ "$WITH_IRIS" = "1" ]; then
+  echo "==== [IRIS] jointure mutations->IRIS (ST_Within) + index departemental ===="
+  python3 pipeline/build_iris.py --mutations build/mutations.parquet \
+    --iris data/geo/CONTOURS-IRIS.gpkg --out build --millesime "$IRIS_MILLESIME"
+  python3 pipeline/build_iris_index.py --iris data/geo/CONTOURS-IRIS.gpkg --out build
+fi
+
 echo "==== [5/6] Tuiles (tippecanoe) ===="
+# build_tiles.sh auto-detecte build/iris_layer.geojson et ajoute la couche `iris`.
 bash pipeline/build_tiles.sh build
 
 echo "==== [6/6] Controles qualite ===="
