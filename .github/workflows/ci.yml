@@ -27,7 +27,7 @@ jobs:
   swift:
     name: Tests Swift (DvfTileKit)
     runs-on: ubuntu-latest
-    container: swift:6
+    container: swift:6.1
     steps:
       - uses: actions/checkout@v4
       - name: swift test (décodeur MVT + parité goldens)
