@@ -79,3 +79,28 @@ def test_swift_comment_codes_match_spec():
         assert m, f"commentaire de `let {key}` introuvable dans le struct"
         codes = set(re.findall(r"\b([1-5])\b", m.group(1)))
         assert codes == set(SPEC[key]), f"codes {key} Swift={codes}"
+
+
+def _key_present(text, key):
+    """Vrai si `key` apparaît comme accès de propriété (JS ou Python).
+    Les motifs sont assez stricts pour ne pas matcher `type:"vector"` (clé
+    MapLibre) ni les appels de méthode `map.on(...)`.
+    """
+    patterns = [
+        rf'\bp\.{key}\b',                 # JS    p.vf
+        rf'\["get"\s*,\s*"{key}"\]',      # JS    ["get","vf"]
+        rf'''\[\s*["']{key}["']\s*\]''',  # subscript  p["vf"] / ex['adr']
+        rf'''\.get\(\s*["']{key}["']''',  # Python .get("vf" / .get('com'
+    ]
+    return any(re.search(p, text) for p in patterns)
+
+
+def test_soft_consumers_reference_declared_keys():
+    spec_keys = set(SPEC["mutation_keys"])
+    for rel, keys in SPEC["soft_consumers"].items():
+        text = (ROOT / rel).read_text()
+        for key in keys:
+            assert key in spec_keys, f"{rel}: clé déclarée {key!r} hors mutation_keys"
+            assert _key_present(text, key), (
+                f"{rel}: clé {key!r} déclarée mais absente du fichier "
+                f"(renommée sans propager ?)")
