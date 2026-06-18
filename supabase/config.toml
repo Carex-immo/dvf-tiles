@@ -1,0 +1,14 @@
+# Configuration Supabase CLI — lue à chaque `supabase functions deploy`.
+#
+# Raison d'être : rendre `verify_jwt = false` DURABLE pour la fonction de tuiles.
+# Sous le CLI v2, le flag `--no-verify-jwt` ne s'applique qu'au `functions serve`
+# local et NE PERSISTE PAS au déploiement. Sans ce bloc, la plateforme applique
+# son défaut (`verify_jwt = true`) et l'endpoint /{couche}/{z}/{x}/{y}.mvt répond
+# 401 "Missing authorization header" au lieu de servir les tuiles open data sans
+# JWT (cf. doc Supabase « Function Configuration » : la conf par fonction se règle
+# ici pour être cohérente entre tous les déploiements).
+project_id = "dvf-tiles"
+
+[functions.dvf-tiles]
+# Service de tuiles public (open data DVF) : aucune authentification requise.
+verify_jwt = false
