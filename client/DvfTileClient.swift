@@ -1,6 +1,8 @@
-// CAREX - Client de tuiles DVF pour iOS (MapKit natif) - squelette de reference
-// Le decodage MVT est fourni par le package DvfTileKit (client/DvfTileKit/,
-// zero dependance : ProtobufReader + MVTTile + MVTDecoder) - `swift test` pour la parite.
+// CAREX - Reference d'encodage des tuiles DVF cote Swift.
+// Le struct Mutation ci-dessous est la declaration canonique de l'encodage
+// (verrouillee par tests/test_tile_encoding_contract.py). L'app iOS rend les
+// tuiles via MapLibreGL ; le TileMath/fetch MapKit plus bas reste un squelette
+// illustratif. Le decodage MVT est fourni par DvfTileKit (`swift test`).
 
 import Foundation
 import MapKit
