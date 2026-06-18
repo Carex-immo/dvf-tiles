@@ -16,45 +16,16 @@ const LAYER_RANGES: Record<string, [number, number]> = {
   iris: [10, 14], // couche optionnelle (présente si l'archive a été buildée WITH_IRIS=1)
 };
 
-// Cache for PMTiles metadata and tile index
-let pmtilesMetadata: {
-  minZoom: number;
-  maxZoom: number;
-  archivedTiles: number;
-} | null = null;
+// Cache borné — surtout PAS `immutable` : l'archive est servie sous une URL fixe
+// (dvf.pmtiles / tiles_index.json) et la DVF est rafraîchie 2×/an (avril, octobre).
+// `immutable` figerait des tuiles périmées jusqu'à un an chez les clients et le CDN.
+// max-age=1j + stale-while-revalidate=7j → péremption ≤ ~1 j après un build, sans
+// à-coup de latence (le périmé est servi pendant la revalidation en arrière-plan).
+const TILE_CACHE_CONTROL = "public, max-age=86400, stale-while-revalidate=604800";
 
+// Cache for the tile index (chargé une fois par cold start)
 // deno-lint-ignore no-explicit-any
 let cachedTileIndex: any = null;
-
-/**
- * Fetch and parse PMTiles metadata from the index.json file
- */
-async function loadPMTilesMetadata() {
-  if (pmtilesMetadata !== null) {
-    return pmtilesMetadata;
-  }
-
-  try {
-    const indexUrl = `${SUPABASE_URL}/storage/v1/object/public/${BUCKET}/tiles_index.json`;
-    const response = await fetch(indexUrl);
-
-    if (!response.ok) {
-      throw new Error(`Failed to fetch index.json: ${response.status}`);
-    }
-
-    const indexData = await response.json();
-    pmtilesMetadata = {
-      minZoom: indexData.metadata.headerInfo.minZoom,
-      maxZoom: indexData.metadata.headerInfo.maxZoom,
-      archivedTiles: indexData.metadata.headerInfo.numAddressedTiles,
-    };
-
-    return pmtilesMetadata;
-  } catch (error) {
-    console.error("Error loading PMTiles metadata:", error);
-    throw error;
-  }
-}
 
 /**
  * Load and cache the tile index from tiles_index.json
@@ -231,7 +202,7 @@ serve(async (req: Request) => {
     return new Response(null, {
       status: 204,
       headers: {
-        "Cache-Control": "public, immutable, max-age=31536000",
+        "Cache-Control": TILE_CACHE_CONTROL,
         "Access-Control-Allow-Origin": "*",
       },
     });
@@ -246,7 +217,7 @@ serve(async (req: Request) => {
       return new Response(null, {
         status: 204,
         headers: {
-          "Cache-Control": "public, immutable, max-age=31536000",
+          "Cache-Control": TILE_CACHE_CONTROL,
           "Access-Control-Allow-Origin": "*",
         },
       });
@@ -259,7 +230,7 @@ serve(async (req: Request) => {
       headers: {
         "Content-Type": "application/octet-stream",
         "Content-Encoding": "gzip",
-        "Cache-Control": "public, immutable, max-age=31536000",
+        "Cache-Control": TILE_CACHE_CONTROL,
         "Access-Control-Allow-Origin": "*",
       },
     });
