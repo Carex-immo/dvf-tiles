@@ -89,6 +89,8 @@ dvf-tiles/
 
 Validation manuelle : `python3 client/simulate_ios.py build/dvf.pmtiles` (chemin iOS) et `python3 demo/serve.py` → http://localhost:8080/demo/index.html (carte).
 
+Validation automatique (CI) : `.github/workflows/ci.yml` joue sur chaque PR les tests Python (`pytest pipeline/parity tests/` — parité, suite IRIS, contrat d'encodage) et Swift (`swift test` sur `client/DvfTileKit`, container `swift:6`). Le bench Deno et le pipeline complet restent manuels.
+
 Mode France entière — gestion du COG (important) :
 
 - Les contours communaux viennent de **geo.api.gouv.fr département par département** : c'est la seule source alignée sur le COG courant. Un fichier national figé (Etalab 2024, france-geojson) crée des trous pour chaque fusion/scission postérieure à son millésime (ex : Pierrefitte-sur-Seine fusionnée dans Saint-Denis au 01/01/2025).

@@ -1,0 +1,34 @@
+name: CI
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  python:
+    name: Tests Python (parité + IRIS + contrat)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Installer les dépendances de test
+        run: pip install pytest duckdb shapely
+      - name: pytest (parité + IRIS + contrat d'encodage)
+        run: python -m pytest pipeline/parity tests/ -q
+
+  swift:
+    name: Tests Swift (DvfTileKit)
+    runs-on: ubuntu-latest
+    container: swift:6
+    steps:
+      - uses: actions/checkout@v4
+      - name: swift test (décodeur MVT + parité goldens)
+        run: swift test --package-path client/DvfTileKit

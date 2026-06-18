@@ -1,0 +1,10 @@
+{
+  "_doc": "Source de vérité de l'encodage compact des tuiles DVF. Verrouillé par tests/test_tile_encoding_contract.py. Toute évolution se propage ici ET dans prepare.py (TILE_PROPS), client/DvfTileClient.swift (struct Mutation), demo/index.html, client/simulate_ios.py.",
+  "mutation_keys": ["id", "date", "nat", "type", "vf", "sb", "st", "np", "nl", "com", "adr", "cp"],
+  "nat":  {"1": "Vente", "2": "VEFA", "3": "Adjudication", "4": "Echange", "5": "Expropriation"},
+  "type": {"1": "maison", "2": "appartement", "3": "immeuble", "4": "local", "5": "dependance"},
+  "soft_consumers": {
+    "demo/index.html":        ["id", "date", "type", "vf", "sb", "st", "nl", "adr", "cp"],
+    "client/simulate_ios.py": ["type", "date", "vf", "sb", "adr", "cp", "com"]
+  }
+}
