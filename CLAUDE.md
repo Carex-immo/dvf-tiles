@@ -43,6 +43,8 @@ Validation (pas de linter ; tests automatisés : `pipeline/parity/` + le package
 ```bash
 python3 client/simulate_ios.py build/dvf.pmtiles   # simule le chemin iOS : bbox → tuiles → MVT → filtres → stats
 cd client/DvfTileKit && swift test                 # décodeur MVT Swift : unitaires + parité goldens
+python3 -m pytest tests/                           # tests IRIS (build_iris, index, simulate) + patch_manifest — NON joués par run_pipeline.sh
+deno run --allow-net tests/edge-function-perf.test.ts  # benchmark latence/cache de l'Edge Function (frappe l'endpoint live)
 python3 demo/serve.py                              # → http://localhost:8080/demo/index.html (carte MapLibre)
 ```
 
