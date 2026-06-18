@@ -25,6 +25,9 @@ def _tile_props_from_prepare():
         if isinstance(node, ast.Assign) and any(
             isinstance(t, ast.Name) and t.id == "TILE_PROPS" for t in node.targets
         ):
+            for el in node.value.elts:
+                if not isinstance(el, ast.Constant):
+                    raise AssertionError("TILE_PROPS contient un élément non littéral")
             return [el.value for el in node.value.elts]
     raise AssertionError("TILE_PROPS introuvable dans pipeline/prepare.py")
 
@@ -43,6 +46,8 @@ def _swift_struct_fields():
             m = re.match(r"\s*let (\w+)\s*:", line)
             if m and m.group(1) != "coordinate":
                 fields.append(m.group(1))
+    if not fields:
+        raise AssertionError("struct Mutation introuvable (ou sans champ `let`) dans DvfTileClient.swift")
     return fields
 
 
@@ -96,6 +101,7 @@ def _key_present(text, key):
 
 
 def test_soft_consumers_reference_declared_keys():
+    """Chaque clé déclarée pour un consommateur souple doit apparaître comme accès dans son fichier."""
     spec_keys = set(SPEC["mutation_keys"])
     for rel, keys in SPEC["soft_consumers"].items():
         text = (ROOT / rel).read_text()
