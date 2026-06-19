@@ -1,0 +1,7 @@
+# Dépendances du job python de la CI (.github/workflows/ci.yml).
+# Footprint minimal pour `pytest pipeline/parity tests/` : pas de
+# mapbox-vector-tile/pmtiles (réservés à simulate_ios.py, non joué en CI).
+# Sert aussi de clé de cache pip (setup-python cache-dependency-path).
+pytest
+duckdb
+shapely
