@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Vue d'ensemble
 
-POC CAREX d'un service de tuiles DVF (ventes immobilières, données geo-dvf de la DGFiP). Le pipeline produit `build/dvf.pmtiles`, une archive PMTiles statique à 3 couches vectorielles, servie telle quelle en production (cible spec : R2/S3 + Worker PMTiles, `/{couche}/{z}/{x}/{y}.mvt`, tuile vide → 204). Implémente la spec `spec-service-tuiles-dvf.md` (hors dépôt). POC validé sur les départements 69 et 01 ; le pipeline supporte la France entière (`run_pipeline.sh france`), millésimes 2021–2025.
+POC CAREX d'un service de tuiles DVF (ventes immobilières, données geo-dvf de la DGFiP). Le pipeline produit `build/dvf.pmtiles`, une archive PMTiles statique à 3 couches vectorielles, servie telle quelle en production (cible spec : R2/S3 + Worker PMTiles, `/{couche}/{z}/{x}/{y}.mvt`, tuile vide → 204). Implémente la spec `spec-service-tuiles-dvf.md` (hors dépôt). POC validé sur les départements 69 et 01 ; le pipeline supporte la France entière (`run_pipeline.sh france`), données 2021-S1 → 2026-S1 (livraison oct. 2026 + 1ᵉʳ semestre 2021 conservé, cf. README § Livraison courante).
 
 **Service de production (Supabase)** : `dvf.pmtiles` uploadé sur le bucket Storage public `tiles` (https://bqwbazolhtwizafxqzlr.supabase.co/storage/v1/object/public/tiles/dvf.pmtiles), servi via Edge Function Deno (`supabase/functions/dvf-tiles/`) sur la route `/{couche}/{z}/{x}/{y}.mvt` (validation couche/zoom, 204 si hors plage). **Extraction des tuiles implémentée (v1.0)** : index pré-calculé `tiles_index.json` (généré par `scripts/build-pmtiles-index.mjs` **depuis l'archive courante**, uploadé sur le bucket) → lookup O(1) `tiles[z][x][y]` → lecture HTTP Range dans l'archive ; 200 MVT gzip, 204 si tuile absente (cf. `DEPLOYMENT.md` § État actuel). **Stats par entité** : `deploy-supabase.sh` uploade aussi `build/stats/` (panneau iOS au tap, cf. `docs/specs/2026-06-14-stats-bundles-contrat-aval-ios.md`). Déploiement : `./scripts/deploy-supabase.sh` et doc dans `DEPLOYMENT.md`. **Séquence après un build : `run_pipeline.sh` → `node scripts/build-pmtiles-index.mjs` (régénère l'index, sinon `deploy-supabase.sh` échoue sur l'écart taille index/archive) → `deploy-supabase.sh`.** Alternative en place : le client iOS lit le PMTiles directement par requêtes HTTP Range sur l'URL Storage publique (support natif) et le parse localement.
 
@@ -30,7 +30,7 @@ Pipeline complet via l'orchestrateur (venv activé) :
 Étapes individuelles, dans l'ordre :
 
 ```bash
-./pipeline/download.sh "2021 2022 2023 2024 2025" "69 01" data/raw   # CSV geo-dvf (skip si déjà présents)
+./pipeline/download.sh "2022 2023 2024 2025" "69 01" data/raw        # CSV geo-dvf (skip si déjà présents ; semestres 2021s1/2021s2/2026s1 posés à la main)
 ./pipeline/download_geo.sh "69 01" data/geo                          # contours + arrondissements + COG INSEE
 python3 -m pytest -q pipeline/parity                                  # bloquant : parité goldens carex.immo
 python3 pipeline/prepare.py --raw data/raw --geo data/geo --out build # consolidation parité + DuckDB → GeoJSON(L)

@@ -1,6 +1,6 @@
 # CAREX — Service de tuiles DVF
 
-Pipeline de production de tuiles vectorielles DVF (PMTiles statiques, 3 couches, granularité 1 point/mutation), conforme à la spec `spec-service-tuiles-dvf.md`. **POC validé le 11/06/2026** sur les départements 69 (Rhône) et 01 (Ain), millésimes 2021–2025 ; le pipeline supporte désormais le mode France entière.
+Pipeline de production de tuiles vectorielles DVF (PMTiles statiques, 3 couches, granularité 1 point/mutation), conforme à la spec `spec-service-tuiles-dvf.md`. **POC validé le 11/06/2026** sur les départements 69 (Rhône) et 01 (Ain), millésimes 2021–2025 ; le pipeline supporte désormais le mode France entière, alimenté depuis octobre 2026 par les données 2021-S1 → 2026-S1 (cf. § Livraison courante).
 
 ## Lancer un build
 
@@ -29,6 +29,22 @@ docker run --rm -v $(pwd)/data:/app/data -v $(pwd)/build:/app/build dvf-tiles fr
 
 Mise à jour semestrielle (cron 15 avril / 15 octobre, cf. spec §6) : relancer `run_pipeline.sh france` — `download.sh` reprend les téléchargements interrompus et saute les fichiers déjà présents (les supprimer pour forcer un rafraîchissement des millésimes réémis par la DGFiP).
 
+### Livraison courante (octobre 2026) : 2021-S1 → 2026-S1
+
+La livraison DVF d'octobre 2026 couvre 2021-S2 → 2026-S1 ; le 1ᵉʳ semestre 2021 est conservé depuis la livraison précédente. Contenu de `data/raw/` (motif `*_full.csv.gz`) :
+
+| Fichier | Origine |
+|---|---|
+| `2021s1_full.csv.gz` | extrait de l'ancien `2021_full` (`pipeline/extract_semestre.py --avant 2021-07-01 --decalage 2000000`) |
+| `2021s2_full.csv.gz`, `2022…2025_full.csv.gz`, `2026s1_full.csv.gz` | nouvelle livraison, renommée au format `*_full.csv.gz` |
+| `archive/` | ancienne livraison 2021–2025 (hors motif, ignorée par le pipeline) |
+
+Points d'attention d'une livraison à l'autre :
+- **`id_mutation` est renuméroté** à chaque livraison (sur 2025, seuls ~0,4 % des ids communs désignent la même mutation) : ne jamais mélanger deux livraisons sur une même période. Les deux livraisons numérotant 2021 à partir de `2021-1`, les ids du S1 extrait sont décalés de 2 000 000 (format `AAAA-N` conservé) ; `prepare.py` refuse tout doublon d'id.
+- La nouvelle livraison ajoute 2 à 5 % de mutations par année (expropriations et adjudications notamment), est déjà au COG récent (quasi plus de remappage), et écrit `surface_reelle_bati = 0` au lieu de vide pour les dépendances (sans effet : exclues de `sb`, `pm2` exige `sb > 0`). Coordonnées regéocodées (écart médian ~5 m).
+- 2021 et 2026 sont des **années mixtes/partielles** : leurs comptes annuels ne sont pas comparables aux années pleines.
+- Changement de périmètre → premier `qa_checks.py` après la livraison avec `--reset-baseline` si la tolérance ±20 % est dépassée.
+
 ## Résultats mesurés
 
 POC (départements 69 + 01) :
@@ -44,19 +60,19 @@ POC (départements 69 + 01) :
 | Filtre en mémoire (appart, 2024+, 2 000–8 000 €/m²) | 12 789 résultats en **14 ms** (Python ; Swift sera plus rapide) |
 | Contrôle métier | 4 810 €/m² médian appartement Lyon ✓ |
 
-Build France entière mesuré (millésimes 2021–2025) :
+Build France entière mesuré le 22/10/2026 (2021-S1 → 2026-S1, schéma parité+adresse, couche IRIS incluse) :
 
 | Mesure | Valeur |
 |---|---|
-| Lignes CSV source | ~20,4 M |
-| Mutations uniques (97,9 % géolocalisées) | **7 298 854** |
-| Communes / départements rendus | 33 272 / 97 |
-| Archive `dvf.pmtiles` (z4–14, exhaustif z13–14) | **913,6 Mo** |
-| Pires tuiles urbaines (Paris) | z12 : 445 Ko gz · z13 : 568 Ko gz (25 853 mutations) · z14 : 139 Ko gz |
+| Lignes CSV source (7 fichiers) | ~22,2 M |
+| Mutations consolidées (rejets sans ancre : 227 271, 2,8 %) | **7 887 181** |
+| Par année | 2021 : 1 669 k · 2022 : 1 656 k · 2023 : 1 357 k · 2024 : 1 241 k · 2025 : 1 369 k · 2026-S1 : 595 k |
+| Archive `dvf.pmtiles` (4 couches, z4–14, exhaustif z13–14) | **898,4 Mo** (270 733 tuiles) |
+| Pires tuiles urbaines (Paris) | z12 : 473 Ko gz · z13 : 561 Ko gz (28 472 mutations) · z14 : 140 Ko gz |
 
 Soit bien sous l'estimation de la spec (1,5–3 Go) grâce aux attributs compacts ; les tailles par tuile restent compatibles mobile (cf. `qa_report.json`, échantillons z12/z13/z14).
 
-**Tables ci-dessus = builds d'avant le lot parité+adresse** (schéma 14 attributs, population avec filtre vf>0) : à re-mesurer. Repères du build POC du 12/06/2026 (avec contours France entière joints) : 249 513 mutations consolidées, 12 attributs, `mutations_z13_14.pmtiles` 13,2 Mo, tuile Lyon z13 418 Ko gz (adresse comprise).
+**Table POC ci-dessus = build d'avant le lot parité+adresse** (schéma 14 attributs, population avec filtre vf>0). Repères du build POC du 12/06/2026 (avec contours France entière joints) : 249 513 mutations consolidées, 12 attributs, `mutations_z13_14.pmtiles` 13,2 Mo, tuile Lyon z13 418 Ko gz (adresse comprise).
 
 ## Arborescence
 
