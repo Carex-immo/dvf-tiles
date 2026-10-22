@@ -17,7 +17,10 @@ set -euo pipefail
 cd "$(dirname "$0")/.."
 
 MODE="${1:-poc}"
-YEARS="${YEARS:-2021 2022 2023 2024 2025}"
+# Millesimes annuels telecharges si absents. Les semestres de bord de la
+# livraison DVF courante (2021s1, 2021s2, 2026s1) sont poses a la main dans
+# data/raw (cf. download.sh) et ramasses par le motif *_full.csv.gz.
+YEARS="${YEARS:-2022 2023 2024 2025}"
 PREPARE_OPTS="${PREPARE_OPTS:-}"
 WITH_IRIS="${WITH_IRIS:-0}"            # 1 = couche IRIS + index departemental
 IRIS_MILLESIME="${IRIS_MILLESIME:-2026}"

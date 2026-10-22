@@ -4,8 +4,18 @@
 # Mode departements : ./download.sh "2021 2022 2023 2024 2025" "69 01" data/raw
 # Mode France entiere : ./download.sh "2021 2022 2023 2024 2025" full data/raw
 #   (full.csv.gz ~ 300-500 Mo par millesime ; reprise automatique avec curl -C -)
+#
+# Livraison DVF courante (2021-S2 -> 2026-S1) + 1er semestre 2021 conserve de
+# l'ancienne livraison. Fichiers semestriels poses a la main (non telecharges) :
+#   2021s1_full.csv.gz  pipeline/extract_semestre.py data/raw/archive/2021_full.csv.gz
+#                       data/raw/2021s1_full.csv.gz --avant 2021-07-01 --decalage 2000000
+#                       (ids 2021-N -> 2021-(N+2000000) : la nouvelle livraison
+#                       renumerote 2021-S2 a partir de 2021-1)
+#   2021s2_full.csv.gz, 2026s1_full.csv.gz  livres tels quels
+# Ne jamais melanger deux livraisons pour une meme periode : les id_mutation
+# sont renumerotes d'une livraison a l'autre.
 set -euo pipefail
-YEARS="${1:-2021 2022 2023 2024 2025}"
+YEARS="${1:-2022 2023 2024 2025}"
 DEPTS="${2:-69 01}"
 DEST="${3:-data/raw}"
 BASE="https://files.data.gouv.fr/geo-dvf/latest/csv"
