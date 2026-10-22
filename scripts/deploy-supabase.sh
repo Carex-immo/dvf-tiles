@@ -1,11 +1,24 @@
 #!/bin/bash
-# Déploiement des tuiles DVF sur Supabase : archive PMTiles + index + Edge Function.
+# Déploiement des tuiles DVF sur Supabase : archive PMTiles + index + Edge Function
+# + stats (bundles, index IRIS, détail IRIS).
 # Usage: ./scripts/deploy-supabase.sh [project-ref] [pmtiles-file]
+#   prod    : ./scripts/deploy-supabase.sh                       (bqwbazolhtwizafxqzlr)
+#   staging : ./scripts/deploy-supabase.sh uyozmyiunskrapdptqwv
 #
-# Prérequis : supabase CLI authentifié (supabase login), bucket public "tiles"
-# existant, build/tiles_index.json régénéré depuis l'archive à uploader
-# (node scripts/build-pmtiles-index.mjs) — un index d'une autre archive
-# servirait des offsets faux, donc des tuiles corrompues.
+# Prérequis :
+#  - supabase CLI authentifié (supabase login) — déploiement de l'Edge Function ;
+#  - aws CLI (brew install awscli) + clés S3 du projet (Dashboard → Storage →
+#    S3 Connection → New access key) dans un profil dédié, jamais committées :
+#      aws configure --profile supabase-<project-ref>    (région : eu-west-3)
+#    (profil surchargeable par AWS_PROFILE) ;
+#  - bucket public "tiles" existant ;
+#  - build/tiles_index.json régénéré depuis l'archive à uploader
+#    (node scripts/build-pmtiles-index.mjs) — un index d'une autre archive
+#    servirait des offsets faux, donc des tuiles corrompues.
+#
+# Upload par l'API S3 de Supabase Storage : un PutObject (ou multipart pour
+# l'archive) remplace l'objet d'un bloc à la fin du transfert — aucune fenêtre
+# sans objet, reprise par parties, et sync en masse du détail IRIS (~47 000 fichiers).
 
 set -euo pipefail
 
@@ -13,25 +26,35 @@ PROJECT_REF="${1:-bqwbazolhtwizafxqzlr}"
 PMTILES_FILE="${2:-build/dvf.pmtiles}"
 INDEX_FILE="build/tiles_index.json"
 BUCKET="tiles"
+PUBLIC_URL="https://$PROJECT_REF.supabase.co/storage/v1/object/public/$BUCKET"
+FN_URL="https://$PROJECT_REF.supabase.co/functions/v1/dvf-tiles"
+S3_ENDPOINT="https://$PROJECT_REF.storage.supabase.co/storage/v1/s3"
+export AWS_PROFILE="${AWS_PROFILE:-supabase-$PROJECT_REF}"
+# aws CLI ≥ 2.23 envoie par défaut des checksums CRC que les S3 compatibles ne
+# gèrent pas tous : on se limite à ceux exigés par l'opération.
+export AWS_REQUEST_CHECKSUM_CALCULATION=when_required
+export AWS_RESPONSE_CHECKSUM_VALIDATION=when_required
 
-echo "🚀 Déploiement des tuiles DVF — projet Supabase : $PROJECT_REF"
+s3() { aws --endpoint-url "$S3_ENDPOINT" --region "${S3_REGION:-eu-west-3}" "$@"; }
+# Tous les objets sont servis en no-cache (archive sous URL fixe, index
+# dé-versionné, stats rafraîchies 2×/an) : comportement du servi actuel.
+put() { # src, chemin dans le bucket, content-type
+  s3 s3 cp "$1" "s3://$BUCKET/$2" --content-type "$3" --cache-control no-cache --only-show-errors
+}
 
-# Étape 1 : lier le projet
-echo "📌 Lien au projet Supabase..."
-supabase link --project-ref "$PROJECT_REF" --yes
+echo "🚀 Déploiement des tuiles DVF — projet Supabase : $PROJECT_REF (profil aws : $AWS_PROFILE)"
 
-# Étape 2 : le bucket existe ?
-# NB : `supabase storage ls` exige --experimental et le schéma ss:///
-# (ss:/// liste les buckets) — sans cela la commande échoue silencieusement.
-echo "📁 Vérification du bucket '$BUCKET'..."
-if ! supabase storage ls ss:/// --experimental | grep -q "$BUCKET"; then
-  echo "❌ Bucket '$BUCKET' introuvable. À créer (public) dans le dashboard :"
+# Étape 1 : outils, accès S3, bucket
+command -v aws >/dev/null      || { echo "❌ aws CLI manquant (brew install awscli)"; exit 1; }
+command -v supabase >/dev/null || { echo "❌ supabase CLI manquant"; exit 1; }
+if ! s3 s3api head-bucket --bucket "$BUCKET" >/dev/null 2>&1; then
+  echo "❌ Bucket '$BUCKET' inaccessible en S3 (profil $AWS_PROFILE absent, clés invalides"
+  echo "   ou bucket inexistant). Bucket (public) à créer dans le dashboard :"
   echo "   https://supabase.com/dashboard/project/$PROJECT_REF/storage/buckets"
   exit 1
 fi
 
-# Étape 3 : cohérence archive/index puis upload (archive d'abord : l'index ne
-# doit jamais référencer des offsets que l'archive en ligne n'a pas encore)
+# Étape 2 : cohérence archive/index
 [ -f "$PMTILES_FILE" ] || { echo "❌ Archive introuvable : $PMTILES_FILE"; exit 1; }
 [ -f "$INDEX_FILE" ]   || { echo "❌ Index introuvable : $INDEX_FILE (node scripts/build-pmtiles-index.mjs)"; exit 1; }
 
@@ -43,32 +66,56 @@ if [ "$INDEX_SIZE" != "$ARCHIVE_SIZE" ]; then
   exit 1
 fi
 
-# `storage cp` ne sait pas écraser (409 Duplicate) : on supprime puis on
-# re-uploade. Fenêtre sans objet pendant l'upload — assumée au stade POC.
-upload() {
-  local src="$1" dst="$2"
-  if ! supabase storage cp "$src" "$dst" --experimental 2>/dev/null; then
-    echo "   (objet existant : suppression puis re-upload)"
-    echo y | supabase storage rm "$dst" --experimental || true
-    if ! supabase storage cp "$src" "$dst" --experimental; then
-      echo "❌ Upload CLI échoué pour $dst. Repli : dashboard (upload résumable)"
-      echo "   https://supabase.com/dashboard/project/$PROJECT_REF/storage/buckets/$BUCKET"
-      exit 1
-    fi
-  fi
-}
-
-echo "📤 Upload de $PMTILES_FILE ($((ARCHIVE_SIZE / 1024 / 1024)) Mo)..."
-upload "$PMTILES_FILE" "ss:///$BUCKET/dvf.pmtiles"
+# Étape 3 : archive puis index (l'index ne doit jamais référencer des offsets
+# que l'archive en ligne n'a pas encore)
+echo "📤 Upload de $PMTILES_FILE ($((ARCHIVE_SIZE / 1024 / 1024)) Mo, multipart)..."
+put "$PMTILES_FILE" dvf.pmtiles application/octet-stream
+ONLINE_SIZE=$(curl -sI "$PUBLIC_URL/dvf.pmtiles" | awk 'tolower($1)=="content-length:" {print $2}' | tr -d '\r')
+if [ "$ONLINE_SIZE" != "$ARCHIVE_SIZE" ]; then
+  echo "❌ Archive en ligne : ${ONLINE_SIZE:-?} o, attendu $ARCHIVE_SIZE o (bucket public ?)"
+  exit 1
+fi
 
 echo "📤 Upload de $INDEX_FILE..."
-upload "$INDEX_FILE" "ss:///$BUCKET/tiles_index.json"
+put "$INDEX_FILE" tiles_index.json application/json
 
-# Manifest IRIS (additif, AVANT l'upload des stats) : si l'index IRIS a été
-# produit (WITH_IRIS=1), patch_manifest.py enrichit build/stats/manifest.json
-# avec millesime_iris + layers.iris_index + compteurs.iris (idempotent, préserve
-# la version mintée par le pipeline stats). Le manifest patché est uploadé juste
-# après par le bloc STATS_DIR.
+# Étape 4 : Edge Function, AUSSITÔT après l'index — chaque instance garde
+# tiles_index.json en mémoire sans expiration : une instance chaude servirait
+# la nouvelle archive avec les offsets de l'ancien index (tuiles corrompues).
+# Le redéploiement recycle les instances.
+echo "⚙️  Déploiement de l'Edge Function (--no-verify-jwt : service public)..."
+supabase functions deploy dvf-tiles --project-ref "$PROJECT_REF" --no-verify-jwt
+
+# Étape 5 : test de fumée — une tuile dense (Lyon z13) doit sortir en MVT
+# lisible, couche mutations en tête. La passerelle Supabase peut décompresser
+# le gzip de l'archive (constaté : corps MVT brut) : on accepte les deux.
+echo "🧪 Test de fumée..."
+SMOKE=$(mktemp)
+CODE=000
+for _ in 1 2 3 4 5 6; do
+  CODE=$(curl -s -o "$SMOKE" -w '%{http_code}' "$FN_URL/mutations/13/4206/2922.mvt")
+  [ "$CODE" = "200" ] && break
+  sleep 5
+done
+if [ "$CODE" != "200" ] || ! python3 - "$SMOKE" <<'EOF'
+import gzip, sys
+b = open(sys.argv[1], "rb").read()
+if b[:2] == b"\x1f\x8b":
+    b = gzip.decompress(b)
+sys.exit(0 if b[:1] == b"\x1a" and b"mutations" in b[:64] else 1)
+EOF
+then
+  echo "❌ Tuile de contrôle : HTTP $CODE ou MVT illisible — ne pas poursuivre"
+  echo "   (l'archive et l'index en ligne sont peut-être incohérents)."
+  rm -f "$SMOKE"; exit 1
+fi
+echo "   OK ($(wc -c < "$SMOKE" | tr -d ' ') o)"
+rm -f "$SMOKE"
+
+# Étape 6 : stats. Manifest IRIS (additif) : si l'index IRIS a été produit
+# (WITH_IRIS=1), patch_manifest.py enrichit build/stats/manifest.json avec
+# millesime_iris + layers.iris_index + compteurs.iris (idempotent, préserve la
+# version mintée par le pipeline stats).
 IRIS_MILLESIME="${IRIS_MILLESIME:-2026}"
 if [ -d "build/iris_index" ] && [ -f "build/stats/manifest.json" ]; then
   echo "🧩 Patch du manifest stats (bits IRIS)..."
@@ -79,15 +126,15 @@ if [ -d "build/iris_index" ] && [ -f "build/stats/manifest.json" ]; then
     --out build/stats/manifest.json
 fi
 
-# Bundles de stats par département (panneau iOS au tap) — fichiers statiques publics
+# Le manifest part en DERNIER : il annonce les années et couches disponibles,
+# il ne doit pas précéder les fichiers qu'il référence.
 STATS_DIR="build/stats"
 if [ -d "$STATS_DIR" ]; then
   COUNT=$(find "$STATS_DIR" -type f -name '*.json' | wc -l | tr -d ' ')
-  echo "📤 Upload des bundles de stats ($COUNT fichiers depuis $STATS_DIR)..."
-  while IFS= read -r f; do
-    rel="${f#build/}"                       # ex: stats/manifest.json, stats/dep/69.json
-    upload "$f" "ss:///$BUCKET/$rel"
-  done < <(find "$STATS_DIR" -type f -name '*.json')
+  echo "📤 Upload des bundles de stats ($COUNT fichiers, manifest en dernier)..."
+  s3 s3 cp "$STATS_DIR" "s3://$BUCKET/stats" --recursive \
+    --exclude "*" --include "*.json" --exclude "manifest.json" \
+    --content-type application/json --cache-control no-cache --only-show-errors
 else
   echo "ℹ️  $STATS_DIR absent : aucun bundle de stats à uploader (relancer prepare.py)"
 fi
@@ -96,42 +143,32 @@ fi
 if [ -d "build/iris_index" ]; then
   N=$(find build/iris_index -name '*.json' | wc -l | tr -d ' ')
   echo "📤 Upload de l'index IRIS départemental ($N fichiers → stats/iris_index/)..."
-  while IFS= read -r f; do
-    upload "$f" "ss:///$BUCKET/stats/iris_index/$(basename "$f")"
-  done < <(find build/iris_index -name '*.json')
+  s3 s3 cp build/iris_index "s3://$BUCKET/stats/iris_index" --recursive \
+    --exclude "*" --include "*.json" \
+    --content-type application/json --cache-control no-cache --only-show-errors
 fi
 
 # Détail par IRIS (contour + stats + mutations, chargé au tap) : stats/iris/{code_iris}.json
+# sync sans --delete : un IRIS disparu garde son ancien fichier (inoffensif,
+# plus référencé par l'index) plutôt que de risquer une suppression en masse.
 if [ -d "build/iris" ]; then
   N=$(find build/iris -name '*.json' | wc -l | tr -d ' ')
-  if [ "$N" -gt 5000 ]; then
-    # À l'échelle France (~49 000 IRIS) l'upload CLI un-par-un est impraticable.
-    echo "ℹ️  Détail IRIS : $N fichiers — trop nombreux pour l'upload CLI un-par-un."
-    echo "    Pousser en bulk (S3, méthode éprouvée ; nécessite des clés S3 Supabase) :"
-    echo "      aws s3 sync build/iris s3://$BUCKET/stats/iris \\"
-    echo "        --endpoint-url https://$PROJECT_REF.storage.supabase.co/storage/v1/s3 \\"
-    echo "        --content-type application/json --cache-control 'public, max-age=86400'"
-  else
-    echo "📤 Upload du détail IRIS ($N fichiers → stats/iris/)..."
-    while IFS= read -r f; do
-      upload "$f" "ss:///$BUCKET/stats/iris/$(basename "$f")"
-    done < <(find build/iris -name '*.json')
-  fi
+  echo "📤 Sync du détail IRIS ($N fichiers → stats/iris/)..."
+  s3 s3 sync build/iris "s3://$BUCKET/stats/iris" \
+    --exclude "*" --include "*.json" \
+    --content-type application/json --cache-control no-cache --only-show-errors
 fi
 
-# Étape 4 : Edge Function — tuiles open data, servies sans JWT
-echo "⚙️  Déploiement de l'Edge Function (--no-verify-jwt : service public)..."
-supabase functions deploy dvf-tiles --project-ref "$PROJECT_REF" --no-verify-jwt
+if [ -f "$STATS_DIR/manifest.json" ]; then
+  echo "📤 Upload du manifest stats..."
+  put "$STATS_DIR/manifest.json" stats/manifest.json application/json
+fi
 
-# Étape 5 : vérification
 echo "✅ Déploiement terminé."
 echo ""
 echo "📍 URLs :"
-echo "   PMTiles : https://$PROJECT_REF.supabase.co/storage/v1/object/public/$BUCKET/dvf.pmtiles"
-echo "   Index   : https://$PROJECT_REF.supabase.co/storage/v1/object/public/$BUCKET/tiles_index.json"
-echo "   Stats   : https://$PROJECT_REF.supabase.co/storage/v1/object/public/$BUCKET/stats/manifest.json"
-[ -d "build/iris_index" ] && echo "   IRIS idx: https://$PROJECT_REF.supabase.co/storage/v1/object/public/$BUCKET/stats/iris_index/{DD}.json"
-echo "   API     : https://$PROJECT_REF.supabase.co/functions/v1/dvf-tiles/{couche}/{z}/{x}/{y}.mvt"
-echo ""
-echo "🧪 Test :"
-echo "   curl -sI https://$PROJECT_REF.supabase.co/functions/v1/dvf-tiles/mutations/13/4206/2922.mvt"
+echo "   PMTiles : $PUBLIC_URL/dvf.pmtiles"
+echo "   Index   : $PUBLIC_URL/tiles_index.json"
+echo "   Stats   : $PUBLIC_URL/stats/manifest.json"
+[ -d "build/iris_index" ] && echo "   IRIS idx: $PUBLIC_URL/stats/iris_index/{DD}.json"
+echo "   API     : $FN_URL/{couche}/{z}/{x}/{y}.mvt"

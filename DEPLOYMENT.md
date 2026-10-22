@@ -2,6 +2,13 @@
 
 Production du service de tuiles DVF sur Supabase Storage + Edge Functions.
 
+> **En production depuis le 22/10/2026** (livraison DVF oct. 2026, 2021-S1 → 2026-S1,
+> cf. README § Livraison courante) : `dvf.pmtiles` **898,4 Mo / 270 733 tuiles**,
+> `tiles_index.json` **11,3 Mo** (JSON compact), stats `years` 2021–2026, couche et détail
+> IRIS (49 386 IRIS indexés, 46 711 fichiers de détail). Déployé par
+> `deploy-supabase.sh` via l'API S3 en 16 min 25 s, test de fumée OK. Les blocs
+> ci-dessous (12/06, 14/06) restent comme historique.
+>
 > **Build en production depuis le 12/06/2026** (lot parité+adresse) : `dvf.pmtiles`
 > **678,2 MB / 206 231 tuiles**, `tiles_index.json` **17,0 MB / 206 231 tuiles indexées**,
 > fonction déployée avec `--no-verify-jwt` (service public — corrige le 401 du premier
@@ -61,9 +68,16 @@ Edge Function `dvf-tiles` (Deno, PMTiles v3 compliant)
 
 ## Prérequis
 
-- Supabase CLI v2.104+
-- Supabase project (bqwbazolhtwizafxqzlr)
-- Build local : `./pipeline/run_pipeline.sh france` → `build/dvf.pmtiles`
+- Supabase CLI v2.104+ authentifié (`supabase login`) — déploiement de l'Edge Function
+- aws CLI v2 (`brew install awscli`) — tous les uploads passent par l'API S3 de Storage
+- Clés S3 du projet (Dashboard → Storage → S3 Connection → *New access key*) dans un
+  profil dédié, **jamais committées** :
+  ```bash
+  aws configure --profile supabase-bqwbazolhtwizafxqzlr   # région eu-west-3
+  ```
+  (`deploy-supabase.sh` utilise `supabase-<project-ref>` ; surchargeable par `AWS_PROFILE`)
+- Build local : `./pipeline/run_pipeline.sh france` → `build/dvf.pmtiles`, puis
+  `node scripts/build-pmtiles-index.mjs` → `build/tiles_index.json`
 
 ## Étapes de déploiement
 
@@ -74,41 +88,39 @@ Via le dashboard Supabase :
 2. **New bucket** → `tiles`
 3. **Public bucket** : activé
 
-### 2. Uploader le PMTiles
+### 2. Lancer le script
 
-Pour les fichiers < 500 MB :
 ```bash
-supabase storage cp build/dvf.pmtiles ss:///tiles/dvf.pmtiles --experimental
+./scripts/deploy-supabase.sh                         # prod (bqwbazolhtwizafxqzlr)
+./scripts/deploy-supabase.sh uyozmyiunskrapdptqwv    # staging
 ```
 
-**Pour les fichiers > 500 MB (914 Mo)** : upload via dashboard drag-drop :
-https://supabase.com/dashboard/project/bqwbazolhtwizafxqzlr/storage/buckets/tiles
+Séquence (chaque étape échoue dur) :
+1. accès S3 au bucket + cohérence taille index ↔ archive ;
+2. **archive** `dvf.pmtiles` (multipart S3 : remplacement d'un bloc en fin de transfert,
+   aucune fenêtre sans objet), puis contrôle de la taille servie en public ;
+3. **index** `tiles_index.json` ;
+4. **Edge Function** redéployée *aussitôt* : chaque instance garde l'index en mémoire sans
+   expiration, une instance chaude servirait sinon la nouvelle archive avec les offsets
+   de l'ancien index (tuiles corrompues). Le redéploiement recycle les instances ;
+5. **test de fumée** bloquant : tuile `mutations/13/4206/2922` (Lyon) en 200 et MVT lisible
+   (la passerelle renvoie le MVT décompressé) ;
+6. **stats** (`stats/**` hors manifest), index IRIS `stats/iris_index/`, détail IRIS
+   `stats/iris/` (`aws s3 sync`, ~47 000 fichiers, sans `--delete`), puis **manifest en
+   dernier** (il annonce années et couches : jamais avant les fichiers qu'il référence).
 
-**URL publique** (après upload) :
+Tous les objets sont servis `Cache-Control: no-cache`. Fenêtre résiduelle : entre la fin de
+l'upload de l'archive et le redéploiement de la fonction (index + deploy, ~1 min), les
+requêtes peuvent recevoir des tuiles incohérentes ; les clients iOS qui lisent l'archive en
+direct par Range doivent relire l'en-tête PMTiles après une mise à jour.
+
+**URLs publiques** :
 ```
 https://bqwbazolhtwizafxqzlr.supabase.co/storage/v1/object/public/tiles/dvf.pmtiles
+https://bqwbazolhtwizafxqzlr.supabase.co/functions/v1/dvf-tiles/{couche}/{z}/{x}/{y}.mvt
 ```
 
-Le client iOS peut télécharger ce fichier avec HTTP Range support.
-
-### 3. Déployer l'Edge Function
-
-```bash
-supabase link --project-ref bqwbazolhtwizafxqzlr --yes
-supabase functions deploy dvf-tiles
-```
-
-Ou utiliser le script d'automatisation :
-```bash
-./scripts/deploy-supabase.sh bqwbazolhtwizafxqzlr
-```
-
-**URL** :
-```
-https://bqwbazolhtwizafxqzlr.supabase.co/functions/v1/dvf-tiles
-```
-
-### 4. Bundles de stats par entité (panneau iOS au tap)
+### 3. Bundles de stats par entité (panneau iOS au tap)
 
 `deploy-supabase.sh` uploade aussi l'arbre `build/stats/` (produit par `prepare.py`), en
 plus de l'archive et de l'index. Ce sont des **fichiers statiques publics**, lus directement
