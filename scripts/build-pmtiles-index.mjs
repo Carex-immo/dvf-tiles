@@ -282,7 +282,8 @@ async function buildIndex() {
     tiles: index,
   };
 
-  fs.writeFileSync(outputPath, JSON.stringify(indexContent, null, 2));
+  // JSON compact : l'Edge Function le recharge à chaque cold start (~11 Mo vs ~22 Mo indenté).
+  fs.writeFileSync(outputPath, JSON.stringify(indexContent));
 
   console.log(`\n✅ Full tile enumeration index created`);
   console.log(`📄 Written to: ${outputPath}`);
