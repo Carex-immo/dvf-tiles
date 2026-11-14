@@ -155,11 +155,13 @@ def classify_mutation_type(nature: str | None) -> str:
 
 
 def compute_primary_type(counts: dict[str, int],
-                         surface_by_type: dict[str, float]) -> str | None:
-    """Réplique `Mutation.computePrimaryType` (post-P0, déterministe)."""
+                         surface_by_type: dict[str, float],
+                         is_vefa: bool = False) -> str | None:
+    """Réplique `Mutation.computePrimaryType` (post-P0, déterministe ;
+    jamais immeuble en VEFA — issue #70, phase 2)."""
     nb_appart = counts.get("appartement", 0)
     nb_local = counts.get("local", 0)
-    if nb_appart >= 3 or (nb_appart >= 1 and nb_local >= 1):
+    if not is_vefa and (nb_appart >= 3 or (nb_appart >= 1 and nb_local >= 1)):
         return "immeuble"
     winner: tuple[str, float] | None = None
     for ptype in PRIORITY_ORDER:
@@ -387,8 +389,8 @@ def consolidate_group(rows: list[dict],
     terrain_parcelles = fold_sum(sorted(parcelle_max.values(), reverse=True))
     surface_terrain = terrain_parcelles if terrain_parcelles > 0 else surface_terrain_biens
 
-    primary = compute_primary_type(counts, surface_by_type)
     nature = classify_mutation_type(first["nature_mutation"])
+    primary = compute_primary_type(counts, surface_by_type, nature == "vefa")
     lon, lat = anchor
 
     return {
